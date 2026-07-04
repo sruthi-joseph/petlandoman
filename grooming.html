@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grooming Services | Petland Oman</title>
+    <meta name="description" content="Treat your pets to premium grooming services at Petland Oman. Showering, nail clipping, hair styling, ear cleaning, and full spa grooming for dogs and cats.">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="style.css?v=16">
+    <style>
+        /* --- GROOMING HERO SECTION --- */
+        .grooming-hero {
+            background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.75)), url('service card images/spa grooming.jpeg') center/cover no-repeat;
+            height: 40vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            margin-top: 20px;
+            border-radius: 0 0 40px 40px;
+        }
+        .grooming-hero-content h1 {
+            font-family: var(--font-rounded);
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--primary-yellow);
+            margin-bottom: 0.8rem;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+        }
+        .grooming-hero-content p {
+            font-size: 1.25rem;
+            max-width: 650px;
+            margin: 0 auto;
+            color: #f8f9fa;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+            font-weight: 500;
+        }
+
+        /* --- GRID & CARDS (Mockup Style) --- */
+        .grooming-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+        .grooming-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+            margin-bottom: 3rem;
+        }
+        .grooming-card {
+            background-color: var(--white);
+            border-radius: 28px;
+            height: 250px;
+            display: flex;
+            flex-direction: row;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.02);
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+        .grooming-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(252, 194, 3, 0.12);
+        }
+        
+        /* Card background colors matching mockup pastel styling */
+        .card-bg-1 { background-color: #f3f2f8; } /* Soft lavender/blue */
+        .card-bg-2 { background-color: #fcf6e8; } /* Soft cream/yellow */
+        .card-bg-3 { background-color: #edf7f0; } /* Soft green */
+        .card-bg-4 { background-color: #fff0f5; } /* Soft pink */
+        .card-bg-5 { background-color: #fffdf5; } /* Soft yellow/cream (Medicated) */
+
+        .grooming-card-content {
+            width: 60%;
+            padding: 2rem 1.5rem 1.5rem 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            z-index: 2;
+            height: 100%;
+        }
+        
+        .grooming-card-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.15rem;
+            margin-bottom: 0.8rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+        .icon-bg-black { background-color: var(--black); }
+        .icon-bg-yellow { background-color: var(--primary-yellow); color: var(--black); }
+
+        .grooming-card-content h3 {
+            font-family: var(--font-rounded);
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.4rem;
+            color: var(--black);
+            line-height: 1.25;
+            text-align: left;
+        }
+        .grooming-card-content p {
+            font-size: 0.88rem;
+            color: #333;
+            line-height: 1.4;
+            margin-bottom: 0.8rem;
+            max-width: 250px;
+            text-align: left;
+        }
+        .grooming-card-btn {
+            background-color: var(--primary-yellow);
+            color: var(--black);
+            padding: 0.5rem 1.4rem;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            margin-top: auto;
+            transition: var(--transition-smooth);
+            border: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            text-decoration: none;
+        }
+        .grooming-card:hover .grooming-card-btn {
+            background-color: var(--black);
+            color: var(--white);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+        .grooming-card-btn.bg-black-btn {
+            background-color: var(--black);
+            color: var(--white);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+        .grooming-card:hover .grooming-card-btn.bg-black-btn {
+            background-color: var(--primary-yellow);
+            color: var(--black);
+            box-shadow: 0 6px 15px rgba(252, 194, 3, 0.25);
+        }
+
+        .grooming-card-img-wrap {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 40%;
+            height: 100%;
+            z-index: 1;
+        }
+        .grooming-card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+            border-radius: 0 0 28px 0;
+        }
+
+        /* --- GROOMING MODAL STYLES (COMPACTED TO AVOID SCROLLING) --- */
+        .gmodal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .gmodal.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .gmodal-backdrop {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+        .gmodal-content {
+            position: relative;
+            background: var(--white);
+            width: 90%;
+            max-width: 880px;
+            max-height: 92vh; /* Use most of the height */
+            border-radius: 24px;
+            overflow-y: hidden; /* Avoid scrolls on desktop */
+            z-index: 2001;
+            transform: scale(0.9);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
+            display: flex;
+            flex-direction: column;
+        }
+        .gmodal.active .gmodal-content {
+            transform: scale(1);
+        }
+        .gmodal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.05);
+            color: var(--black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            z-index: 10;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+        .gmodal-close:hover {
+            background: var(--primary-yellow);
+            color: var(--black);
+            transform: rotate(90deg);
+        }
+        .gmodal-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.15fr;
+            flex-grow: 1;
+        }
+        .gmodal-left {
+            background-color: #fcfcfb;
+            padding: 1.5rem 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-right: 1px solid rgba(0,0,0,0.04);
+        }
+        .gmodal-main-img-wrap {
+            width: 100%;
+            max-width: 300px;
+            height: 220px;
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            margin-bottom: 1rem;
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .gmodal-main-img-wrap img {
+            width: 90%;
+            height: 90%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        .gmodal-thumbnails {
+            display: flex;
+            gap: 0.6rem;
+            justify-content: center;
+            width: 100%;
+        }
+        .gmodal-thumb {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: var(--transition-smooth);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2px;
+        }
+        .gmodal-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+        .gmodal-thumb.active {
+            border-color: var(--primary-yellow);
+            transform: scale(1.06);
+        }
+        .gmodal-right {
+            padding: 1.5rem 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .gmodal-tag {
+            font-size: 0.75rem;
+            font-weight: 800;
+            color: #d4a373;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 0.3rem;
+        }
+        .gmodal-title {
+            font-family: var(--font-rounded);
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--black);
+            margin-bottom: 0.3rem;
+            line-height: 1.2;
+        }
+        .gmodal-rating-row {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.8rem;
+        }
+        .gmodal-stars {
+            color: #ffc107;
+            font-size: 0.85rem;
+        }
+        .gmodal-reviews {
+            color: #666;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .gmodal-desc {
+            color: #444;
+            font-size: 0.88rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+        .gmodal-highlights {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.6rem;
+            margin-bottom: 1rem;
+            background-color: #fcfcfb;
+            padding: 0.8rem;
+            border-radius: 12px;
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+        .gmodal-hl-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .gmodal-hl-icon {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background-color: rgba(252, 194, 3, 0.15);
+            color: var(--black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+        }
+        .gmodal-hl-text {
+            display: flex;
+            flex-direction: column;
+        }
+        .gmodal-hl-text strong {
+            font-size: 0.8rem;
+            color: var(--black);
+            font-weight: 700;
+        }
+        .gmodal-hl-text span {
+            font-size: 0.7rem;
+            color: #666;
+        }
+        .gmodal-packages-wrap {
+            margin-bottom: 1rem;
+        }
+        .gmodal-section-title {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: var(--black);
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.5px;
+        }
+        .gmodal-tabs {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.6rem;
+        }
+        .gmodal-tab {
+            background-color: var(--white);
+            border: 2px solid #e7e7e5;
+            border-radius: 12px;
+            padding: 0.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+        .gmodal-tab.active {
+            border-color: var(--primary-yellow);
+            background-color: #fffdf5;
+            box-shadow: 0 4px 10px rgba(252, 194, 3, 0.06);
+        }
+        .tab-label {
+            font-size: 0.75rem;
+            font-weight: 800;
+            color: var(--black);
+        }
+        .tab-sub {
+            font-size: 0.65rem;
+            color: #777;
+            margin-bottom: 0.2rem;
+        }
+        .tab-price {
+            font-size: 0.85rem;
+            font-weight: 800;
+            color: var(--black);
+        }
+        .gmodal-price-display {
+            margin-bottom: 1rem;
+        }
+        .price-label {
+            font-size: 0.75rem;
+            color: #666;
+            display: block;
+            margin-bottom: 0.15rem;
+        }
+        .price-numbers {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+        .current-price {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--black);
+        }
+        .original-price {
+            font-size: 1.05rem;
+            text-decoration: line-through;
+            color: #999;
+        }
+        .discount-badge {
+            background-color: #10b981;
+            color: var(--white);
+            font-size: 0.7rem;
+            font-weight: 800;
+            padding: 0.15rem 0.4rem;
+            border-radius: 5px;
+            text-transform: uppercase;
+        }
+        .gmodal-buttons-row {
+            display: grid;
+            grid-template-columns: 1.25fr 1fr;
+            gap: 0.8rem;
+        }
+        .gmodal-btn-book {
+            background-color: var(--primary-yellow);
+            color: var(--black);
+            font-weight: 800;
+            padding: 0.75rem;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 0.88rem;
+            box-shadow: 0 4px 12px rgba(252,194,3,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            transition: var(--transition-smooth);
+            text-decoration: none;
+        }
+        .gmodal-btn-book:hover {
+            background-color: var(--black);
+            color: var(--white);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+        }
+        .gmodal-btn-enquire {
+            border: 2px solid #e7e7e5;
+            background-color: transparent;
+            color: #333;
+            font-weight: 700;
+            padding: 0.75rem;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition-smooth);
+            text-decoration: none;
+        }
+        .gmodal-btn-enquire:hover {
+            background-color: #f4f4f3;
+            border-color: #ccc;
+            transform: translateY(-2px);
+        }
+
+        .gmodal-footer-banner {
+            border-top: 1px solid rgba(0,0,0,0.05);
+            background-color: #fcfcfb;
+            padding: 1rem 2rem;
+        }
+        .gmodal-footer-features {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.8rem;
+            margin-bottom: 0.5rem;
+        }
+        .gmodal-footer-feat-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.4rem;
+        }
+        .gmodal-footer-feat-item i {
+            color: var(--primary-yellow);
+            font-size: 0.95rem;
+            margin-top: 0.1rem;
+        }
+        .gmodal-footer-feat-item strong {
+            font-size: 0.75rem;
+            display: block;
+            color: var(--black);
+        }
+        .gmodal-footer-feat-item span {
+            font-size: 0.65rem;
+            color: #666;
+        }
+        .gmodal-footer-priority {
+            text-align: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--black);
+            border-top: 1px dashed rgba(0,0,0,0.08);
+            padding-top: 0.4rem;
+            margin-top: 0.4rem;
+        }
+
+        /* --- RESPONSIVENESS --- */
+        @media (max-width: 992px) {
+            .grooming-grid {
+                grid-template-columns: 1fr;
+            }
+            .gmodal-content {
+                overflow-y: auto; /* Fallback scroll for smaller devices */
+            }
+        }
+        @media (max-width: 768px) {
+            .grooming-hero {
+                height: 30vh;
+                margin-top: 80px;
+            }
+            .grooming-hero-content h1 {
+                font-size: 2.2rem;
+            }
+            .grooming-hero-content p {
+                font-size: 1rem;
+                padding: 0 1rem;
+            }
+            .grooming-container {
+                padding: 2.5rem 1.2rem;
+            }
+            .gmodal-grid {
+                grid-template-columns: 1fr;
+            }
+            .gmodal-left {
+                padding: 1.5rem;
+            }
+            .gmodal-main-img-wrap {
+                height: 220px;
+                margin-bottom: 1rem;
+            }
+            .gmodal-right {
+                padding: 1.5rem;
+            }
+            .gmodal-title {
+                font-size: 1.5rem;
+            }
+            .gmodal-footer-features {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+            .gmodal-footer-banner {
+                padding: 1.2rem 1.5rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .grooming-card {
+                height: auto;
+                flex-direction: column;
+                min-height: 360px;
+            }
+            .grooming-card-content {
+                width: 100%;
+                padding: 1.5rem;
+            }
+            .grooming-card-img-wrap {
+                position: relative;
+                width: 100%;
+                height: 180px;
+            }
+            .grooming-card-img {
+                border-radius: 0 0 28px 28px;
+            }
+            .gmodal-tabs {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+            .gmodal-buttons-row {
+                grid-template-columns: 1fr;
+                gap: 0.8rem;
+            }
+            .gmodal-footer-features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- STICKY HEADER -->
+    <header id="main-header">
+        <div class="header-container">
+            <button class="mobile-nav-toggle" id="nav-toggle" aria-label="Toggle Navigation">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <nav id="nav-menu">
+                <ul>
+                    <li class="nav-logo-item">
+                        <a href="index.html">
+                            <img src="logo_transparent.png" alt="Petland Oman Logo" class="nav-logo-img">
+                        </a>
+                    </li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="services.html" class="active">Services</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO BANNER -->
+    <section class="grooming-hero">
+        <div class="grooming-hero-content">
+            <h1>Grooming Services</h1>
+            <p>Treat your beloved furry companions to OMR's premium pet care and pampering sessions.</p>
+        </div>
+    </section>
+
+    <!-- PACKAGES SECTION -->
+    <section class="grooming-packages-section">
+        <div class="grooming-container">
+            <div class="sec-heading" style="margin-bottom: 3rem; text-align: center;">
+                <h2>
+                    <span class="sec-deco-paw-title" style="color: var(--primary-yellow); margin-right: 0.6rem; font-size: 1.8rem;"><i class="fa-solid fa-paw"></i></span>
+                    <span class="sec-arrow">➔</span> 
+                    Our Packages 
+                    <span class="sec-arrow sec-arrow-flip">➔</span>
+                </h2>
+                <p style="color: #666; margin-top: 0.5rem; font-size: 1.1rem; font-family: var(--font-primary);">Select a custom package to view detailed pricing and book an appointment.</p>
+            </div>
+
+            <div class="grooming-grid">
+                <!-- Card 1: Shower, Nail cut, Ear cleaning -->
+                <div class="grooming-card card-bg-1" onclick="openGroomingModal(1)">
+                    <div class="grooming-card-content">
+                        <div class="grooming-card-icon icon-bg-black">
+                            <i class="fa-solid fa-shower"></i>
+                        </div>
+                        <h3>Shower, Nail cut, Ear cleaning</h3>
+                        <p>Warm relaxing shower with premium blow-dry, hygienic ear cleaning, and expert nail trimming.</p>
+                        <button class="grooming-card-btn">View Details &nbsp;➔</button>
+                    </div>
+                    <div class="grooming-card-img-wrap">
+                        <img src="extracted_images/grooming_shower.png" alt="Shower, Nail cut, Ear cleaning" class="grooming-card-img">
+                    </div>
+                </div>
+
+                <!-- Card 2: Hair cut, Nail cut, Ear cleaning -->
+                <div class="grooming-card card-bg-2" onclick="openGroomingModal(2)">
+                    <div class="grooming-card-content">
+                        <div class="grooming-card-icon icon-bg-yellow">
+                            <i class="fa-solid fa-scissors"></i>
+                        </div>
+                        <h3>Hair cut, Nail cut, Ear cleaning</h3>
+                        <p>Professional clip & styling tailored to your pet's breed, claw clipping, and hygienic ear clean.</p>
+                        <button class="grooming-card-btn">View Details &nbsp;➔</button>
+                    </div>
+                    <div class="grooming-card-img-wrap">
+                        <img src="extracted_images/grooming_haircut.png" alt="Hair cut, Nail cut, Ear cleaning" class="grooming-card-img">
+                    </div>
+                </div>
+
+                <!-- Card 3: Shower, Deshedding, Nail cut & Ear Cleaning -->
+                <div class="grooming-card card-bg-3" onclick="openGroomingModal(3)">
+                    <div class="grooming-card-content">
+                        <div class="grooming-card-icon icon-bg-black">
+                            <i class="fa-solid fa-broom"></i>
+                        </div>
+                        <h3>Shower, Deshedding, Nail cut & Ear Cleaning</h3>
+                        <p>Specialized deshedding wash, deep undercoat blowout, intensive brushing, claw trim, and ear sanitation.</p>
+                        <button class="grooming-card-btn">View Details &nbsp;➔</button>
+                    </div>
+                    <div class="grooming-card-img-wrap">
+                        <img src="extracted_images/grooming_deshedding.png" alt="Shower, Deshedding, Nail cut & Ear Cleaning" class="grooming-card-img">
+                    </div>
+                </div>
+
+                <!-- Card 4: Full Grooming -->
+                <div class="grooming-card card-bg-4" onclick="openGroomingModal(4)">
+                    <div class="grooming-card-content">
+                        <div class="grooming-card-icon icon-bg-yellow">
+                            <i class="fa-solid fa-crown"></i>
+                        </div>
+                        <h3>Full Grooming</h3>
+                        <p>Our royal spa: custom styling, deep cleansing shower, nail filing, ear cleaning, and fresh scent spray.</p>
+                        <button class="grooming-card-btn">View Details &nbsp;➔</button>
+                    </div>
+                    <div class="grooming-card-img-wrap">
+                        <img src="extracted_images/grooming_full.png" alt="Full Grooming" class="grooming-card-img">
+                    </div>
+                </div>
+
+                <!-- Card 5: Medicated Wash Option (Styled exactly like the packages above) -->
+                <a href="https://wa.me/96871122885?text=Hi%20Petland%20Oman%2C%20I%27d%20like%20to%20book%20a%20grooming%20session%20with%20the%20Medicated%20Wash%20option%20added." target="_blank" class="grooming-card card-bg-5">
+                    <div class="grooming-card-content">
+                        <div class="grooming-card-icon icon-bg-black">
+                            <i class="fa-solid fa-prescription-bottle-medical"></i>
+                        </div>
+                        <h3>Medicated Wash Option</h3>
+                        <p>Add a soothing, anti-itch medicated wash treatment to any of the shower packages above for only <strong>+2.00 OMR</strong> extra.</p>
+                        <span class="grooming-card-btn bg-black-btn">Book Now &nbsp;➔</span>
+                    </div>
+                    <div class="grooming-card-img-wrap">
+                        <img src="extracted_images/grooming_medicated.png" alt="Medicated Wash Option" class="grooming-card-img">
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- DETAILED MODAL POPUP -->
+    <div class="gmodal" id="grooming-modal">
+        <div class="gmodal-backdrop" onclick="closeGroomingModal()"></div>
+        <div class="gmodal-content">
+            <button class="gmodal-close" onclick="closeGroomingModal()" aria-label="Close Modal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="gmodal-grid">
+                <!-- Left side: Images and thumbnails -->
+                <div class="gmodal-left">
+                    <div class="gmodal-main-img-wrap">
+                        <img src="" alt="Service details" id="gmodal-main-img">
+                    </div>
+                    <div class="gmodal-thumbnails" id="gmodal-thumbnails-container">
+                        <!-- thumbnails populated dynamically -->
+                    </div>
+                </div>
+                <!-- Right side: details and selections -->
+                <div class="gmodal-right">
+                    <div class="gmodal-tag" id="gmodal-tag">Grooming Package</div>
+                    <h2 class="gmodal-title" id="gmodal-title">Package Name</h2>
+                    
+                    <div class="gmodal-rating-row">
+                        <div class="gmodal-stars">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <span class="gmodal-reviews">(120 Reviews)</span>
+                    </div>
+
+                    <p class="gmodal-desc" id="gmodal-desc">Package description goes here.</p>
+
+                    <!-- Highlights Grid -->
+                    <div class="gmodal-highlights" id="gmodal-highlights-container">
+                        <!-- highlights populated dynamically -->
+                    </div>
+
+                    <!-- Package Breed Size Options -->
+                    <div class="gmodal-packages-wrap">
+                        <span class="gmodal-section-title">Select Breed Size</span>
+                        <div class="gmodal-tabs" id="gmodal-tabs-container">
+                            <button class="gmodal-tab active" onclick="selectBreed('small')">
+                                <span class="tab-label">Small Breed</span>
+                                <span class="tab-sub">Dog / Cat</span>
+                                <span class="tab-price" id="tab-price-small">OMR 11.00</span>
+                            </button>
+                            <button class="gmodal-tab" onclick="selectBreed('medium')">
+                                <span class="tab-label">Medium Breed</span>
+                                <span class="tab-sub">Dog</span>
+                                <span class="tab-price" id="tab-price-medium">OMR 13.00</span>
+                            </button>
+                            <button class="gmodal-tab" onclick="selectBreed('large')">
+                                <span class="tab-label">Large Breed</span>
+                                <span class="tab-sub">Dog</span>
+                                <span class="tab-price" id="tab-price-large">OMR 16.00</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Pricing Display -->
+                    <div class="gmodal-price-display">
+                        <span class="price-label">Price Starts from</span>
+                        <div class="price-numbers">
+                            <span class="current-price" id="gmodal-current-price">OMR 11.00</span>
+                            <span class="original-price" id="gmodal-original-price">OMR 13.00</span>
+                            <span class="discount-badge" id="gmodal-discount-badge">15% OFF</span>
+                        </div>
+                    </div>
+
+                    <!-- CTAs -->
+                    <div class="gmodal-buttons-row">
+                        <a href="#" target="_blank" class="gmodal-btn-book" id="gmodal-btn-book">
+                            Book Now <i class="fa-solid fa-calendar-check"></i>
+                        </a>
+                        <a href="contact.html" class="gmodal-btn-enquire">
+                            Enquire for Custom Plan
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom features bar inside modal -->
+            <div class="gmodal-footer-banner">
+                <div class="gmodal-footer-features">
+                    <div class="gmodal-footer-feat-item">
+                        <i class="fa-solid fa-calendar-days"></i>
+                        <div>
+                            <strong>Flexible Scheduling</strong>
+                            <span>Book on your terms</span>
+                        </div>
+                    </div>
+                    <div class="gmodal-footer-feat-item">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <div>
+                            <strong>Insured & Bonded</strong>
+                            <span>Safe & trusted team</span>
+                        </div>
+                    </div>
+                    <div class="gmodal-footer-feat-item">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <div>
+                            <strong>Satisfaction Guaranteed</strong>
+                            <span>Only the best for pets</span>
+                        </div>
+                    </div>
+                    <div class="gmodal-footer-feat-item">
+                        <i class="fa-solid fa-heart-pulse"></i>
+                        <div>
+                            <strong>Lifetime Support</strong>
+                            <span>Ongoing help always</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="gmodal-footer-priority">
+                    🐾 Your pet's happiness is our priority!
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-main-card">
+            <div class="footer-container">
+                <!-- Column 1: Brand Info -->
+                <div class="footer-col brand-col">
+                    <div class="footer-logo">
+                        <i class="fa-solid fa-paw paw-logo-icon"></i>
+                        <span class="logo-text-white">Petland</span>
+                        <span class="logo-text-yellow">Oman</span>
+                    </div>
+                    <p>We provide the best products and care for your furry companions in the Sultanate of Oman.</p>
+                    <div class="footer-social-row">
+                        <a href="#" class="social-circle" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="social-circle" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="social-circle" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="https://wa.me/96890000000" class="social-circle" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <!-- Dotted Divider -->
+                <div class="col-divider"></div>
+
+                <!-- Column 2: Quick Links -->
+                <div class="footer-col links-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#about">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="products.html">Shop</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Dotted Divider -->
+                <div class="col-divider"></div>
+
+                <!-- Column 3: Customer Care -->
+                <div class="footer-col care-col">
+                    <h4>Customer Care</h4>
+                    <ul>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Shipping Policy</a></li>
+                        <li><a href="#">Return Policy</a></li>
+                        <li><a href="#">Terms &amp; Conditions</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+
+                <!-- Dotted Divider -->
+                <div class="col-divider"></div>
+
+                <!-- Column 4: Newsletter -->
+                <div class="footer-col newsletter-col">
+                    <h4>Subscribe to our Newsletter</h4>
+                    <p>Get special offers &amp; updates straight to your inbox!</p>
+                    <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Subscribed!');">
+                        <input type="email" placeholder="Enter your email" required class="newsletter-input">
+                        <button type="submit" class="newsletter-btn" aria-label="Subscribe">
+                            <i class="fa-solid fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Cute cartoon pets illustration -->
+            <div class="footer-pets-wrap">
+                <img src="extracted_images/footer_pets.png" alt="Cute dog and cat cartoon" class="footer-pets-img">
+            </div>
+        </div>
+
+        <!-- Yellow Copyright Bar with Wavy top edge -->
+        <div class="footer-bottom-bar">
+            <div class="footer-bottom-badge">
+                <i class="fa-solid fa-paw"></i>
+            </div>
+            <div class="footer-copyright-text">
+                &copy; 2026 Petland Oman. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Main JavaScript File -->
+    <script src="script.js"></script>
+
+    <!-- Detailed Modal Functionality Script -->
+    <script>
+        const groomingPackages = {
+            1: {
+                title: "Shower, Nail cut, Ear cleaning",
+                tagline: "Tailored Care for All Breeds",
+                desc: "A relaxing shower and blow-dry using premium hypoallergenic shampoo. We carefully clean their ears to prevent wax build-up and gently trim their nails to ensure comfortable walking. Perfect for regular hygiene upkeep.",
+                images: [
+                    "extracted_images/grooming_shower.png",
+                    "extracted_images/grooming_haircut.png",
+                    "extracted_images/grooming_deshedding.png",
+                    "extracted_images/grooming_full.png"
+                ],
+                prices: {
+                    small: "11.00",
+                    medium: "13.00",
+                    large: "16.00"
+                },
+                originalPrices: {
+                    small: "13.00",
+                    medium: "15.00",
+                    large: "19.00"
+                },
+                features: [
+                    { name: "Premium Shampoo", desc: "Hypoallergenic wash" },
+                    { name: "Ear Hygiene", desc: "Wax cleaning & check" },
+                    { name: "Nail Care", desc: "Claw clipping & filing" },
+                    { name: "Medicated Wash", desc: "Available (+2.00 OMR)" }
+                ]
+            },
+            2: {
+                title: "Hair cut, Nail cut, Ear cleaning",
+                tagline: "Sleek Style & Clean Look",
+                desc: "A custom haircut styled by our professional groomers to fit your pet's breed or look, combined with detailed nail cutting and deep ear cleaning. Keeps your pet comfortable, cool, and looking their absolute best.",
+                images: [
+                    "extracted_images/grooming_haircut.png",
+                    "extracted_images/grooming_shower.png",
+                    "extracted_images/grooming_deshedding.png",
+                    "extracted_images/grooming_full.png"
+                ],
+                prices: {
+                    small: "11.00",
+                    medium: "13.00",
+                    large: "16.00"
+                },
+                originalPrices: {
+                    small: "13.00",
+                    medium: "15.00",
+                    large: "19.00"
+                },
+                features: [
+                    { name: "Custom Styling", desc: "Breed-specific haircuts" },
+                    { name: "Nail Care", desc: "Trimmed & smoothed claws" },
+                    { name: "Ear Hygiene", desc: "Cleansed & sanitized ears" },
+                    { name: "Medicated Wash", desc: "Available (+2.00 OMR)" }
+                ]
+            },
+            3: {
+                title: "Shower, Deshedding, Nail cut & Ear Cleaning",
+                tagline: "Bye-Bye Loose Pet Hair",
+                desc: "Designed specifically for double-coated or heavy-shedding pets. Includes a specialized deshedding wash, deep undercoat blowout, intensive brushing, a clean ear flush, and neat nail trimming. Dramatically reduces shedding at home.",
+                images: [
+                    "extracted_images/grooming_deshedding.png",
+                    "extracted_images/grooming_shower.png",
+                    "extracted_images/grooming_haircut.png",
+                    "extracted_images/grooming_full.png"
+                ],
+                prices: {
+                    small: "11.00",
+                    medium: "13.00",
+                    large: "18.00"
+                },
+                originalPrices: {
+                    small: "14.00",
+                    medium: "16.50",
+                    large: "22.00"
+                },
+                features: [
+                    { name: "Deshedding Wash", desc: "Removes loose undercoat" },
+                    { name: "Fur Blow-out", desc: "High-velocity air dry" },
+                    { name: "Intense Brushing", desc: "De-furring treatment" },
+                    { name: "Ear & Nails", desc: "Full hygiene care included" }
+                ]
+            },
+            4: {
+                title: "Full Grooming",
+                tagline: "The Ultimate Royal Spa Experience",
+                desc: "Our most comprehensive premium package. Includes a warm relaxing bath, breed-specific style haircut, full deshedding, sanitary trimming, paw pad shaving, ear cleaning/plucking, nail clipping, claw filing, and refreshing cologne spray.",
+                images: [
+                    "extracted_images/grooming_full.png",
+                    "extracted_images/grooming_shower.png",
+                    "extracted_images/grooming_haircut.png",
+                    "extracted_images/grooming_deshedding.png"
+                ],
+                prices: {
+                    small: "17.00",
+                    medium: "19.00",
+                    large: "25.00"
+                },
+                originalPrices: {
+                    small: "21.00",
+                    medium: "24.00",
+                    large: "30.00"
+                },
+                features: [
+                    { name: "Full Styling", desc: "Scissor-cut & trim" },
+                    { name: "Spa Bath", desc: "Deep wash & conditioner" },
+                    { name: "Sanitary Trim", desc: "Hygiene areas cleaned" },
+                    { name: "Cologne Spray", desc: "Fresh scent finish" }
+                ]
+            }
+        };
+
+        let currentPackageId = 1;
+        let currentBreed = 'small';
+        const contactWhatsApp = '96871122885'; // phone number: +968 7112 2885
+
+        function openGroomingModal(packageId) {
+            currentPackageId = packageId;
+            currentBreed = 'small';
+            const pkg = groomingPackages[packageId];
+            if (!pkg) return;
+
+            // Set Title, Tag, Description
+            document.getElementById('gmodal-title').textContent = pkg.title;
+            document.getElementById('gmodal-tag').textContent = pkg.tagline;
+            document.getElementById('gmodal-desc').textContent = pkg.desc;
+
+            // Set Main Image
+            const mainImg = document.getElementById('gmodal-main-img');
+            mainImg.src = pkg.images[0];
+            mainImg.alt = pkg.title;
+
+            // Populate Thumbnails
+            const thumbsContainer = document.getElementById('gmodal-thumbnails-container');
+            thumbsContainer.innerHTML = '';
+            pkg.images.forEach((imgSrc, idx) => {
+                const thumb = document.createElement('div');
+                thumb.className = `gmodal-thumb ${idx === 0 ? 'active' : ''}`;
+                thumb.innerHTML = `<img src="${imgSrc}" alt="Thumbnail ${idx + 1}">`;
+                thumb.addEventListener('click', () => {
+                    mainImg.src = imgSrc;
+                    document.querySelectorAll('.gmodal-thumb').forEach(t => t.classList.remove('active'));
+                    thumb.classList.add('active');
+                });
+                thumbsContainer.appendChild(thumb);
+            });
+
+            // Populate Highlights
+            const hlContainer = document.getElementById('gmodal-highlights-container');
+            hlContainer.innerHTML = '';
+            
+            // Icons matching order
+            const icons = [
+                '<i class="fa-solid fa-soap"></i>',
+                '<i class="fa-solid fa-ear-listen"></i>',
+                '<i class="fa-solid fa-scissors"></i>',
+                '<i class="fa-solid fa-prescription-bottle-medical"></i>'
+            ];
+            pkg.features.forEach((feat, idx) => {
+                const hl = document.createElement('div');
+                hl.className = 'gmodal-hl-item';
+                hl.innerHTML = `
+                    <div class="gmodal-hl-icon">${icons[idx] || '<i class="fa-solid fa-circle-check"></i>'}</div>
+                    <div class="gmodal-hl-text">
+                        <strong>${feat.name}</strong>
+                        <span>${feat.desc}</span>
+                    </div>
+                `;
+                hlContainer.appendChild(hl);
+            });
+
+            // Populate breed pricing in tabs
+            document.getElementById('tab-price-small').textContent = `OMR ${pkg.prices.small}`;
+            document.getElementById('tab-price-medium').textContent = `OMR ${pkg.prices.medium}`;
+            document.getElementById('tab-price-large').textContent = `OMR ${pkg.prices.large}`;
+
+            // Update active tab styling
+            setActiveTabStyle();
+
+            // Update prices & Book Now button
+            updatePriceAndWA();
+
+            // Show Modal
+            const modal = document.getElementById('grooming-modal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeGroomingModal() {
+            const modal = document.getElementById('grooming-modal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function selectBreed(breed) {
+            currentBreed = breed;
+            setActiveTabStyle();
+            updatePriceAndWA();
+        }
+
+        function setActiveTabStyle() {
+            const tabs = document.querySelectorAll('.gmodal-tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            if (currentBreed === 'small') tabs[0].classList.add('active');
+            else if (currentBreed === 'medium') tabs[1].classList.add('active');
+            else if (currentBreed === 'large') tabs[2].classList.add('active');
+        }
+
+        function updatePriceAndWA() {
+            const pkg = groomingPackages[currentPackageId];
+            if (!pkg) return;
+
+            const price = pkg.prices[currentBreed];
+            const origPrice = pkg.originalPrices[currentBreed];
+
+            // Update display prices
+            document.getElementById('gmodal-current-price').textContent = `OMR ${price}`;
+            document.getElementById('gmodal-original-price').textContent = `OMR ${origPrice}`;
+            
+            // Calculate discount percent
+            const discount = Math.round((1 - (parseFloat(price) / parseFloat(origPrice))) * 100);
+            document.getElementById('gmodal-discount-badge').textContent = `${discount}% OFF`;
+
+            // Configure Book Now WhatsApp link
+            const breedLabel = currentBreed === 'small' ? 'Small Breed Dog/Cat' : 
+                                currentBreed === 'medium' ? 'Medium Breed Dog' : 'Large Breed Dog';
+            const waMessage = `Hi Petland Oman, I would like to book a grooming session!\n\n` +
+                              `Package: *${pkg.title}*\n` +
+                              `Breed Size: *${breedLabel}*\n` +
+                              `Price: *OMR ${price}*\n\n` +
+                              `Please confirm availability for this session. Thank you!`;
+
+            const waBtn = document.getElementById('gmodal-btn-book');
+            waBtn.href = `https://wa.me/${contactWhatsApp}?text=${encodeURIComponent(waMessage)}`;
+        }
+
+        // Close with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeGroomingModal();
+            }
+        });
+    </script>
+</body>
+</html>

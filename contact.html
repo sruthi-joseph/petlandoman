@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Petland Oman</title>
+    <meta name="description" content="Get in touch with Petland Oman. Visit our Muscat location, call us, send an email, or submit an enquiry via WhatsApp.">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="style.css?v=16">
+</head>
+<body>
+
+    <!-- STICKY HEADER -->
+    <header id="main-header">
+        <div class="header-container">
+            <button class="mobile-nav-toggle" id="nav-toggle" aria-label="Toggle Navigation">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <nav id="nav-menu">
+                <ul>
+                    <li class="nav-logo-item">
+                        <a href="index.html">
+                            <img src="logo_transparent.png" alt="Petland Oman Logo" class="nav-logo-img">
+                        </a>
+                    </li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html" class="active">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- MAIN CONTAINER -->
+    <main class="container" style="margin-top: 120px; box-sizing: border-box;">
+        <!-- PAGE TITLE -->
+        <div style="text-align: left; margin: 3rem 0 1rem 0;">
+            <h1 style="font-family: var(--font-rounded); font-size: 3rem; font-weight: 700; color: #000000; margin: 0;">Contact page</h1>
+        </div>
+
+        <div class="contact-layout">
+            <!-- LEFT: Send Us a Message Card -->
+            <div class="msg-form-card">
+                <h2>Send Us a Message <span class="section-wave-accent">〰</span></h2>
+                <p class="subtitle">Fill out the form and we will get back to you as soon as possible.</p>
+                
+                <form id="petland-contact-form">
+                    <div class="form-row-2">
+                        <div class="form-field-wrap">
+                            <i class="fa-solid fa-user"></i>
+                            <input type="text" id="form-name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-field-wrap">
+                            <i class="fa-solid fa-envelope"></i>
+                            <input type="email" id="form-email" placeholder="Your Email" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-field-wrap">
+                        <i class="fa-solid fa-phone"></i>
+                        <input type="tel" id="form-phone" placeholder="Phone Number" required>
+                    </div>
+                    
+                    <div class="form-field-wrap">
+                        <i class="fa-solid fa-tag"></i>
+                        <select id="form-subject" style="width: 100%; padding: 1rem 1rem 1rem 3.2rem; border: 1px solid #eaeaea; border-radius: 30px; outline: none; font-family: var(--font-primary); font-size: 0.95rem; color: #000000; background-color: #fafafa; -webkit-appearance: none; -moz-appearance: none; appearance: none; cursor: pointer;" required>
+                            <option value="" disabled selected>Subject</option>
+                            <option value="General Enquiry">General Enquiry</option>
+                            <option value="Product Order">Product Order / Delivery</option>
+                            <option value="Service Booking">Service Booking (Grooming/Spa/Vet)</option>
+                            <option value="Partnership">Brand Partnership</option>
+                        </select>
+                        <i class="fa-solid fa-chevron-down" style="left: auto; right: 20px; font-size: 0.85rem; color: #999999;"></i>
+                    </div>
+                    
+                    <div class="form-field-wrap textarea-wrap">
+                        <i class="fa-solid fa-pen"></i>
+                        <textarea id="form-message" rows="5" placeholder="Your Message" required></textarea>
+                    </div>
+                    
+                    <div>
+                        <!-- Combined submit button as per the mockup visual representation -->
+                        <button type="button" id="btn-submit-whatsapp" class="btn-send-msg">
+                            Send Message <i class="fa-solid fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- RIGHT: Contact Information Column -->
+            <div class="contact-info-section">
+                <h2>Contact Information <span class="section-wave-accent">〰</span></h2>
+                
+                <div class="info-row-item">
+                    <div class="info-icon-box yellow-bg">
+                        <i class="fa-solid fa-phone"></i>
+                    </div>
+                    <div class="info-text-box">
+                        <h4>Call Us</h4>
+                        <p><strong>+1 234 567 8900</strong></p>
+                        <span class="sub">Mon - Sun: 8:00 AM - 8:00 PM</span>
+                    </div>
+                </div>
+
+                <div class="info-row-item">
+                    <div class="info-icon-box dark-bg">
+                        <i class="fa-solid fa-envelope"></i>
+                    </div>
+                    <div class="info-text-box">
+                        <h4>Email Us</h4>
+                        <p><strong>info@petlandoman.com</strong></p>
+                        <span class="sub">We reply within 24 hours</span>
+                    </div>
+                </div>
+
+                <div class="info-row-item">
+                    <div class="info-icon-box yellow-bg">
+                        <i class="fa-solid fa-location-dot"></i>
+                    </div>
+                    <div class="info-text-box">
+                        <h4>Visit Us</h4>
+                        <p>Street 4, Al Khuwair, Muscat, Sultanate of Oman</p>
+                    </div>
+                </div>
+
+                <div class="info-row-item">
+                    <div class="info-icon-box dark-bg">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+                    <div class="info-text-box">
+                        <h4>Follow Us</h4>
+                        <div class="info-social-row">
+                            <a href="#" class="info-social-circle" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                            <a href="#" class="info-social-circle" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="#" class="info-social-circle" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                            <a href="#" class="info-social-circle" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 2: OUR LOCATION BANNER -->
+        <section class="our-location-section">
+            <div class="loc-banner-card">
+                <div class="loc-card-overlay">
+                    <h2>Our Location <span class="section-wave-accent">〰</span></h2>
+                    <p>We'd love to meet you and your pets! Visit our store for the best products and expert advice.</p>
+                    <!-- Button with maps link pointing to Khuwair Muscat -->
+                    <a href="https://maps.google.com/?q=Al+Khuwair+Muscat" target="_blank" class="btn-directions">
+                        Get Directions <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: FREQUENTLY ASKED QUESTIONS -->
+        <section class="faq-section">
+            <div class="faq-header-row">
+                <h2>Frequently Asked Questions <span class="section-wave-accent">〰</span></h2>
+                <a href="#" class="faq-view-all">View All FAQs <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+            
+            <div class="faq-grid-cols">
+                <!-- FAQ 1 -->
+                <div class="faq-col-card">
+                    <div class="faq-icon-circle">
+                        <i class="fa-solid fa-truck"></i>
+                    </div>
+                    <h4>Do you offer home delivery?</h4>
+                    <p>Yes! We offer fast and reliable delivery on orders over $49.</p>
+                    <a href="#" class="faq-learn-more">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div class="faq-col-card">
+                    <div class="faq-icon-circle">
+                        <i class="fa-solid fa-box"></i>
+                    </div>
+                    <h4>What is your return policy?</h4>
+                    <p>We have a 30-day return policy for unused and unopened items.</p>
+                    <a href="#" class="faq-learn-more">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="faq-col-card">
+                    <div class="faq-icon-circle">
+                        <i class="fa-solid fa-headphones"></i>
+                    </div>
+                    <h4>Can I track my order?</h4>
+                    <p>Absolutely! You can track your order in real-time from your account.</p>
+                    <a href="#" class="faq-learn-more">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-main-card">
+            <div class="footer-container">
+                <!-- Column 1: Brand Info -->
+                <div class="footer-col brand-col">
+                    <div class="footer-logo">
+                        <i class="fa-solid fa-paw paw-logo-icon"></i>
+                        <span class="logo-text-white">Petland</span>
+                        <span class="logo-text-yellow">Oman</span>
+                    </div>
+                    <p>We provide the best products and care for your furry companions in the Sultanate of Oman.</p>
+                    <div class="footer-social-row">
+                        <a href="#" class="social-circle" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="social-circle" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="social-circle" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="https://wa.me/96890000000" class="social-circle" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <!-- Dotted Divider -->
+                <div class="col-divider"></div>
+
+                <!-- Column 2: Quick Links -->
+                <div class="footer-col links-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#about">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="products.html">Shop</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Dotted Divider -->
+                <div class="col-divider"></div>
+
+                <!-- Column 3: Customer Care -->
+                <div class="footer-col care-col">
+                    <h4>Customer Care</h4>
+                    <ul>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Shipping Policy</a></li>
+                        <li><a href="#">Return Policy</a></li>
+                        <li><a href="#">Terms &amp; Conditions</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+
+                <!-- Dotted Divider -->
+                <div class="col-divider"></div>
+
+                <!-- Column 4: Newsletter -->
+                <div class="footer-col newsletter-col">
+                    <h4>Subscribe to our Newsletter</h4>
+                    <p>Get special offers &amp; updates straight to your inbox!</p>
+                    <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Subscribed!');">
+                        <input type="email" placeholder="Enter your email" required class="newsletter-input">
+                        <button type="submit" class="newsletter-btn" aria-label="Subscribe">
+                            <i class="fa-solid fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Cute cartoon pets illustration -->
+            <div class="footer-pets-wrap">
+                <img src="extracted_images/footer_pets.png" alt="Cute dog and cat cartoon" class="footer-pets-img">
+            </div>
+        </div>
+
+        <!-- Yellow Copyright Bar with Wavy top edge -->
+        <div class="footer-bottom-bar">
+            <!-- Paw print badge overlapping the bottom wave -->
+            <div class="footer-bottom-badge">
+                <i class="fa-solid fa-paw"></i>
+            </div>
+            <div class="footer-copyright-text">
+                &copy; 2026 Petland Oman. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Main JavaScript File -->
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Petland Oman | Premium Pet Care & Products</title>
+    <meta name="description" content="Welcome to Petland Oman. Experience the premium standard of pet love and care with our curated products, professional grooming, veterinary, and spa services.">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="style.css?v=16">
+</head>
+<body>
+
+    <!-- STICKY HEADER -->
+    <header id="main-header">
+        <div class="header-container">
+            <button class="mobile-nav-toggle" id="nav-toggle" aria-label="Toggle Navigation">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <nav id="nav-menu">
+                <ul>
+                    <li class="nav-logo-item">
+                        <a href="index.html">
+                            <img src="logo_transparent.png" alt="Petland Oman Logo" class="nav-logo-img">
+                        </a>
+                    </li>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 1. SCROLL ANIMATION SECTION (Opens immediately below header) -->
+    <section class="scroll-video-container" id="scroll-section">
+        <div class="sticky-video-wrapper">
+            <!-- Video tags for scroll seek. Preloaded, muted, autoplay, inline play -->
+            <!-- Desktop Video -->
+            <video class="scroll-video" id="scroll-video-desktop" preload="auto" muted playsinline autoplay loop>
+                <source src="hero page desktop1.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <!-- Mobile Video -->
+            <video class="scroll-video" id="scroll-video-mobile" style="display: none;" preload="auto" muted playsinline autoplay loop>
+                <source src="heropage phoneview.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            
+            <!-- Video Overlay Slides triggered by scroll depth -->
+            <div class="scroll-video-overlays">
+                <!-- Slide 1: Logo Reveal — blank so the video animation shows cleanly -->
+                <div class="overlay-slide active" id="slide-logo">
+                </div>
+
+                <!-- Slide 2: Promotional Banner Slideshow -->
+                <div class="overlay-slide" id="slide-banners">
+                    <div class="banner-slideshow-wrapper">
+                        <!-- Slideshow Track -->
+                        <div class="banner-slideshow-track" id="banner-track">
+                            <div class="banner-slide active">
+                                <a href="products.html">
+                                    <img src="banner pet products.png" alt="Premium Pet Products" class="banner-img">
+                                </a>
+                            </div>
+                            <div class="banner-slide">
+                                <a href="services.html">
+                                    <img src="banner for services.png" alt="Professional Pet Services" class="banner-img">
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Navigation Arrows -->
+                        <button class="banner-nav-btn banner-prev" id="banner-prev" aria-label="Previous Banner">
+                            <i class="fa-solid fa-chevron-left"></i>
+                        </button>
+                        <button class="banner-nav-btn banner-next" id="banner-next" aria-label="Next Banner">
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT US SECTION -->
+    <section class="aboutus-section" id="about">
+        <div class="aboutus-container">
+
+            <!-- LEFT: Text -->
+            <div class="aboutus-text">
+                <div class="aboutus-heading">
+                    <span class="aboutus-paw"><i class="fa-solid fa-paw"></i></span>
+                    <h2>About <span>Us</span></h2>
+                </div>
+                <div class="aboutus-wave">〰〰〰</div>
+                <p>At Petland Oman, we believe pets are family. We're passionate about providing the best products and care to keep your furry friends happy and healthy — from premium nutrition to luxurious spa treatments.</p>
+                <a href="index.html#about" class="aboutus-btn">
+                    Learn More &nbsp;<i class="fa-solid fa-paw"></i>
+                </a>
+            </div>
+
+            <!-- RIGHT: Image -->
+            <div class="aboutus-image-wrap">
+                <img
+                    src="about_us_image_transparent.png"
+                    alt="Happy dog and cat at Petland Oman"
+                    class="aboutus-pet-img"
+                >
+            </div>
+
+        </div>
+    </section>
+
+    <!-- OUR PRODUCTS SECTION -->
+    <section class="products-section" id="products">
+        <div class="products-section-inner">
+
+            <!-- Decorative elements -->
+            <span class="sec-deco sec-deco-paw sec-deco-paw-tl"><i class="fa-solid fa-paw"></i></span>
+            <span class="sec-deco sec-deco-bone sec-deco-bone-tr"><i class="fa-solid fa-bone"></i></span>
+            <span class="sec-deco sec-deco-paw sec-deco-paw-br"><i class="fa-solid fa-paw"></i></span>
+            <span class="sec-deco sec-deco-paw" style="position: absolute; top: 15%; right: 2%; color: #e3d5ca; font-size: 1.8rem; opacity: 0.8;"><i class="fa-solid fa-paw"></i></span>
+            <span class="sec-deco sec-deco-bone" style="position: absolute; bottom: 12%; left: 2%; color: #fef08a; font-size: 1.8rem; opacity: 0.8;"><i class="fa-solid fa-bone"></i></span>
+            <span class="sec-deco" style="position: absolute; top: 45%; left: 1%; color: #ede9fe; font-size: 2.2rem; opacity: 0.7; transform: rotate(-15deg); pointer-events: none;"><i class="fa-solid fa-paw"></i></span>
+            <span class="sec-deco" style="position: absolute; top: 60%; right: 1%; color: #e0f2fe; font-size: 2rem; opacity: 0.7; transform: rotate(35deg); pointer-events: none;"><i class="fa-solid fa-bone"></i></span>
+            <!-- Dotted curved arrows from image -->
+            <svg class="sec-deco sec-deco-arrow-l" viewBox="0 0 100 100" width="80" height="80">
+                <path d="M 10 20 Q 60 20, 80 80" fill="none" stroke="#FCC203" stroke-width="3" stroke-dasharray="4,4" />
+                <path d="M 75 70 L 80 80 L 70 77" fill="none" stroke="#FCC203" stroke-width="3" stroke-linecap="round" />
+            </svg>
+            <svg class="sec-deco sec-deco-arrow-r" viewBox="0 0 100 100" width="80" height="80">
+                <path d="M 90 20 Q 40 20, 20 80" fill="none" stroke="#d5bdaf" stroke-width="3" stroke-dasharray="4,4" />
+                <path d="M 25 70 L 20 80 L 30 77" fill="none" stroke="#d5bdaf" stroke-width="3" stroke-linecap="round" />
+            </svg>
+
+            <!-- Heading -->
+            <div class="sec-heading">
+                <h2><span class="sec-arrow">➔</span> Our Products <span class="sec-arrow sec-arrow-flip">➔</span></h2>
+                <svg class="sec-wave-svg" viewBox="0 0 100 10" width="80" height="8">
+                    <path d="M 0 5 Q 12.5 0, 25 5 T 50 5 T 75 5 T 100 5" fill="none" stroke="#222" stroke-width="3" stroke-linecap="round"/>
+                </svg>
+            </div>
+
+            <!-- Product Cards -->
+            <div class="product-circles">
+
+                <div class="product-circle-card">
+                    <div class="circle-img-wrap" style="background:#fef3c7;">
+                        <img src="extracted_images/product_1.png?v=11" alt="Pet Food">
+                    </div>
+                    <h3>Pet Food</h3>
+                    <p>Nutritious and tasty food for your pets.</p>
+                </div>
+
+                <div class="product-circle-card">
+                    <div class="circle-img-wrap" style="background:#ede9fe;">
+                        <img src="extracted_images/product_2.png?v=11" alt="Toys & Fun">
+                    </div>
+                    <h3>Toys &amp; Fun</h3>
+                    <p>Fun and durable toys for happy playtime.</p>
+                </div>
+
+                <div class="product-circle-card">
+                    <div class="circle-img-wrap" style="background:#fef9c3;">
+                        <img src="extracted_images/product_3.png?v=11" alt="Grooming">
+                    </div>
+                    <h3>Grooming</h3>
+                    <p>Keep your pets clean, fresh &amp; healthy.</p>
+                </div>
+
+                <div class="product-circle-card">
+                    <div class="circle-img-wrap" style="background:#e0f2fe;">
+                        <img src="extracted_images/product_4.png?v=11" alt="Accessories">
+                    </div>
+                    <h3>Accessories</h3>
+                    <p>Comfortable accessories for everyday care.</p>
+                </div>
+
+            </div>
+
+            <!-- CTA Button -->
+            <div class="products-cta">
+                <a href="products.html" class="products-btn">View All Products &nbsp;<i class="fa-solid fa-paw"></i></a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- OUR SERVICES SECTION -->
+    <section class="services-preview-section" id="services-preview">
+        <div class="services-preview-inner">
+            <!-- Floating Heart Deco -->
+            <span class="sec-deco sec-deco-heart-tr"><i class="fa-regular fa-heart"></i></span>
+            <!-- Floating Paws and Bones -->
+            <span class="sec-deco" style="position: absolute; top: 10%; left: 3%; color: #e3d5ca; font-size: 1.8rem; opacity: 0.6; transform: rotate(15deg); pointer-events: none;"><i class="fa-solid fa-paw"></i></span>
+            <span class="sec-deco" style="position: absolute; bottom: 8%; right: 3%; color: #fef08a; font-size: 1.8rem; opacity: 0.6; transform: rotate(-25deg); pointer-events: none;"><i class="fa-solid fa-bone"></i></span>
+            <span class="sec-deco" style="position: absolute; bottom: 15%; left: 4%; color: #fef3c7; font-size: 1.8rem; opacity: 0.8; transform: rotate(-10deg); pointer-events: none;"><i class="fa-solid fa-paw"></i></span>
+            <span class="sec-deco" style="position: absolute; top: 15%; right: 5%; color: #ede9fe; font-size: 1.6rem; opacity: 0.7; transform: rotate(45deg); pointer-events: none;"><i class="fa-solid fa-bone"></i></span>
+            <span class="sec-deco" style="position: absolute; top: 50%; right: 2%; color: #e0f2fe; font-size: 2rem; opacity: 0.8; transform: rotate(20deg); pointer-events: none;"><i class="fa-solid fa-paw"></i></span>
+            <span class="sec-deco" style="position: absolute; top: 65%; left: 2%; color: #fef08a; font-size: 1.8rem; opacity: 0.8; transform: rotate(-30deg); pointer-events: none;"><i class="fa-solid fa-bone"></i></span>
+            
+            <!-- Dotted curved arrows -->
+            <svg class="sec-deco sec-deco-arrow-l" viewBox="0 0 100 100" width="80" height="80">
+                <path d="M 10 20 Q 60 20, 80 80" fill="none" stroke="#FCC203" stroke-width="3" stroke-dasharray="4,4" />
+                <path d="M 75 70 L 80 80 L 70 77" fill="none" stroke="#FCC203" stroke-width="3" stroke-linecap="round" />
+            </svg>
+            <svg class="sec-deco sec-deco-arrow-r" viewBox="0 0 100 100" width="80" height="80">
+                <path d="M 90 20 Q 40 20, 20 80" fill="none" stroke="#d5bdaf" stroke-width="3" stroke-dasharray="4,4" />
+                <path d="M 25 70 L 20 80 L 30 77" fill="none" stroke="#d5bdaf" stroke-width="3" stroke-linecap="round" />
+            </svg>
+
+            <!-- Heading -->
+            <div class="sec-heading">
+                <h2>
+                    <span class="sec-deco-paw-title" style="color: #e3d5ca; margin-right: 0.6rem; font-size: 1.8rem;"><i class="fa-solid fa-paw"></i></span>
+                    <span class="sec-arrow">➔</span> 
+                    Our Services 
+                    <span class="sec-arrow sec-arrow-flip">➔</span>
+                </h2>
+            </div>
+
+            <!-- Service Cards -->
+            <div class="service-cards-row">
+
+                <div class="service-preview-card svc-card-grooming">
+                    <div class="svc-content">
+                        <div class="svc-icon-wrap bg-black">
+                            <i class="fa-solid fa-scissors"></i>
+                        </div>
+                        <div class="svc-text">
+                            <h3>Grooming</h3>
+                            <p>Professional grooming to keep your pets clean and stylish.</p>
+                            <a href="grooming.html" class="svc-link">Learn More &nbsp;➔</a>
+                        </div>
+                    </div>
+                    <img src="extracted_images/service_1.png" alt="Pet Grooming" class="svc-pet-img">
+                </div>
+
+                <div class="service-preview-card svc-card-vet">
+                    <div class="svc-content">
+                        <div class="svc-icon-wrap bg-orange">
+                            <i class="fa-solid fa-stethoscope"></i>
+                        </div>
+                        <div class="svc-text">
+                            <h3>Veterinary Care</h3>
+                            <p>Expert vet care for a healthy and happy pet.</p>
+                            <a href="services.html" class="svc-link">Learn More &nbsp;➔</a>
+                        </div>
+                    </div>
+                    <img src="extracted_images/service_2.png" alt="Vet Care" class="svc-pet-img">
+                </div>
+
+                <div class="service-preview-card svc-card-boarding">
+                    <div class="svc-content">
+                        <div class="svc-icon-wrap bg-black">
+                            <i class="fa-solid fa-house"></i>
+                        </div>
+                        <div class="svc-text">
+                            <h3>Pet Boarding</h3>
+                            <p>A safe and loving home away from home.</p>
+                            <a href="services.html" class="svc-link">Learn More &nbsp;➔</a>
+                        </div>
+                    </div>
+                    <img src="extracted_images/service_3.png" alt="Pet Boarding" class="svc-pet-img">
+                </div>
+
+            </div>
+
+            <!-- CTA Button -->
+            <div class="services-cta">
+                <a href="services.html" class="products-btn">View All Services &nbsp;<i class="fa-solid fa-paw"></i></a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+
+    <footer>
+        <div class="footer-main-card">
+            <div class="footer-container">
+                <!-- Column 1: Brand Info -->
+                <div class="footer-col brand-col">
+                    <div class="footer-logo">
+                        <i class="fa-solid fa-paw paw-logo-icon"></i>
+                        <span class="logo-text-white">Petland</span>
+                        <span class="logo-text-yellow">Oman</span>
+                    </div>
+                    <p>We provide the best products and care for your furry companions in the Sultanate of Oman.</p>
+                    <div class="footer-social-row">
+                        <a href="#" class="social-circle" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="social-circle" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="social-circle" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="https://wa.me/96890000000" class="social-circle" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <!-- Dotted Divider -->
+                <div class="col-divider"></div>
+
+                <!-- Column 2: Quick Links -->
+                <div class="footer-col links-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#about">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="products.html">Shop</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Dotted Divider -->
+                <div class="col-divider"></div>
+
+                <!-- Column 3: Customer Care -->
+                <div class="footer-col care-col">
+                    <h4>Customer Care</h4>
+                    <ul>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Shipping Policy</a></li>
+                        <li><a href="#">Return Policy</a></li>
+                        <li><a href="#">Terms &amp; Conditions</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+
+                <!-- Dotted Divider -->
+                <div class="col-divider"></div>
+
+                <!-- Column 4: Newsletter -->
+                <div class="footer-col newsletter-col">
+                    <h4>Subscribe to our Newsletter</h4>
+                    <p>Get special offers &amp; updates straight to your inbox!</p>
+                    <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Subscribed!');">
+                        <input type="email" placeholder="Enter your email" required class="newsletter-input">
+                        <button type="submit" class="newsletter-btn" aria-label="Subscribe">
+                            <i class="fa-solid fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Cute cartoon pets illustration -->
+            <div class="footer-pets-wrap">
+                <img src="extracted_images/footer_pets.png" alt="Cute dog and cat cartoon" class="footer-pets-img">
+            </div>
+        </div>
+
+        <!-- Yellow Copyright Bar with Wavy top edge -->
+        <div class="footer-bottom-bar">
+            <!-- Paw print badge overlapping the bottom wave -->
+            <div class="footer-bottom-badge">
+                <i class="fa-solid fa-paw"></i>
+            </div>
+            <div class="footer-copyright-text">
+                &copy; 2026 Petland Oman. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Main JavaScript File -->
+    <script src="script.js"></script>
+</body>
+</html>
