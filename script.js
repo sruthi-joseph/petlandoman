@@ -62,36 +62,38 @@ class VideoScrollSeeker {
         if (!this.container) return;
 
         this.videoDesktop = document.getElementById('scroll-video-desktop');
-        this.videoMobile = document.getElementById('scroll-video-mobile');
-        this.slides = this.container.querySelectorAll('.overlay-slide');
-        
-        this.activeVideo = null;
-        this.targetTime = 0;
-        this.currentTime = 0;
-        this.lerpFactor = 0.08; // Lower is smoother, higher is faster response
-        this.isMobile = false;
+        this.videoMobile  = document.getElementById('scroll-video-mobile');
+        this.slides       = this.container.querySelectorAll('.overlay-slide');
+
+        this.activeVideo  = null;
+        this.targetTime   = 0;
+        this.currentTime  = 0;
+        this.lerpFactor   = 0.12; // slightly snappier on desktop
+        this.isMobile     = false;
+        this.mobileMode   = false; // true = autoplay loop, no seek
 
         this.init();
     }
 
     init() {
-        // Adjust container scroll height based on number of slides
-        const numSlides = this.slides.length || 3;
-        // Allocate 100vh scroll space per slide so scroll speed is natural
-        this.container.style.height = `${(numSlides + 1) * 100}vh`;
-
         this.handleResize();
-        window.addEventListener('resize', () => this.handleResize());
-        window.addEventListener('scroll', () => this.handleScroll(), { passive: true });
+        window.addEventListener('resize', () => this.handleResize(), { passive: true });
 
-        // Start smoothing loop
-        this.tick();
+        if (!this.mobileMode) {
+            // Desktop: allocate scroll space and start seek loop
+            const numSlides = this.slides.length || 3;
+            this.container.style.height = `${(numSlides + 1) * 100}vh`;
+            window.addEventListener('scroll', () => this.handleScroll(), { passive: true });
+            this.tick();
+        }
+        // Mobile: container stays at 100vh (set by CSS), video just autoplays
     }
 
     handleResize() {
         const width = window.innerWidth;
         const previouslyMobile = this.isMobile;
-        this.isMobile = width <= 768;
+        this.isMobile  = width <= 768;
+        this.mobileMode = this.isMobile;
 
         if (this.isMobile && this.videoMobile) {
             if (this.videoDesktop) this.videoDesktop.style.display = 'none';
@@ -103,42 +105,56 @@ class VideoScrollSeeker {
             this.activeVideo = this.videoDesktop;
         }
 
-        // Force reload and play-pause sequence to buffer frames
+        if (this.mobileMode && this.activeVideo) {
+            // On mobile: ensure the video just autoplays as a loop, no seeking
+            this.activeVideo.loop = true;
+            this.activeVideo.play().catch(() => {});
+            // Collapse container so there's no dead scroll zone
+            this.container.style.height = '100vh';
+        } else if (!this.mobileMode && this.container) {
+            // On desktop: restore scroll-seek container height
+            const numSlides = this.slides.length || 3;
+            this.container.style.height = `${(numSlides + 1) * 100}vh`;
+            // Show first slide
+            if (this.slides[0]) this.slides[0].classList.add('active');
+        }
+
+        // Reload video if switching breakpoint
         if (this.activeVideo && previouslyMobile !== this.isMobile) {
-            this.activeVideo.load();
-            this.activeVideo.play().then(() => {
-                this.activeVideo.pause();
-            }).catch(err => console.log("Video autoplay initialized: ", err));
+            if (!this.mobileMode) {
+                // Desktop: pause for seek
+                this.activeVideo.load();
+                this.activeVideo.play().then(() => {
+                    this.activeVideo.pause();
+                }).catch(() => {});
+            }
         }
     }
 
     handleScroll() {
+        // Never seek on mobile — let the video loop
+        if (this.mobileMode) return;
         if (!this.activeVideo || isNaN(this.activeVideo.duration)) return;
 
-        const rect = this.container.getBoundingClientRect();
+        const rect            = this.container.getBoundingClientRect();
         const containerHeight = rect.height;
-        const viewHeight = window.innerHeight;
-
-        // Calculate progress through container
-        // 0 when top is at top of screen, 1 when bottom is at bottom of screen
+        const viewHeight      = window.innerHeight;
         const totalScrollable = containerHeight - viewHeight;
-        const currentScroll = -rect.top;
-        
+        const currentScroll   = -rect.top;
+
         let progress = currentScroll / totalScrollable;
         progress = Math.min(Math.max(0, progress), 1);
 
         this.targetTime = progress * this.activeVideo.duration;
 
-        // Update slides visibility based on progress
+        // Update slide visibility
         const numSlides = this.slides.length;
         if (numSlides > 0) {
-            const slideProgressUnit = 1 / numSlides;
+            const unit = 1 / numSlides;
             this.slides.forEach((slide, idx) => {
-                const start = idx * slideProgressUnit;
-                const end = (idx + 1) * slideProgressUnit;
-                // Add fade margin
+                const start  = idx * unit;
+                const end    = (idx + 1) * unit;
                 const margin = 0.05;
-
                 if (progress >= (start - (idx === 0 ? 0 : margin)) && progress <= end) {
                     slide.classList.add('active');
                 } else {
@@ -149,13 +165,15 @@ class VideoScrollSeeker {
     }
 
     tick() {
-        if (this.activeVideo && !isNaN(this.activeVideo.duration)) {
-            // Apply Linear Interpolation (lerp) for frame-rate smooth transition
+        // Only runs on desktop (mobileMode skips seek entirely)
+        if (!this.mobileMode && this.activeVideo && !isNaN(this.activeVideo.duration)) {
             this.currentTime += (this.targetTime - this.currentTime) * this.lerpFactor;
-            
-            // Boundary safety check
-            if (Math.abs(this.targetTime - this.currentTime) > 0.005) {
-                this.activeVideo.currentTime = Math.min(Math.max(0, this.currentTime), this.activeVideo.duration - 0.05);
+            const delta = Math.abs(this.targetTime - this.currentTime);
+            if (delta > 0.004) {
+                this.activeVideo.currentTime = Math.min(
+                    Math.max(0, this.currentTime),
+                    this.activeVideo.duration - 0.05
+                );
             }
         }
         requestAnimationFrame(() => this.tick());

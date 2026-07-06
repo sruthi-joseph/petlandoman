@@ -27,6 +27,7 @@
 html {
     scroll-behavior: smooth;
     font-size: 16px;
+    overflow-x: hidden; /* prevent horizontal scroll / black edge bleed */
 }
 
 body {
@@ -99,7 +100,14 @@ header.scrolled {
 }
 
 .mobile-logo {
-    display: none; /* hidden on desktop */
+    display: none; /* hidden on desktop, shown in mobile media query */
+}
+
+.mobile-logo-img {
+    height: 52px;
+    width: auto;
+    object-fit: contain;
+    display: block;
 }
 
 .mobile-nav-toggle {
@@ -1379,6 +1387,10 @@ footer {
     background-color: var(--white);
     pointer-events: none;
     display: block;
+    /* GPU compositing hints — avoids repaint lag during scroll */
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
 .scroll-video-overlays {
@@ -1436,7 +1448,22 @@ footer {
     text-shadow: none;
 }
 
-/* --- BANNER OVERLAY SLIDESHOW --- */
+/* --- BANNER OVERLAY SLIDESHOW (DESKTOP) --- */
+/* On desktop, .banner-below-video is sticky at the bottom of the scroll section */
+.banner-below-video {
+    position: sticky;
+    bottom: 4vh;
+    z-index: 6;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding-bottom: 2vh;
+    pointer-events: auto;
+    /* Pull it up so it overlays the bottom of the sticky video */
+    margin-top: calc(-20vh - 2rem);
+}
+
+/* Keep the old #slide-banners selector working for JS slideshow targeting */
 #slide-banners {
     justify-content: flex-end;
     align-items: center;
@@ -1513,15 +1540,62 @@ footer {
 
 
 @media (max-width: 768px) {
+    /* ---- MOBILE HERO VIDEO: Autoplay loop, no scroll-seek ---- */
+
+    /* Collapse to single viewport-height section — no extra scroll zone */
+    .scroll-video-container {
+        height: auto !important;
+        overflow: hidden; /* prevent dark background bleeding at edges */
+        width: 100vw;
+    }
+
+    /* Sticky positioning is not needed on mobile — just a normal block */
+    .sticky-video-wrapper {
+        position: relative !important;
+        height: 65vh !important;
+        overflow: hidden;
+        width: 100%;
+    }
+
+    /* Smaller bottom fade on mobile */
+    .sticky-video-wrapper::after {
+        height: 50px;
+    }
+
+    /* Video fills the 65vh wrapper */
+    .scroll-video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover;
+    }
+
+    /* Overlay container: no absolute slides needed on mobile */
+    .scroll-video-overlays {
+        display: none !important;
+    }
+
+    /* Banner: natural block below the video */
+    .banner-below-video {
+        position: static !important;
+        margin-top: 0 !important;
+        display: block !important;
+        padding: 1.2rem 1rem 1.5rem !important;
+        background: #ffffff;
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+
     .banner-slideshow-wrapper {
-        width: 94%;
+        width: 96% !important;
         border-radius: 16px;
+        margin: 0 auto;
     }
     .banner-img {
         border-radius: 16px;
-    }
-    #slide-banners {
-        padding-bottom: 8vh;
+        width: 100%;
+        height: auto;
     }
     .banner-nav-btn {
         width: 38px;
@@ -2431,21 +2505,40 @@ footer {
     header.scrolled {
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
     }
+    /* Mobile header layout: burger left, logo centre */
     .header-container {
         display: flex;
         justify-content: space-between;
         align-items: center;
         width: 100%;
         height: 100%;
-        padding: 0 1.5rem;
+        padding: 0 1.2rem;
+        position: relative;
     }
-    .mobile-logo {
+    .mobile-nav-toggle {
         display: flex;
         align-items: center;
-        height: 40px;
+        justify-content: center;
+        background: transparent;
+        color: var(--black) !important;
+        font-size: 1.5rem;
+        border: none;
+        padding: 0.3rem;
+        flex-shrink: 0;
+        z-index: 2;
+    }
+    /* Logo centred in the header bar */
+    .mobile-logo {
+        display: flex !important;
+        align-items: center;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        height: 48px;
+        z-index: 1;
     }
     .mobile-logo-img {
-        height: 52px;
+        height: 48px;
         width: auto;
         object-fit: contain;
         display: block;
@@ -2476,12 +2569,7 @@ footer {
         font-size: 1.3rem;
         color: var(--white); /* Ensure mobile menu links are white on black dropdown */
     }
-    .mobile-nav-toggle {
-        display: block;
-        background: transparent;
-        color: var(--black) !important; /* Ensure toggle icon is black on yellow header */
-        font-size: 1.5rem;
-    }
+
     .hero-title {
         font-size: 3rem;
     }

@@ -8,7 +8,7 @@
     <!-- FontAwesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Main Stylesheet -->
-    <link rel="stylesheet" href="style.css?v=16">
+    <link rel="stylesheet" href="style.css?v=22">
 </head>
 <body>
 
@@ -42,8 +42,9 @@
 
     <!-- 1. SCROLL ANIMATION SECTION (Opens immediately below header) -->
     <section class="scroll-video-container" id="scroll-section">
+
+        <!-- VIDEO + LOGO OVERLAY -->
         <div class="sticky-video-wrapper">
-            <!-- Video tags for scroll seek. Preloaded, muted, autoplay, inline play -->
             <!-- Desktop Video -->
             <video class="scroll-video" id="scroll-video-desktop" preload="auto" muted playsinline autoplay loop>
                 <source src="hero page desktop1.mp4" type="video/mp4">
@@ -54,41 +55,40 @@
                 <source src="heropage phoneview.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
-            
-            <!-- Video Overlay Slides triggered by scroll depth -->
+
+            <!-- Overlay: only the logo slide stays inside the video wrapper -->
             <div class="scroll-video-overlays">
-                <!-- Slide 1: Logo Reveal — blank so the video animation shows cleanly -->
-                <div class="overlay-slide active" id="slide-logo">
-                </div>
-
-                <!-- Slide 2: Promotional Banner Slideshow -->
-                <div class="overlay-slide" id="slide-banners">
-                    <div class="banner-slideshow-wrapper">
-                        <!-- Slideshow Track -->
-                        <div class="banner-slideshow-track" id="banner-track">
-                            <div class="banner-slide active">
-                                <a href="products.html">
-                                    <img src="banner pet products.png" alt="Premium Pet Products" class="banner-img">
-                                </a>
-                            </div>
-                            <div class="banner-slide">
-                                <a href="services.html">
-                                    <img src="banner for services.png" alt="Professional Pet Services" class="banner-img">
-                                </a>
-                            </div>
-                        </div>
-
-                        <!-- Navigation Arrows -->
-                        <button class="banner-nav-btn banner-prev" id="banner-prev" aria-label="Previous Banner">
-                            <i class="fa-solid fa-chevron-left"></i>
-                        </button>
-                        <button class="banner-nav-btn banner-next" id="banner-next" aria-label="Next Banner">
-                            <i class="fa-solid fa-chevron-right"></i>
-                        </button>
-                    </div>
-                </div>
+                <div class="overlay-slide active" id="slide-logo"></div>
             </div>
         </div>
+
+        <!-- BANNER SLIDESHOW — sibling of sticky wrapper.
+             Desktop: position:sticky keeps it at the viewport bottom while scrolling.
+             Mobile:  flows naturally below the video frame. -->
+        <div class="banner-below-video" id="slide-banners">
+            <div class="banner-slideshow-wrapper">
+                <div class="banner-slideshow-track" id="banner-track">
+                    <div class="banner-slide active">
+                        <a href="products.html">
+                            <img src="banner pet products.png" alt="Premium Pet Products" class="banner-img">
+                        </a>
+                    </div>
+                    <div class="banner-slide">
+                        <a href="services.html">
+                            <img src="banner for services.png" alt="Professional Pet Services" class="banner-img">
+                        </a>
+                    </div>
+                </div>
+                <!-- Navigation Arrows -->
+                <button class="banner-nav-btn banner-prev" id="banner-prev" aria-label="Previous Banner">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <button class="banner-nav-btn banner-next" id="banner-next" aria-label="Next Banner">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+
     </section>
 
     <!-- ABOUT US SECTION -->
