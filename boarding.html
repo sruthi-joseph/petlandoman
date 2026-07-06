@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIP Pet Boarding & Daycare | Petland Oman</title>
+    <meta name="description" content="Experience VIP Dog & Cat Boarding at Petland Oman. Cozy stays, premium food, supervised play, and loving care while you are away.">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="style.css?v=16">
+    <style>
+        /* --- BOARDING HERO SECTION --- */
+        .boarding-hero {
+            background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.75)), url('pet boarding.jpeg') center/cover no-repeat;
+            height: 40vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            margin-top: 20px;
+            border-radius: 0 0 40px 40px;
+        }
+        .boarding-hero-content h1 {
+            font-family: var(--font-rounded);
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--primary-yellow);
+            margin-bottom: 0.8rem;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+        }
+        .boarding-hero-content p {
+            font-size: 1.25rem;
+            max-width: 650px;
+            margin: 0 auto;
+            color: #f8f9fa;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+            font-weight: 500;
+        }
+
+        /* --- GRID & CARDS (Mockup Style) --- */
+        .boarding-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+        .boarding-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+            margin-bottom: 3rem;
+        }
+        .boarding-card {
+            background-color: var(--white);
+            border-radius: 28px;
+            height: 250px;
+            display: flex;
+            flex-direction: row;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.02);
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+        .boarding-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(252, 194, 3, 0.12);
+        }
+        
+        /* Card background colors matching mockup pastel styling */
+        .card-bg-1 { background-color: #f3f2f8; } /* Soft lavender/blue */
+        .card-bg-2 { background-color: #fcf6e8; } /* Soft cream/yellow */
+        .card-bg-3 { background-color: #edf7f0; } /* Soft green */
+        .card-bg-4 { background-color: #fff0f5; } /* Soft pink */
+        .card-bg-5 { background-color: #fffdf5; } /* Soft yellow/cream */
+
+        .boarding-card-content {
+            width: 60%;
+            padding: 2rem 1.5rem 1.5rem 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            z-index: 2;
+            height: 100%;
+        }
+        
+        .boarding-card-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.15rem;
+            margin-bottom: 0.8rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+        .icon-bg-black { background-color: var(--black); }
+        .icon-bg-yellow { background-color: var(--primary-yellow); color: var(--black); }
+
+        .boarding-card-content h3 {
+            font-family: var(--font-rounded);
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.4rem;
+            color: var(--black);
+            line-height: 1.25;
+            text-align: left;
+        }
+        .boarding-card-content p {
+            font-size: 0.88rem;
+            color: #333;
+            line-height: 1.4;
+            margin-bottom: 0.8rem;
+            max-width: 250px;
+            text-align: left;
+        }
+        .boarding-card-btn {
+            background-color: var(--primary-yellow);
+            color: var(--black);
+            padding: 0.5rem 1.4rem;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            margin-top: auto;
+            transition: var(--transition-smooth);
+            border: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            text-decoration: none;
+        }
+        .boarding-card:hover .boarding-card-btn {
+            background-color: var(--black);
+            color: var(--white);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+        .boarding-card-btn.bg-black-btn {
+            background-color: var(--black);
+            color: var(--white);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+        .boarding-card:hover .boarding-card-btn.bg-black-btn {
+            background-color: var(--primary-yellow);
+            color: var(--black);
+            box-shadow: 0 6px 15px rgba(252, 194, 3, 0.25);
+        }
+
+        .boarding-card-img-wrap {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 40%;
+            height: 100%;
+            z-index: 1;
+        }
+        .boarding-card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+            border-radius: 0 0 28px 0;
+        }
+
+        /* --- MODAL STYLES --- */
+        .gmodal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .gmodal.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .gmodal-backdrop {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+        .gmodal-content {
+            position: relative;
+            background: var(--white);
+            width: 90%;
+            max-width: 880px;
+            max-height: 92vh;
+            border-radius: 24px;
+            overflow-y: hidden;
+            z-index: 2001;
+            transform: scale(0.9);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
+            display: flex;
+            flex-direction: column;
+        }
+        .gmodal.active .gmodal-content {
+            transform: scale(1);
+        }
+        .gmodal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.05);
+            color: var(--black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            z-index: 10;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+        .gmodal-close:hover {
+            background: var(--primary-yellow);
+            color: var(--black);
+            transform: rotate(90deg);
+        }
+        .gmodal-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.15fr;
+            flex-grow: 1;
+        }
+        .gmodal-left {
+            background-color: #fcfcfb;
+            padding: 1.5rem 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-right: 1px solid rgba(0,0,0,0.04);
+        }
+        .gmodal-main-img-wrap {
+            width: 100%;
+            max-width: 300px;
+            height: 220px;
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            margin-bottom: 1rem;
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .gmodal-main-img-wrap img {
+            width: 90%;
+            height: 90%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        .gmodal-thumbnails {
+            display: flex;
+            gap: 0.6rem;
+            justify-content: center;
+            width: 100%;
+        }
+        .gmodal-thumb {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: var(--transition-smooth);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2px;
+        }
+        .gmodal-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+        .gmodal-thumb.active {
+            border-color: var(--primary-yellow);
+            transform: scale(1.06);
+        }
+        .gmodal-right {
+            padding: 1.5rem 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .gmodal-tag {
+            font-size: 0.75rem;
+            font-weight: 800;
+            color: #d4a373;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 0.3rem;
+        }
+        .gmodal-title {
+            font-family: var(--font-rounded);
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--black);
+            margin-bottom: 0.3rem;
+            line-height: 1.2;
+        }
+        .gmodal-rating-row {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.8rem;
+        }
+        .gmodal-stars {
+            color: #ffc107;
+            font-size: 0.85rem;
+        }
+        .gmodal-reviews {
+            color: #666;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .gmodal-desc {
+            color: #444;
+            font-size: 0.88rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+        .gmodal-highlights {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.6rem;
+            margin-bottom: 1rem;
+            background-color: #fcfcfb;
+            padding: 0.8rem;
+            border-radius: 12px;
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+        .gmodal-hl-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .gmodal-hl-icon {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background-color: rgba(252, 194, 3, 0.15);
+            color: var(--black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+        }
+        .gmodal-hl-text {
+            display: flex;
+            flex-direction: column;
+        }
+        .gmodal-hl-text strong {
+            font-size: 0.8rem;
+            color: var(--black);
+            font-weight: 700;
+        }
+        .gmodal-hl-text span {
+            font-size: 0.7rem;
+            color: #666;
+        }
+        .gmodal-packages-wrap {
+            margin-bottom: 1rem;
+        }
+        .gmodal-section-title {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: var(--black);
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.5px;
+        }
+        .gmodal-tabs {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.6rem;
+        }
+        .gmodal-tabs.single-tab {
+            grid-template-columns: 1fr;
+        }
+        .gmodal-tab {
+            background-color: var(--white);
+            border: 2px solid #e7e7e5;
+            border-radius: 12px;
+            padding: 0.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+        .gmodal-tab.active {
+            border-color: var(--primary-yellow);
+            background-color: #fffdf5;
+            box-shadow: 0 4px 10px rgba(252, 194, 3, 0.06);
+        }
+        .tab-label {
+            font-size: 0.75rem;
+            font-weight: 800;
+            color: var(--black);
+        }
+        .tab-sub {
+            font-size: 0.65rem;
+            color: #777;
+            margin-bottom: 0.2rem;
+        }
+        .tab-price {
+            font-size: 0.85rem;
+            font-weight: 800;
+            color: var(--black);
+        }
+        .gmodal-price-display {
+            margin-bottom: 1rem;
+        }
+        .price-label {
+            font-size: 0.75rem;
+            color: #666;
+            display: block;
+            margin-bottom: 0.15rem;
+        }
+        .price-numbers {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+        .current-price {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--black);
+        }
+        .original-price {
+            font-size: 1.05rem;
+            text-decoration: line-through;
+            color: #999;
+        }
+        .discount-badge {
+            background-color: #10b981;
+            color: var(--white);
+            font-size: 0.7rem;
+            font-weight: 800;
+            padding: 0.15rem 0.4rem;
+            border-radius: 5px;
+            text-transform: uppercase;
+        }
+        .gmodal-buttons-row {
+            display: grid;
+            grid-template-columns: 1.25fr 1fr;
+            gap: 0.8rem;
+        }
+        .gmodal-btn-book {
+            background-color: var(--primary-yellow);
+            color: var(--black);
+            font-weight: 800;
+            padding: 0.75rem;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 0.88rem;
+            box-shadow: 0 4px 12px rgba(252,194,3,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            transition: var(--transition-smooth);
+            text-decoration: none;
+        }
+        .gmodal-btn-book:hover {
+            background-color: var(--black);
+            color: var(--white);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+        }
+        .gmodal-btn-enquire {
+            border: 2px solid #e7e7e5;
+            background-color: transparent;
+            color: #333;
+            font-weight: 700;
+            padding: 0.75rem;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition-smooth);
+            text-decoration: none;
+        }
+        .gmodal-btn-enquire:hover {
+            background-color: #f4f4f3;
+            border-color: #ccc;
+            transform: translateY(-2px);
+        }
+
+        .gmodal-footer-banner {
+            border-top: 1px solid rgba(0,0,0,0.05);
+            background-color: #fcfcfb;
+            padding: 1rem 2rem;
+        }
+        .gmodal-footer-features {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.8rem;
+            margin-bottom: 0.5rem;
+        }
+        .gmodal-footer-feat-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.4rem;
+        }
+        .gmodal-footer-feat-item i {
+            color: var(--primary-yellow);
+            font-size: 0.95rem;
+            margin-top: 0.1rem;
+        }
+        .gmodal-footer-feat-item strong {
+            font-size: 0.75rem;
+            display: block;
+            color: var(--black);
+        }
+        .gmodal-footer-feat-item span {
+            font-size: 0.65rem;
+            color: #666;
+        }
+        .gmodal-footer-priority {
+            text-align: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--black);
+            border-top: 1px dashed rgba(0,0,0,0.08);
+            padding-top: 0.4rem;
+            margin-top: 0.4rem;
+        }
+
+        /* --- RESPONSIVENESS --- */
+        @media (max-width: 992px) {
+            .boarding-grid {
+                grid-template-columns: 1fr;
+            }
+            .gmodal-content {
+                overflow-y: auto;
+            }
+        }
+        @media (max-width: 768px) {
+            .boarding-hero {
+                height: 30vh;
+                margin-top: 80px;
+            }
+            .boarding-hero-content h1 {
+                font-size: 2.2rem;
+            }
+            .boarding-hero-content p {
+                font-size: 1rem;
+                padding: 0 1rem;
+            }
+            .boarding-container {
+                padding: 2.5rem 1.2rem;
+            }
+            .gmodal-grid {
+                grid-template-columns: 1fr;
+            }
+            .gmodal-left {
+                padding: 1.5rem;
+            }
+            .gmodal-main-img-wrap {
+                height: 220px;
+                margin-bottom: 1rem;
+            }
+            .gmodal-right {
+                padding: 1.5rem;
+            }
+            .gmodal-title {
+                font-size: 1.5rem;
+            }
+            .gmodal-footer-features {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+            .gmodal-footer-banner {
+                padding: 1.2rem 1.5rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .boarding-card {
+                height: auto;
+                flex-direction: column;
+                min-height: 360px;
+            }
+            .boarding-card-content {
+                width: 100%;
+                padding: 1.5rem;
+            }
+            .boarding-card-img-wrap {
+                position: relative;
+                width: 100%;
+                height: 180px;
+            }
+            .boarding-card-img {
+                border-radius: 0 0 28px 28px;
+            }
+            .gmodal-tabs {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+            .gmodal-buttons-row {
+                grid-template-columns: 1fr;
+                gap: 0.8rem;
+            }
+            .gmodal-footer-features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- STICKY HEADER -->
+    <header id="main-header">
+        <div class="header-container">
+            <button class="mobile-nav-toggle" id="nav-toggle" aria-label="Toggle Navigation">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <!-- Mobile Logo -->
+            <a href="index.html" class="mobile-logo">
+                <img src="logo_transparent.png" alt="Petland Oman Logo" class="mobile-logo-img">
+            </a>
+            <nav id="nav-menu">
+                <ul>
+                    <li class="nav-logo-item">
+                        <a href="index.html">
+                            <img src="logo_transparent.png" alt="Petland Oman Logo" class="nav-logo-img">
+                        </a>
+                    </li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html" class="active">Services</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO BANNER -->
+    <section class="boarding-hero">
+        <div class="boarding-hero-content">
+            <h1>VIP Boarding & Daycare</h1>
+            <p>While you're on vacation, your pet deserves one too. Book a stay with us today!</p>
+        </div>
+    </section>
+
+    <!-- PACKAGES SECTION -->
+    <section class="boarding-packages-section">
+        <div class="boarding-container">
+            <div class="sec-heading" style="margin-bottom: 3rem; text-align: center;">
+                <h2>
+                    <span class="sec-deco-paw-title" style="color: var(--primary-yellow); margin-right: 0.6rem; font-size: 1.8rem;"><i class="fa-solid fa-paw"></i></span>
+                    <span class="sec-arrow">➔</span> 
+                    Our Stays & Daycare
+                    <span class="sec-arrow sec-arrow-flip">➔</span>
+                </h2>
+                <p style="color: #666; margin-top: 0.5rem; font-size: 1.1rem; font-family: var(--font-primary);">Choose the perfect luxury package for your dogs and cats.</p>
+            </div>
+
+            <div class="boarding-grid">
+                <!-- Card 1: VIP Dog Boarding (With Food) -->
+                <div class="boarding-card card-bg-1" onclick="openBoardingModal(1)">
+                    <div class="boarding-card-content">
+                        <div class="boarding-card-icon icon-bg-black">
+                            <i class="fa-solid fa-hotel"></i>
+                        </div>
+                        <h3>VIP Dog Boarding (With Food)</h3>
+                        <p>Overnight luxury boarding including high-quality meals, playtime, and round-the-clock supervision.</p>
+                        <button class="boarding-card-btn">View Details &nbsp;➔</button>
+                    </div>
+                    <div class="boarding-card-img-wrap">
+                        <img src="extracted_images/boarding_dog_with_food.png" alt="Dog Boarding With Food" class="boarding-card-img">
+                    </div>
+                </div>
+
+                <!-- Card 2: VIP Dog Boarding (Without Food) -->
+                <div class="boarding-card card-bg-2" onclick="openBoardingModal(2)">
+                    <div class="boarding-card-content">
+                        <div class="boarding-card-icon icon-bg-yellow">
+                            <i class="fa-solid fa-bowl-food"></i>
+                        </div>
+                        <h3>VIP Dog Boarding (Without Food)</h3>
+                        <p>Perfect for custom diets. Bring your pet's own food and we will strictly maintain their feeding schedules.</p>
+                        <button class="boarding-card-btn">View Details &nbsp;➔</button>
+                    </div>
+                    <div class="boarding-card-img-wrap">
+                        <img src="extracted_images/boarding_dog_no_food.png" alt="Dog Boarding Without Food" class="boarding-card-img">
+                    </div>
+                </div>
+
+                <!-- Card 3: VIP Cat Boarding (With Food) -->
+                <div class="boarding-card card-bg-3" onclick="openBoardingModal(3)">
+                    <div class="boarding-card-content">
+                        <div class="boarding-card-icon icon-bg-black">
+                            <i class="fa-solid fa-cat"></i>
+                        </div>
+                        <h3>VIP Cat Boarding (With Food)</h3>
+                        <p>Luxury cat lodging featuring individual multi-tier condos, premium cat food, and playful laser sessions.</p>
+                        <button class="boarding-card-btn">View Details &nbsp;➔</button>
+                    </div>
+                    <div class="boarding-card-img-wrap">
+                        <img src="extracted_images/boarding_cat_with_food.png" alt="Cat Boarding With Food" class="boarding-card-img">
+                    </div>
+                </div>
+
+                <!-- Card 4: VIP Cat Boarding (Without Food) -->
+                <div class="boarding-card card-bg-4" onclick="openBoardingModal(4)">
+                    <div class="boarding-card-content">
+                        <div class="boarding-card-icon icon-bg-yellow">
+                            <i class="fa-solid fa-paw"></i>
+                        </div>
+                        <h3>VIP Cat Boarding (Without Food)</h3>
+                        <p>Serene feline boarding option. Bring their familiar daily diet to support sensitive stomachs.</p>
+                        <button class="boarding-card-btn">View Details &nbsp;➔</button>
+                    </div>
+                    <div class="boarding-card-img-wrap">
+                        <img src="extracted_images/boarding_cat_no_food.png" alt="Cat Boarding Without Food" class="boarding-card-img">
+                    </div>
+                </div>
+
+                <!-- Card 5: Daily Daycare & Play (Custom option) -->
+                <a href="https://wa.me/96871122885?text=Hi%20Petland%20Oman%2C%20I%27d%20like%20to%20enquire%20about%20the%20Daily%20Daycare%20%26%20Play%20options." target="_blank" class="boarding-card card-bg-5">
+                    <div class="boarding-card-content">
+                        <div class="boarding-card-icon icon-bg-black">
+                            <i class="fa-solid fa-shield-dog"></i>
+                        </div>
+                        <h3>Daily Daycare & Play Option</h3>
+                        <p>Need care for just a few hours? We offer flexible hourly and daily daycare with supervised activities and playtime.</p>
+                        <span class="boarding-card-btn bg-black-btn">Enquire Now &nbsp;➔</span>
+                    </div>
+                    <div class="boarding-card-img-wrap">
+                        <img src="extracted_images/daycare_play_card.png" alt="Daily Daycare & Play" class="boarding-card-img">
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- DETAILED MODAL POPUP -->
+    <div class="gmodal" id="boarding-modal">
+        <div class="gmodal-backdrop" onclick="closeBoardingModal()"></div>
+        <div class="gmodal-content">
+            <button class="gmodal-close" onclick="closeBoardingModal()" aria-label="Close Modal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="gmodal-grid">
+                <!-- Left side: Images and thumbnails -->
+                <div class="gmodal-left">
+                    <div class="gmodal-main-img-wrap">
+                        <img src="" alt="Service details" id="gmodal-main-img">
+                    </div>
+                    <div class="gmodal-thumbnails" id="gmodal-thumbnails-container">
+                        <!-- thumbnails populated dynamically -->
+                    </div>
+                </div>
+                <!-- Right side: details and selections -->
+                <div class="gmodal-right">
+                    <div class="gmodal-tag" id="gmodal-tag">VIP Hotel & Boarding</div>
+                    <h2 class="gmodal-title" id="gmodal-title">Package Name</h2>
+                    
+                    <div class="gmodal-rating-row">
+                        <div class="gmodal-stars">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <span class="gmodal-reviews">(95 Reviews)</span>
+                    </div>
+
+                    <p class="gmodal-desc" id="gmodal-desc">Package description goes here.</p>
+
+                    <!-- Highlights Grid -->
+                    <div class="gmodal-highlights" id="gmodal-highlights-container">
+                        <!-- highlights populated dynamically -->
+                    </div>
+
+                    <!-- Package Breed Size Options -->
+                    <div class="gmodal-packages-wrap">
+                        <span class="gmodal-section-title" id="gmodal-select-title">Select Breed Size</span>
+                        <div class="gmodal-tabs" id="gmodal-tabs-container">
+                            <!-- populated dynamically -->
+                        </div>
+                    </div>
+
+                    <!-- Pricing Display -->
+                    <div class="gmodal-price-display">
+                        <span class="price-label">Price per Day</span>
+                        <div class="price-numbers">
+                            <span class="current-price" id="gmodal-current-price">OMR 6.00</span>
+                            <span class="original-price" id="gmodal-original-price">OMR 8.00</span>
+                            <span class="discount-badge" id="gmodal-discount-badge">25% OFF</span>
+                        </div>
+                    </div>
+
+                    <!-- CTAs -->
+                    <div class="gmodal-buttons-row">
+                        <a href="#" target="_blank" class="gmodal-btn-book" id="gmodal-btn-book">
+                            Book Now <i class="fa-solid fa-calendar-check"></i>
+                        </a>
+                        <a href="contact.html" class="gmodal-btn-enquire">
+                            Enquire for Custom Plan
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom features bar inside modal -->
+            <div class="gmodal-footer-banner">
+                <div class="gmodal-footer-features">
+                    <div class="gmodal-footer-feat-item">
+                        <i class="fa-solid fa-calendar-days"></i>
+                        <div>
+                            <strong>Flexible Booking</strong>
+                            <span>Daily & weekly slots</span>
+                        </div>
+                    </div>
+                    <div class="gmodal-footer-feat-item">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <div>
+                            <strong>Fully Supervised</strong>
+                            <span>Continuous care team</span>
+                        </div>
+                    </div>
+                    <div class="gmodal-footer-feat-item">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <div>
+                            <strong>Premium Quality</strong>
+                            <span>Excellent facilities</span>
+                        </div>
+                    </div>
+                    <div class="gmodal-footer-feat-item">
+                        <i class="fa-solid fa-heart-pulse"></i>
+                        <div>
+                            <strong>Constant Updates</strong>
+                            <span>Photos sent daily</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="gmodal-footer-priority">
+                    🐾 Your pet's happiness & comfort is our priority!
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-main-card">
+            <div class="footer-container">
+                <!-- Column 1: Brand Info -->
+                <div class="footer-col brand-col">
+                    <div class="footer-logo">
+                        <i class="fa-solid fa-paw paw-logo-icon"></i>
+                        <span class="logo-text-white">Petland</span>
+                        <span class="logo-text-yellow">Oman</span>
+                    </div>
+                    <p>We provide the best products and care for your furry companions in the Sultanate of Oman.</p>
+                    <div class="footer-social-row">
+                        <a href="#" class="social-circle" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="social-circle" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="social-circle" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="https://wa.me/96871122885" class="social-circle" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <!-- Dotted Divider -->
+                <div class="col-divider"></div>
+
+                <!-- Column 2: Quick Links -->
+                <div class="footer-col links-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="products.html">Shop</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Dotted Divider -->
+                <div class="col-divider"></div>
+
+                <!-- Column 3: Customer Care -->
+                <div class="footer-col care-col">
+                    <h4>Customer Care</h4>
+                    <ul>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Shipping Policy</a></li>
+                        <li><a href="#">Return Policy</a></li>
+                        <li><a href="#">Terms &amp; Conditions</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+
+                <!-- Dotted Divider -->
+                <div class="col-divider"></div>
+
+                <!-- Column 4: Newsletter -->
+                <div class="footer-col newsletter-col">
+                    <h4>Subscribe to our Newsletter</h4>
+                    <p>Get special offers &amp; updates straight to your inbox!</p>
+                    <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Subscribed!');">
+                        <input type="email" placeholder="Enter your email" required class="newsletter-input">
+                        <button type="submit" class="newsletter-btn" aria-label="Subscribe">
+                            <i class="fa-solid fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Cute cartoon pets illustration -->
+            <div class="footer-pets-wrap">
+                <img src="extracted_images/footer_pets.png" alt="Cute dog and cat cartoon" class="footer-pets-img">
+            </div>
+        </div>
+
+        <!-- Yellow Copyright Bar with Wavy top edge -->
+        <div class="footer-bottom-bar">
+            <div class="footer-bottom-badge">
+                <i class="fa-solid fa-paw"></i>
+            </div>
+            <div class="footer-copyright-text">
+                &copy; 2026 Petland Oman. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Main JavaScript File -->
+    <script src="script.js"></script>
+
+    <!-- Detailed Modal Functionality Script -->
+    <script>
+        const boardingPackages = {
+            1: {
+                title: "VIP Dog Boarding (With Food)",
+                tagline: "Premium Meals & Luxury Stay",
+                desc: "Give your dog a luxury vacation of their own. Includes premium, nutritious dog food, structured feeding routines, daily group/private play, continuous supervision, cozy bedding, and a temperature-controlled personal lodge room.",
+                images: [
+                    "extracted_images/boarding_dog_with_food.png",
+                    "extracted_images/boarding_dog_no_food.png"
+                ],
+                prices: {
+                    small: "6.00",
+                    big: "8.00"
+                },
+                originalPrices: {
+                    small: "8.00",
+                    big: "10.00"
+                },
+                labels: {
+                    small: { name: "Small Breed", sub: "Dog" },
+                    big: { name: "Big Breed", sub: "Dog" }
+                },
+                features: [
+                    { name: "Premium Food Included", desc: "Balanced nutritional meals" },
+                    { name: "Play & Socialization", desc: "Supervised group activities" },
+                    { name: "Cozy Lodging", desc: "Clean bedding & personal space" },
+                    { name: "24/7 Supervision", desc: "Safety monitored by pet lovers" }
+                ]
+            },
+            2: {
+                title: "VIP Dog Boarding (Without Food)",
+                tagline: "Custom Feeding & Comfortable Lodge",
+                desc: "Ideal for dogs with specific diets, allergies, or custom recipes. Bring your own food and we will strictly execute your feeding instructions, alongside providing cozy sleeping space and exciting daily playtime.",
+                images: [
+                    "extracted_images/boarding_dog_no_food.png",
+                    "extracted_images/boarding_dog_with_food.png"
+                ],
+                prices: {
+                    small: "5.00",
+                    big: "7.00"
+                },
+                originalPrices: {
+                    small: "6.50",
+                    big: "9.00"
+                },
+                labels: {
+                    small: { name: "Small Breed", sub: "Dog" },
+                    big: { name: "Big Breed", sub: "Dog" }
+                },
+                features: [
+                    { name: "Familiar Diet Administered", desc: "We feed according to your plan" },
+                    { name: "Daily Play & Fun", desc: "Indoor & outdoor exercise" },
+                    { name: "Cozy Boarding", desc: "Soft bed & climate-controlled room" },
+                    { name: "Daily Status Updates", desc: "Photos sent via WhatsApp" }
+                ]
+            },
+            3: {
+                title: "VIP Cat Boarding (With Food)",
+                tagline: "Cozy Condos & Gourmet Feline Dining",
+                desc: "A calm, relaxing environment for cats. Includes high-quality wet and dry food, separate quiet boarding zones away from dogs, multi-level cat condos, fresh water changed daily, and interactive laser and toy play sessions.",
+                images: [
+                    "extracted_images/boarding_cat_with_food.png",
+                    "extracted_images/boarding_cat_no_food.png"
+                ],
+                prices: {
+                    cat: "5.00"
+                },
+                originalPrices: {
+                    cat: "6.50"
+                },
+                labels: {
+                    cat: { name: "Standard Cat", sub: "Feline" }
+                },
+                features: [
+                    { name: "Gourmet Cat Food", desc: "Wet & dry options included" },
+                    { name: "Multi-tier Condo", desc: "Private climbing & sleeping room" },
+                    { name: "Daily Litter Care", desc: "Cleaned and scooped regularly" },
+                    { name: "Feline Play Sessions", desc: "Toys, scratchers, & feather play" }
+                ]
+            },
+            4: {
+                title: "VIP Cat Boarding (Without Food)",
+                tagline: "Quiet Retreat & Custom Feline Feeding",
+                desc: "For felines who strictly prefer their own brand of food or have delicate digestive systems. Bring their custom food and we will feed them exactly on time while offering a peaceful, cozy individual cat suite.",
+                images: [
+                    "extracted_images/boarding_cat_no_food.png",
+                    "extracted_images/boarding_cat_with_food.png"
+                ],
+                prices: {
+                    cat: "4.00"
+                },
+                originalPrices: {
+                    cat: "5.00"
+                },
+                labels: {
+                    cat: { name: "Standard Cat", sub: "Feline" }
+                },
+                features: [
+                    { name: "Own Food Administered", desc: "No diet disruption" },
+                    { name: "Quiet Cat Zone", desc: "Located away from active dogs" },
+                    { name: "Sanitary Litter Box", desc: "Kept clean and fresh daily" },
+                    { name: "Gentle Brushing", desc: "Pampering brush sessions included" }
+                ]
+            }
+        };
+
+        let currentPackageId = 1;
+        let currentBreed = 'small';
+        const contactWhatsApp = '96871122885'; // phone number: +968 7112 2885
+
+        function openBoardingModal(packageId) {
+            currentPackageId = packageId;
+            const pkg = boardingPackages[packageId];
+            if (!pkg) return;
+
+            // Set Title, Tag, Description
+            document.getElementById('gmodal-title').textContent = pkg.title;
+            document.getElementById('gmodal-tag').textContent = pkg.tagline;
+            document.getElementById('gmodal-desc').textContent = pkg.desc;
+
+            // Set Main Image
+            const mainImg = document.getElementById('gmodal-main-img');
+            mainImg.src = pkg.images[0];
+            mainImg.alt = pkg.title;
+
+            // Populate Thumbnails
+            const thumbsContainer = document.getElementById('gmodal-thumbnails-container');
+            thumbsContainer.innerHTML = '';
+            pkg.images.forEach((imgSrc, idx) => {
+                const thumb = document.createElement('div');
+                thumb.className = `gmodal-thumb ${idx === 0 ? 'active' : ''}`;
+                thumb.innerHTML = `<img src="${imgSrc}" alt="Thumbnail ${idx + 1}">`;
+                thumb.addEventListener('click', () => {
+                    mainImg.src = imgSrc;
+                    document.querySelectorAll('.gmodal-thumb').forEach(t => t.classList.remove('active'));
+                    thumb.classList.add('active');
+                });
+                thumbsContainer.appendChild(thumb);
+            });
+
+            // Populate Highlights
+            const hlContainer = document.getElementById('gmodal-highlights-container');
+            hlContainer.innerHTML = '';
+            
+            // Icons matching order
+            const icons = [
+                '<i class="fa-solid fa-utensils"></i>',
+                '<i class="fa-solid fa-gamepad"></i>',
+                '<i class="fa-solid fa-bed"></i>',
+                '<i class="fa-solid fa-eye"></i>'
+            ];
+            pkg.features.forEach((feat, idx) => {
+                const hl = document.createElement('div');
+                hl.className = 'gmodal-hl-item';
+                hl.innerHTML = `
+                    <div class="gmodal-hl-icon">${icons[idx] || '<i class="fa-solid fa-circle-check"></i>'}</div>
+                    <div class="gmodal-hl-text">
+                        <strong>${feat.name}</strong>
+                        <span>${feat.desc}</span>
+                    </div>
+                `;
+                hlContainer.appendChild(hl);
+            });
+
+            // Populate Breed Tabs dynamically based on available pricing options
+            const tabsContainer = document.getElementById('gmodal-tabs-container');
+            tabsContainer.innerHTML = '';
+            
+            const breedKeys = Object.keys(pkg.prices);
+            currentBreed = breedKeys[0]; // Default to the first key (e.g. small or cat)
+            
+            const isCat = breedKeys.includes('cat');
+            document.getElementById('gmodal-select-title').textContent = isCat ? "Select Stay Package" : "Select Breed Size";
+
+            // If only one tab option, add single-tab layout style
+            if (breedKeys.length === 1) {
+                tabsContainer.classList.add('single-tab');
+            } else {
+                tabsContainer.classList.remove('single-tab');
+            }
+
+            breedKeys.forEach(key => {
+                const labelInfo = pkg.labels[key];
+                const priceVal = pkg.prices[key];
+                
+                const tabBtn = document.createElement('button');
+                tabBtn.className = `gmodal-tab ${key === currentBreed ? 'active' : ''}`;
+                tabBtn.setAttribute('data-breed-key', key);
+                tabBtn.onclick = () => selectBreed(key);
+                
+                tabBtn.innerHTML = `
+                    <span class="tab-label">${labelInfo.name}</span>
+                    <span class="tab-sub">${labelInfo.sub}</span>
+                    <span class="tab-price">OMR ${priceVal}</span>
+                `;
+                tabsContainer.appendChild(tabBtn);
+            });
+
+            // Update prices & Book Now button
+            updatePriceAndWA();
+
+            // Show Modal
+            const modal = document.getElementById('boarding-modal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeBoardingModal() {
+            const modal = document.getElementById('boarding-modal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function selectBreed(breed) {
+            currentBreed = breed;
+            // update active tab styling
+            const tabs = document.querySelectorAll('.gmodal-tab');
+            tabs.forEach(tab => {
+                if (tab.getAttribute('data-breed-key') === breed) {
+                    tab.classList.add('active');
+                } else {
+                    tab.classList.remove('active');
+                }
+            });
+            updatePriceAndWA();
+        }
+
+        function updatePriceAndWA() {
+            const pkg = boardingPackages[currentPackageId];
+            if (!pkg) return;
+
+            const price = pkg.prices[currentBreed];
+            const origPrice = pkg.originalPrices[currentBreed];
+
+            // Update display prices
+            document.getElementById('gmodal-current-price').textContent = `OMR ${price}`;
+            document.getElementById('gmodal-original-price').textContent = `OMR ${origPrice}`;
+            
+            // Calculate discount percent
+            const discount = Math.round((1 - (parseFloat(price) / parseFloat(origPrice))) * 100);
+            document.getElementById('gmodal-discount-badge').textContent = `${discount}% OFF`;
+
+            // Configure Book Now WhatsApp link
+            const labelInfo = pkg.labels[currentBreed];
+            const breedLabel = `${labelInfo.name} (${labelInfo.sub})`;
+            const waMessage = `Hi Petland Oman, I would like to book a VIP boarding stay!\n\n` +
+                              `Package: *${pkg.title}*\n` +
+                              `Type/Breed: *${breedLabel}*\n` +
+                              `Price: *OMR ${price} / Day*\n\n` +
+                              `Please check availability. Thank you!`;
+
+            const waBtn = document.getElementById('gmodal-btn-book');
+            waBtn.href = `https://wa.me/${contactWhatsApp}?text=${encodeURIComponent(waMessage)}`;
+        }
+
+        // Close with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeBoardingModal();
+            }
+        });
+    </script>
+</body>
+</html>

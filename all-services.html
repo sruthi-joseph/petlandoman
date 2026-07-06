@@ -1,0 +1,1306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services | Petland Oman</title>
+    <meta name="description" content="Explore Petland Oman's premium services: professional grooming, VIP dog & cat boarding stays, day care, and reliable pet taxi transportation.">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="style.css?v=19">
+    <style>
+        /* Make video fill the full viewport height without scroll-seek behaviour */
+        .services-video-fullpage {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            margin-top: 0;
+            /* Remove any gap/black line below the video */
+            font-size: 0;
+            line-height: 0;
+        }
+        .services-video-fullpage video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            vertical-align: bottom;
+        }
+        /* Hide the mobile video on desktop and vice-versa */
+        @media (max-width: 768px) {
+            #svc-video-desktop { display: none !important; }
+            #svc-video-mobile  { display: block !important; }
+        }
+        @media (min-width: 769px) {
+            #svc-video-mobile  { display: none !important; }
+            #svc-video-desktop { display: block !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- STICKY HEADER -->
+    <header id="main-header">
+        <div class="header-container">
+            <button class="mobile-nav-toggle" id="nav-toggle" aria-label="Toggle Navigation">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <!-- Mobile Logo -->
+            <a href="index.html" class="mobile-logo">
+                <img src="logo_transparent.png" alt="Petland Oman Logo" class="mobile-logo-img">
+            </a>
+            <nav id="nav-menu">
+                <ul>
+                    <li class="nav-logo-item">
+                        <a href="index.html">
+                            <img src="logo_transparent.png" alt="Petland Oman Logo" class="nav-logo-img">
+                        </a>
+                    </li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html" class="active">Services</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- VIDEO SECTION — full viewport, no text, no zoom -->
+    <div class="services-video-fullpage">
+        <video id="svc-video-desktop" preload="auto" muted playsinline autoplay loop>
+            <source src="service desktop_1.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <video id="svc-video-mobile" preload="auto" muted playsinline autoplay loop style="display:none;">
+            <source src="service phone view.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <!-- KEY UTILITY BAR -->
+    <section class="svc-features-bar">
+        <div class="svc-features-grid">
+            <!-- 1. High Quality -->
+            <div class="svc-feature-item">
+                <div class="svc-feat-icon svc-icon-orange">
+                    <i class="fa-solid fa-paw"></i>
+                </div>
+                <div class="svc-feat-text">
+                    <h4>High Quality</h4>
+                    <p>Premium products for happy pets.</p>
+                </div>
+            </div>
+
+            <div class="svc-feat-divider"></div>
+
+            <!-- 2. Fast Delivery -->
+            <div class="svc-feature-item">
+                <div class="svc-feat-icon svc-icon-dark">
+                    <i class="fa-solid fa-truck-fast"></i>
+                </div>
+                <div class="svc-feat-text">
+                    <h4>Fast Delivery</h4>
+                    <p>Quick &amp; safe delivery at your doorstep.</p>
+                </div>
+            </div>
+
+            <div class="svc-feat-divider"></div>
+
+            <!-- 3. Trusted by Pet Parents -->
+            <div class="svc-feature-item">
+                <div class="svc-feat-icon svc-icon-yellow">
+                    <i class="fa-solid fa-heart"></i>
+                </div>
+                <div class="svc-feat-text">
+                    <h4>Trusted by Pet Parents</h4>
+                    <p>Loved by thousands of pet owners.</p>
+                </div>
+            </div>
+
+            <div class="svc-feat-divider"></div>
+
+            <!-- 4. Dedicated Support -->
+            <div class="svc-feature-item">
+                <div class="svc-feat-icon svc-icon-dark">
+                    <i class="fa-solid fa-headset"></i>
+                </div>
+                <div class="svc-feat-text">
+                    <h4>Dedicated Support</h4>
+                    <p>We're here to help you anytime.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 1. SPA GROOMING SECTION -->
+    <section class="grooming-packages-section" id="grooming-section" style="padding: 3rem 0; background-color: var(--white);">
+        <div class="grooming-container" style="max-width: 1100px; margin: 0 auto; padding: 0 1.5rem;">
+            <div class="sec-heading" style="margin-bottom: 2.5rem; text-align: center;">
+                <h2>
+                    <span class="sec-deco-paw-title" style="color: var(--primary-yellow); margin-right: 0.6rem; font-size: 1.8rem;"><i class="fa-solid fa-paw"></i></span>
+                    <span class="sec-arrow">➔</span> 
+                    Spa Grooming
+                    <span class="sec-arrow sec-arrow-flip">➔</span>
+                </h2>
+                <p style="color: #666; margin-top: 0.5rem; font-size: 1.1rem; font-family: var(--font-primary);">Select a custom package to view detailed pricing and book an appointment.</p>
+            </div>
+
+            <div class="grooming-grid">
+                <!-- Card 1: Shower, Nail cut, Ear cleaning -->
+                <div class="grooming-card card-bg-1" onclick="openGroomingModal(1)">
+                    <div class="grooming-card-content">
+                        <div class="grooming-card-icon icon-bg-black">
+                            <i class="fa-solid fa-shower"></i>
+                        </div>
+                        <h3>Shower, Nail cut, Ear cleaning</h3>
+                        <p>Warm relaxing shower with premium blow-dry, hygienic ear cleaning, and expert nail trimming.</p>
+                        <button class="grooming-card-btn">View Details &nbsp;➔</button>
+                    </div>
+                    <div class="grooming-card-img-wrap">
+                        <img src="extracted_images/grooming_shower.png" alt="Shower, Nail cut, Ear cleaning" class="grooming-card-img">
+                    </div>
+                </div>
+
+                <!-- Card 2: Hair cut, Nail cut, Ear cleaning -->
+                <div class="grooming-card card-bg-2" onclick="openGroomingModal(2)">
+                    <div class="grooming-card-content">
+                        <div class="grooming-card-icon icon-bg-yellow">
+                            <i class="fa-solid fa-scissors"></i>
+                        </div>
+                        <h3>Hair cut, Nail cut, Ear cleaning</h3>
+                        <p>Professional clip & styling tailored to your pet's breed, claw clipping, and hygienic ear clean.</p>
+                        <button class="grooming-card-btn">View Details &nbsp;➔</button>
+                    </div>
+                    <div class="grooming-card-img-wrap">
+                        <img src="extracted_images/grooming_haircut.png" alt="Hair cut, Nail cut, Ear cleaning" class="grooming-card-img">
+                    </div>
+                </div>
+
+                <!-- Card 3: Shower, Deshedding, Nail cut & Ear Cleaning -->
+                <div class="grooming-card card-bg-3" onclick="openGroomingModal(3)">
+                    <div class="grooming-card-content">
+                        <div class="grooming-card-icon icon-bg-black">
+                            <i class="fa-solid fa-broom"></i>
+                        </div>
+                        <h3>Shower, Deshedding, Nail cut &amp; Ear Cleaning</h3>
+                        <p>Specialized deshedding wash, deep undercoat blowout, intensive brushing, claw trim, and ear sanitation.</p>
+                        <button class="grooming-card-btn">View Details &nbsp;➔</button>
+                    </div>
+                    <div class="grooming-card-img-wrap">
+                        <img src="extracted_images/grooming_deshedding.png" alt="Shower, Deshedding, Nail cut & Ear Cleaning" class="grooming-card-img">
+                    </div>
+                </div>
+
+                <!-- Card 4: Full Grooming -->
+                <div class="grooming-card card-bg-4" onclick="openGroomingModal(4)">
+                    <div class="grooming-card-content">
+                        <div class="grooming-card-icon icon-bg-yellow">
+                            <i class="fa-solid fa-paw"></i>
+                        </div>
+                        <h3>Full Grooming</h3>
+                        <p>Our premium royal treatment: full styling scissor haircut, soothing bath, deshedding, blow-dry, ear cleaning, and nail file.</p>
+                        <button class="grooming-card-btn">View Details &nbsp;➔</button>
+                    </div>
+                    <div class="grooming-card-img-wrap">
+                        <img src="extracted_images/grooming_full.png" alt="Full Grooming" class="grooming-card-img">
+                    </div>
+                </div>
+
+                <!-- Card 5: Medicated Wash Option -->
+                <a href="https://wa.me/96871122885?text=Hi%20Petland%20Oman%2C%20I%27d%20like%20to%20book%20a%20grooming%20session%20with%20the%20Medicated%20Wash%20option%20added." target="_blank" class="grooming-card card-bg-5">
+                    <div class="grooming-card-content">
+                        <div class="grooming-card-icon icon-bg-black">
+                            <i class="fa-solid fa-prescription-bottle-medical"></i>
+                        </div>
+                        <h3>Medicated Wash Option</h3>
+                        <p>Add a soothing, anti-itch medicated wash treatment to any of the shower packages above for only <strong>+2.00 OMR</strong> extra.</p>
+                        <span class="grooming-card-btn bg-black-btn">Book Now &nbsp;➔</span>
+                    </div>
+                    <div class="grooming-card-img-wrap">
+                        <img src="extracted_images/grooming_medicated.png" alt="Medicated Wash Option" class="grooming-card-img">
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. BOARDING & DAYCARE SECTION -->
+    <section class="boarding-packages-section" id="boarding-section" style="padding: 3rem 0; background-color: #fffdf5;">
+        <div class="boarding-container" style="max-width: 1100px; margin: 0 auto; padding: 0 1.5rem;">
+            <div class="sec-heading" style="margin-bottom: 2.5rem; text-align: center;">
+                <h2>
+                    <span class="sec-deco-paw-title" style="color: var(--primary-yellow); margin-right: 0.6rem; font-size: 1.8rem;"><i class="fa-solid fa-paw"></i></span>
+                    <span class="sec-arrow">➔</span> 
+                    Stays &amp; Daycare
+                    <span class="sec-arrow sec-arrow-flip">➔</span>
+                </h2>
+                <p style="color: #666; margin-top: 0.5rem; font-size: 1.1rem; font-family: var(--font-primary);">Choose the perfect luxury boarding and daycare packages for your dogs and cats.</p>
+            </div>
+
+            <div class="boarding-grid">
+                <!-- Card 1: VIP Dog Boarding (With Food) -->
+                <div class="boarding-card card-bg-1" onclick="openBoardingModal(1)">
+                    <div class="boarding-card-content">
+                        <div class="boarding-card-icon icon-bg-black">
+                            <i class="fa-solid fa-hotel"></i>
+                        </div>
+                        <h3>VIP Dog Boarding (With Food)</h3>
+                        <p>Overnight luxury boarding including high-quality meals, playtime, and round-the-clock supervision.</p>
+                        <button class="boarding-card-btn">View Details &nbsp;➔</button>
+                    </div>
+                    <div class="boarding-card-img-wrap">
+                        <img src="extracted_images/boarding_dog_with_food.png" alt="Dog Boarding With Food" class="boarding-card-img">
+                    </div>
+                </div>
+
+                <!-- Card 2: VIP Dog Boarding (Without Food) -->
+                <div class="boarding-card card-bg-2" onclick="openBoardingModal(2)">
+                    <div class="boarding-card-content">
+                        <div class="boarding-card-icon icon-bg-yellow">
+                            <i class="fa-solid fa-bowl-food"></i>
+                        </div>
+                        <h3>VIP Dog Boarding (Without Food)</h3>
+                        <p>Perfect for custom diets. Bring your pet's own food and we will strictly maintain their feeding schedules.</p>
+                        <button class="boarding-card-btn">View Details &nbsp;➔</button>
+                    </div>
+                    <div class="boarding-card-img-wrap">
+                        <img src="extracted_images/boarding_dog_no_food.png" alt="Dog Boarding Without Food" class="boarding-card-img">
+                    </div>
+                </div>
+
+                <!-- Card 3: VIP Cat Boarding (With Food) -->
+                <div class="boarding-card card-bg-3" onclick="openBoardingModal(3)">
+                    <div class="boarding-card-content">
+                        <div class="boarding-card-icon icon-bg-black">
+                            <i class="fa-solid fa-cat"></i>
+                        </div>
+                        <h3>VIP Cat Boarding (With Food)</h3>
+                        <p>Luxury cat lodging featuring individual multi-tier condos, premium cat food, and playful laser sessions.</p>
+                        <button class="boarding-card-btn">View Details &nbsp;➔</button>
+                    </div>
+                    <div class="boarding-card-img-wrap">
+                        <img src="extracted_images/boarding_cat_with_food.png" alt="Cat Boarding With Food" class="boarding-card-img">
+                    </div>
+                </div>
+
+                <!-- Card 4: VIP Cat Boarding (Without Food) -->
+                <div class="boarding-card card-bg-4" onclick="openBoardingModal(4)">
+                    <div class="boarding-card-content">
+                        <div class="boarding-card-icon icon-bg-yellow">
+                            <i class="fa-solid fa-paw"></i>
+                        </div>
+                        <h3>VIP Cat Boarding (Without Food)</h3>
+                        <p>Serene feline boarding option. Bring their familiar daily diet to support sensitive stomachs.</p>
+                        <button class="boarding-card-btn">View Details &nbsp;➔</button>
+                    </div>
+                    <div class="boarding-card-img-wrap">
+                        <img src="extracted_images/boarding_cat_no_food.png" alt="Cat Boarding Without Food" class="boarding-card-img">
+                    </div>
+                </div>
+
+                <!-- Card 5: Daily Daycare & Play -->
+                <a href="https://wa.me/96871122885?text=Hi%20Petland%20Oman%2C%20I%27d%20like%20to%20enquire%20about%20the%20Daily%20Daycare%20%26%20Play%20options." target="_blank" class="boarding-card card-bg-5">
+                    <div class="boarding-card-content">
+                        <div class="boarding-card-icon icon-bg-black">
+                            <i class="fa-solid fa-shield-dog"></i>
+                        </div>
+                        <h3>Daily Daycare &amp; Play Option</h3>
+                        <p>Need care for just a few hours? We offer flexible hourly and daily daycare with supervised activities and playtime.</p>
+                        <span class="boarding-card-btn bg-black-btn">Enquire Now &nbsp;➔</span>
+                    </div>
+                    <div class="boarding-card-img-wrap">
+                        <img src="extracted_images/daycare_play_card.png" alt="Daily Daycare & Play" class="boarding-card-img">
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. PET TAXI SECTION -->
+    <section class="svc-cards-section" id="taxi-section" style="padding: 3rem 0; background-color: var(--white);">
+        <div class="container">
+            <div class="sec-heading" style="margin-bottom: 2.5rem; text-align: center;">
+                <h2>
+                    <span class="sec-deco-paw-title" style="color: var(--primary-yellow); margin-right: 0.6rem; font-size: 1.8rem;"><i class="fa-solid fa-paw"></i></span>
+                    <span class="sec-arrow">➔</span> 
+                    Pet Taxi Service
+                    <span class="sec-arrow sec-arrow-flip">➔</span>
+                </h2>
+                <p style="color: #666; margin-top: 0.5rem; font-size: 1.1rem; font-family: var(--font-primary);">Safe, convenient, and air-conditioned transportation for your pet's travel needs.</p>
+            </div>
+            
+            <div class="svc-cards-grid services-page-grid">
+                <!-- Card 1: Pet Taxi -->
+                <a href="javascript:void(0)" class="svc-card" onclick="openTaxiModal()">
+                    <img src="extracted_images/pet_taxi_detail.jpg" alt="Pet Taxi" class="svc-card-main-img">
+                    <div class="svc-card-overlay">
+                        <h3 class="svc-card-title">Pet Taxi</h3>
+                        <div class="svc-card-divider"></div>
+                        <p class="svc-card-desc">Safe, reliable, and comfortable transportation for your pets.</p>
+                        <span class="svc-card-btn">Book Now <i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-main-card">
+            <div class="footer-container">
+                <!-- Column 1: Brand Info -->
+                <div class="footer-col brand-col">
+                    <div class="footer-logo">
+                        <i class="fa-solid fa-paw paw-logo-icon"></i>
+                        <span class="logo-text-white">Petland</span>
+                        <span class="logo-text-yellow">Oman</span>
+                    </div>
+                    <p>We provide the best products and care for your furry companions in the Sultanate of Oman.</p>
+                    <div class="footer-social-row">
+                        <a href="#" class="social-circle" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="social-circle" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="social-circle" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="https://wa.me/96890000000" class="social-circle" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <!-- Dotted Divider -->
+                <div class="col-divider"></div>
+
+                <!-- Column 2: Quick Links -->
+                <div class="footer-col links-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="products.html">Shop</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Dotted Divider -->
+                <div class="col-divider"></div>
+
+                <!-- Column 3: Customer Care -->
+                <div class="footer-col care-col">
+                    <h4>Customer Care</h4>
+                    <ul>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Shipping Policy</a></li>
+                        <li><a href="#">Return Policy</a></li>
+                        <li><a href="#">Terms &amp; Conditions</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+
+                <!-- Dotted Divider -->
+                <div class="col-divider"></div>
+
+                <!-- Column 4: Newsletter -->
+                <div class="footer-col newsletter-col">
+                    <h4>Subscribe to our Newsletter</h4>
+                    <p>Get special offers &amp; updates straight to your inbox!</p>
+                    <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Subscribed!');">
+                        <input type="email" placeholder="Enter your email" required class="newsletter-input">
+                        <button type="submit" class="newsletter-btn" aria-label="Subscribe">
+                            <i class="fa-solid fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Cute cartoon pets illustration -->
+            <div class="footer-pets-wrap">
+                <img src="extracted_images/footer_pets.png" alt="Cute dog and cat cartoon" class="footer-pets-img">
+            </div>
+        </div>
+
+        <!-- Yellow Copyright Bar with Wavy top edge -->
+        <div class="footer-bottom-bar">
+            <div class="footer-bottom-badge">
+                <i class="fa-solid fa-paw"></i>
+            </div>
+            <div class="footer-copyright-text">
+                &copy; 2026 Petland Oman. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- DETAILED PET TAXI MODAL POPUP -->
+    <div class="gmodal" id="pettaxi-modal">
+        <div class="gmodal-backdrop" onclick="closeTaxiModal()"></div>
+        <div class="gmodal-content">
+            <button class="gmodal-close" onclick="closeTaxiModal()" aria-label="Close Modal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="gmodal-grid">
+                <!-- Left side: Image -->
+                <div class="gmodal-left">
+                    <div class="gmodal-main-img-wrap">
+                        <img src="extracted_images/pet_taxi_detail.jpg" alt="Pet Taxi Service" id="gmodal-main-img" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
+                    </div>
+                </div>
+                <!-- Right side: details and selections -->
+                <div class="gmodal-right">
+                    <div class="gmodal-tag" style="background-color: var(--accent-orange); color: var(--white); border-radius: 4px; padding: 0.1rem 0.4rem; display: inline-block; width: fit-content; font-size: 0.75rem; font-weight: 700; margin-bottom: 0.5rem;">Pet Taxi</div>
+                    <h2 class="gmodal-title" style="margin-bottom: 0.4rem;">Safe &amp; Reliable Pet Taxi</h2>
+                    
+                    <div class="gmodal-rating-row" style="margin-bottom: 1.2rem;">
+                        <div class="gmodal-stars">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <span class="gmodal-reviews">(95 Reviews)</span>
+                    </div>
+
+                    <p class="gmodal-desc" style="margin-bottom: 1.2rem;">
+                        Our professional Pet Taxi service provides safe, comfortable, and air-conditioned transportation for your pets. Whether it's a trip to the vet, grooming salon, boarding facility, or airport, we ensure your furry friend travels in complete safety and luxury.
+                    </p>
+
+                    <!-- Highlights Grid -->
+                    <div class="gmodal-highlights" style="margin-bottom: 1.5rem;">
+                        <div class="gmodal-hl-item">
+                            <div class="gmodal-hl-icon"><i class="fa-solid fa-wind"></i></div>
+                            <div class="gmodal-hl-text">
+                                <strong>AC Comfort</strong>
+                                <span>Climate controlled</span>
+                            </div>
+                        </div>
+                        <div class="gmodal-hl-item">
+                            <div class="gmodal-hl-icon"><i class="fa-solid fa-shield-dog"></i></div>
+                            <div class="gmodal-hl-text">
+                                <strong>Pet Safety</strong>
+                                <span>Harnesses &amp; Crates</span>
+                            </div>
+                        </div>
+                        <div class="gmodal-hl-item">
+                            <div class="gmodal-hl-icon"><i class="fa-solid fa-location-dot"></i></div>
+                            <div class="gmodal-hl-text">
+                                <strong>GPS Tracking</strong>
+                                <span>Real-time updates</span>
+                            </div>
+                        </div>
+                        <div class="gmodal-hl-item">
+                            <div class="gmodal-hl-icon"><i class="fa-solid fa-user-tie"></i></div>
+                            <div class="gmodal-hl-text">
+                                <strong>Expert Handler</strong>
+                                <span>Certified &amp; Caring</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Book Now Button -->
+                    <div style="display: flex; gap: 1rem; align-items: center; margin-top: 0.5rem;">
+                        <a href="https://wa.me/96871122885?text=Hi%20Petland%20Oman%2C%20I%20would%20like%20to%20book%20a%20Pet%20Taxi%20ride!" target="_blank" class="gmodal-btn-book" style="display: inline-flex; align-items: center; justify-content: center; background-color: var(--primary-yellow); color: var(--black); font-weight: 700; font-size: 1.1rem; padding: 0.9rem 2.5rem; border-radius: 30px; transition: all 0.3s; text-decoration: none; border: none; cursor: pointer; box-shadow: 0 4px 14px rgba(252, 194, 3, 0.4); text-align: center; flex: 1;">
+                            Book Ride Now &nbsp;<i class="fa-solid fa-paw"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Modal Footer banner -->
+            <div class="gmodal-footer-banner">
+                <div class="gmodal-footer-features">
+                    <div class="gmodal-footer-feat-item">
+                        <i class="fa-solid fa-calendar-check"></i>
+                        <div>
+                            <strong>Flexible Booking</strong>
+                            <span>Book at your convenience</span>
+                        </div>
+                    </div>
+                    <div class="gmodal-footer-feat-item">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <div>
+                            <strong>Safe &amp; Insured</strong>
+                            <span>Your pet's safety is first</span>
+                        </div>
+                    </div>
+                    <div class="gmodal-footer-feat-item">
+                        <i class="fa-solid fa-heart"></i>
+                        <div>
+                            <strong>Loving Care</strong>
+                            <span>Treated like our own family</span>
+                        </div>
+                    </div>
+                    <div class="gmodal-footer-feat-item">
+                        <i class="fa-solid fa-headset"></i>
+                        <div>
+                            <strong>24/7 Support</strong>
+                            <span>Always here to help you</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="gmodal-footer-priority">
+                    🐾 Your pet's safe journey is our highest priority!
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DETAILED SPA GROOMING MODAL POPUP -->
+    <div class="gmodal" id="grooming-modal">
+        <div class="gmodal-backdrop" onclick="closeGroomingModal()"></div>
+        <div class="gmodal-content">
+            <button class="gmodal-close" onclick="closeGroomingModal()" aria-label="Close Modal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="gmodal-grid">
+                <!-- Left side: Images and thumbnails -->
+                <div class="gmodal-left">
+                    <div class="gmodal-main-img-wrap">
+                        <img src="" alt="Service details" id="grooming-gmodal-main-img" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
+                    </div>
+                    <div class="gmodal-thumbnails" id="grooming-gmodal-thumbnails-container">
+                        <!-- thumbnails populated dynamically -->
+                    </div>
+                </div>
+                <!-- Right side: details and selections -->
+                <div class="gmodal-right">
+                    <div class="gmodal-tag" id="grooming-gmodal-tag">Grooming Package</div>
+                    <h2 class="gmodal-title" id="grooming-gmodal-title">Package Name</h2>
+                    
+                    <div class="gmodal-rating-row">
+                        <div class="gmodal-stars">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <span class="gmodal-reviews">(120 Reviews)</span>
+                    </div>
+
+                    <p class="gmodal-desc" id="grooming-gmodal-desc">Package description goes here.</p>
+
+                    <!-- Highlights Grid -->
+                    <div class="gmodal-highlights" id="grooming-gmodal-highlights-container">
+                        <!-- highlights populated dynamically -->
+                    </div>
+
+                    <!-- Package Breed Size Options -->
+                    <div class="gmodal-packages-wrap">
+                        <span class="gmodal-section-title">Select Breed Size</span>
+                        <div class="gmodal-tabs" id="grooming-tabs-container">
+                            <button class="gmodal-tab active" onclick="selectGroomingBreed('small')">
+                                <span class="tab-label">Small Breed</span>
+                                <span class="tab-sub">Dog / Cat</span>
+                                <span class="tab-price" id="grooming-tab-price-small">OMR 11.00</span>
+                            </button>
+                            <button class="gmodal-tab" onclick="selectGroomingBreed('medium')">
+                                <span class="tab-label">Medium Breed</span>
+                                <span class="tab-sub">Dog</span>
+                                <span class="tab-price" id="grooming-tab-price-medium">OMR 13.00</span>
+                            </button>
+                            <button class="gmodal-tab" onclick="selectGroomingBreed('large')">
+                                <span class="tab-label">Large Breed</span>
+                                <span class="tab-sub">Dog</span>
+                                <span class="tab-price" id="grooming-tab-price-large">OMR 16.00</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Pricing Display -->
+                    <div class="gmodal-price-display">
+                        <span class="price-label">Price Starts from</span>
+                        <div class="price-numbers">
+                            <span class="current-price" id="grooming-gmodal-current-price">OMR 11.00</span>
+                            <span class="original-price" id="grooming-gmodal-original-price">OMR 13.00</span>
+                            <span class="discount-badge" id="grooming-gmodal-discount-badge">15% OFF</span>
+                        </div>
+                    </div>
+
+                    <!-- CTAs -->
+                    <div class="gmodal-buttons-row">
+                        <a href="#" target="_blank" class="gmodal-btn-book" id="grooming-gmodal-btn-book">
+                            Book Now <i class="fa-solid fa-calendar-check"></i>
+                        </a>
+                        <a href="contact.html" class="gmodal-btn-enquire">
+                            Enquire for Custom Plan
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom features bar inside modal -->
+            <div class="gmodal-footer-banner">
+                <div class="gmodal-footer-features">
+                    <div class="gmodal-footer-feat-item">
+                        <i class="fa-solid fa-calendar-days"></i>
+                        <div>
+                            <strong>Flexible Scheduling</strong>
+                            <span>Book on your terms</span>
+                        </div>
+                    </div>
+                    <div class="gmodal-footer-feat-item">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <div>
+                            <strong>Insured &amp; Bonded</strong>
+                            <span>Safe &amp; trusted team</span>
+                        </div>
+                    </div>
+                    <div class="gmodal-footer-feat-item">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <div>
+                            <strong>Satisfaction Guaranteed</strong>
+                            <span>Only the best for pets</span>
+                        </div>
+                    </div>
+                    <div class="gmodal-footer-feat-item">
+                        <i class="fa-solid fa-heart-pulse"></i>
+                        <div>
+                            <strong>Lifetime Support</strong>
+                            <span>Ongoing help always</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="gmodal-footer-priority">
+                    🐾 Your pet's happiness is our priority!
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DETAILED BOARDING & DAYCARE MODAL POPUP -->
+    <div class="gmodal" id="boarding-modal">
+        <div class="gmodal-backdrop" onclick="closeBoardingModal()"></div>
+        <div class="gmodal-content">
+            <button class="gmodal-close" onclick="closeBoardingModal()" aria-label="Close Modal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="gmodal-grid">
+                <!-- Left side: Images and thumbnails -->
+                <div class="gmodal-left">
+                    <div class="gmodal-main-img-wrap">
+                        <img src="" alt="Service details" id="boarding-gmodal-main-img" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
+                    </div>
+                    <div class="gmodal-thumbnails" id="boarding-gmodal-thumbnails-container">
+                        <!-- thumbnails populated dynamically -->
+                    </div>
+                </div>
+                <!-- Right side: details and selections -->
+                <div class="gmodal-right">
+                    <div class="gmodal-tag" id="boarding-gmodal-tag">VIP Hotel &amp; Boarding</div>
+                    <h2 class="gmodal-title" id="boarding-gmodal-title">Package Name</h2>
+                    
+                    <div class="gmodal-rating-row">
+                        <div class="gmodal-stars">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <span class="gmodal-reviews">(95 Reviews)</span>
+                    </div>
+
+                    <p class="gmodal-desc" id="boarding-gmodal-desc">Package description goes here.</p>
+
+                    <!-- Highlights Grid -->
+                    <div class="gmodal-highlights" id="boarding-gmodal-highlights-container">
+                        <!-- highlights populated dynamically -->
+                    </div>
+
+                    <!-- Package Breed Size Options -->
+                    <div class="gmodal-packages-wrap">
+                        <span class="gmodal-section-title" id="boarding-gmodal-select-title">Select Breed Size</span>
+                        <div class="gmodal-tabs" id="boarding-gmodal-tabs-container">
+                            <!-- populated dynamically -->
+                        </div>
+                    </div>
+
+                    <!-- Pricing Display -->
+                    <div class="gmodal-price-display">
+                        <span class="price-label">Price per Day</span>
+                        <div class="price-numbers">
+                            <span class="current-price" id="boarding-gmodal-current-price">OMR 6.00</span>
+                            <span class="original-price" id="boarding-gmodal-original-price">OMR 8.00</span>
+                            <span class="discount-badge" id="boarding-gmodal-discount-badge">25% OFF</span>
+                        </div>
+                    </div>
+
+                    <!-- CTAs -->
+                    <div class="gmodal-buttons-row">
+                        <a href="#" target="_blank" class="gmodal-btn-book" id="boarding-gmodal-btn-book">
+                            Book Now <i class="fa-solid fa-calendar-check"></i>
+                        </a>
+                        <a href="contact.html" class="gmodal-btn-enquire">
+                            Enquire for Custom Plan
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom features bar inside modal -->
+            <div class="gmodal-footer-banner">
+                <div class="gmodal-footer-features">
+                    <div class="gmodal-footer-feat-item">
+                        <i class="fa-solid fa-calendar-days"></i>
+                        <div>
+                            <strong>Flexible Booking</strong>
+                            <span>Daily &amp; weekly slots</span>
+                        </div>
+                    </div>
+                    <div class="gmodal-footer-feat-item">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <div>
+                            <strong>Fully Supervised</strong>
+                            <span>Continuous care team</span>
+                        </div>
+                    </div>
+                    <div class="gmodal-footer-feat-item">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <div>
+                            <strong>Premium Quality</strong>
+                            <span>Excellent facilities</span>
+                        </div>
+                    </div>
+                    <div class="gmodal-footer-feat-item">
+                        <i class="fa-solid fa-heart-pulse"></i>
+                        <div>
+                            <strong>Constant Updates</strong>
+                            <span>Photos sent daily</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="gmodal-footer-priority">
+                    🐾 Your pet's happiness &amp; comfort is our priority!
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main JavaScript File -->
+    <script src="script.js"></script>
+
+    <!-- Mouse-over pop-up for features bar items & Modal logic -->
+    <script>
+        (function () {
+            const items = document.querySelectorAll('.svc-feature-item');
+            items.forEach(function (el) {
+                el.addEventListener('mouseenter', function () {
+                    el.classList.remove('hov-pop');
+                    void el.offsetWidth; // force reflow
+                    el.classList.add('hov-pop');
+                });
+                el.addEventListener('animationend', function () {
+                    el.classList.remove('hov-pop');
+                });
+            });
+        })();
+
+        // ============================================================
+        // PET TAXI MODAL LOGIC
+        // ============================================================
+        function openTaxiModal() {
+            const modal = document.getElementById('pettaxi-modal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeTaxiModal() {
+            const modal = document.getElementById('pettaxi-modal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+
+        // ============================================================
+        // SPA GROOMING MODAL LOGIC (NAMESPACED)
+        // ============================================================
+        const groomingPackages = {
+            1: {
+                title: "Shower, Nail cut, Ear cleaning",
+                tagline: "Tailored Care for All Breeds",
+                desc: "A relaxing shower and blow-dry using premium hypoallergenic shampoo. We carefully clean their ears to prevent wax build-up and gently trim their nails to ensure comfortable walking. Perfect for regular hygiene upkeep.",
+                images: [
+                    "extracted_images/grooming_shower.png",
+                    "extracted_images/grooming_haircut.png",
+                    "extracted_images/grooming_deshedding.png",
+                    "extracted_images/grooming_full.png"
+                ],
+                prices: {
+                    small: "11.00",
+                    medium: "13.00",
+                    large: "16.00"
+                },
+                originalPrices: {
+                    small: "13.00",
+                    medium: "15.00",
+                    large: "19.00"
+                },
+                features: [
+                    { name: "Premium Shampoo", desc: "Hypoallergenic wash" },
+                    { name: "Ear Hygiene", desc: "Wax cleaning & check" },
+                    { name: "Nail Care", desc: "Claw clipping & filing" },
+                    { name: "Medicated Wash", desc: "Available (+2.00 OMR)" }
+                ]
+            },
+            2: {
+                title: "Hair cut, Nail cut, Ear cleaning",
+                tagline: "Sleek Style & Clean Look",
+                desc: "A custom haircut styled by our professional groomers to fit your pet's breed or look, combined with detailed nail cutting and deep ear cleaning. Keeps your pet comfortable, cool, and looking their absolute best.",
+                images: [
+                    "extracted_images/grooming_haircut.png",
+                    "extracted_images/grooming_shower.png",
+                    "extracted_images/grooming_deshedding.png",
+                    "extracted_images/grooming_full.png"
+                ],
+                prices: {
+                    small: "11.00",
+                    medium: "13.00",
+                    large: "16.00"
+                },
+                originalPrices: {
+                    small: "13.00",
+                    medium: "15.00",
+                    large: "19.00"
+                },
+                features: [
+                    { name: "Custom Styling", desc: "Breed-specific haircuts" },
+                    { name: "Nail Care", desc: "Trimmed & smoothed claws" },
+                    { name: "Ear Hygiene", desc: "Cleansed & sanitized ears" },
+                    { name: "Medicated Wash", desc: "Available (+2.00 OMR)" }
+                ]
+            },
+            3: {
+                title: "Shower, Deshedding, Nail cut & Ear Cleaning",
+                tagline: "Bye-Bye Loose Pet Hair",
+                desc: "Designed specifically for double-coated or heavy-shedding pets. Includes a specialized deshedding wash, deep undercoat blowout, intensive brushing, a clean ear flush, and neat nail trimming. Dramatically reduces shedding at home.",
+                images: [
+                    "extracted_images/grooming_deshedding.png",
+                    "extracted_images/grooming_shower.png",
+                    "extracted_images/grooming_haircut.png",
+                    "extracted_images/grooming_full.png"
+                ],
+                prices: {
+                    small: "11.00",
+                    medium: "13.00",
+                    large: "18.00"
+                },
+                originalPrices: {
+                    small: "14.00",
+                    medium: "16.50",
+                    large: "22.00"
+                },
+                features: [
+                    { name: "Deshedding Wash", desc: "Removes loose undercoat" },
+                    { name: "Fur Blow-out", desc: "High-velocity air dry" },
+                    { name: "Intense Brushing", desc: "De-furring treatment" },
+                    { name: "Ear & Nails", desc: "Full hygiene care included" }
+                ]
+            },
+            4: {
+                title: "Full Grooming",
+                tagline: "The Ultimate Royal Spa Experience",
+                desc: "Our most comprehensive premium package. Includes a warm relaxing bath, breed-specific style haircut, full deshedding, sanitary trimming, paw pad shaving, ear cleaning/plucking, nail clipping, claw filing, and refreshing cologne spray.",
+                images: [
+                    "extracted_images/grooming_full.png",
+                    "extracted_images/grooming_shower.png",
+                    "extracted_images/grooming_haircut.png",
+                    "extracted_images/grooming_deshedding.png"
+                ],
+                prices: {
+                    small: "17.00",
+                    medium: "19.00",
+                    large: "25.00"
+                },
+                originalPrices: {
+                    small: "21.00",
+                    medium: "24.00",
+                    large: "30.00"
+                },
+                features: [
+                    { name: "Full Styling", desc: "Scissor-cut & trim" },
+                    { name: "Spa Bath", desc: "Deep wash & conditioner" },
+                    { name: "Sanitary Trim", desc: "Hygiene areas cleaned" },
+                    { name: "Cologne Spray", desc: "Fresh scent finish" }
+                ]
+            }
+        };
+
+        let currentGroomingPackageId = 1;
+        let currentGroomingBreed = 'small';
+        const contactWhatsApp = '96871122885'; // phone number: +968 7112 2885
+
+        function openGroomingModal(packageId) {
+            currentGroomingPackageId = packageId;
+            currentGroomingBreed = 'small';
+            const pkg = groomingPackages[packageId];
+            if (!pkg) return;
+
+            // Update modal text fields
+            document.getElementById('grooming-gmodal-title').textContent = pkg.title;
+            document.getElementById('grooming-gmodal-tag').textContent = pkg.tagline;
+            document.getElementById('grooming-gmodal-desc').textContent = pkg.desc;
+
+            // Set main image
+            document.getElementById('grooming-gmodal-main-img').src = pkg.images[0];
+
+            // Render thumbnails
+            const thumbnailsContainer = document.getElementById('grooming-gmodal-thumbnails-container');
+            thumbnailsContainer.innerHTML = '';
+            pkg.images.forEach((img, idx) => {
+                const thumb = document.createElement('div');
+                thumb.className = `gmodal-thumb ${idx === 0 ? 'active' : ''}`;
+                thumb.innerHTML = `<img src="${img}" alt="thumbnail">`;
+                thumb.addEventListener('click', () => {
+                    document.getElementById('grooming-gmodal-main-img').src = img;
+                    thumbnailsContainer.querySelectorAll('.gmodal-thumb').forEach(t => t.classList.remove('active'));
+                    thumb.classList.add('active');
+                });
+                thumbnailsContainer.appendChild(thumb);
+            });
+
+            // Render highlights
+            const highlightsContainer = document.getElementById('grooming-gmodal-highlights-container');
+            highlightsContainer.innerHTML = '';
+            const icons = [
+                '<i class="fa-solid fa-soap"></i>',
+                '<i class="fa-solid fa-ear-listen"></i>',
+                '<i class="fa-solid fa-scissors"></i>',
+                '<i class="fa-solid fa-prescription-bottle-medical"></i>'
+            ];
+            pkg.features.forEach((feat, idx) => {
+                const hl = document.createElement('div');
+                hl.className = 'gmodal-hl-item';
+                hl.innerHTML = `
+                    <div class="gmodal-hl-icon">${icons[idx] || '<i class="fa-solid fa-circle-check"></i>'}</div>
+                    <div class="gmodal-hl-text">
+                        <strong>${feat.name}</strong>
+                        <span>${feat.desc}</span>
+                    </div>
+                `;
+                highlightsContainer.appendChild(hl);
+            });
+
+            // Set breed options pricing in tabs
+            document.getElementById('grooming-tab-price-small').textContent = `OMR ${pkg.prices.small}`;
+            document.getElementById('grooming-tab-price-medium').textContent = `OMR ${pkg.prices.medium}`;
+            document.getElementById('grooming-tab-price-large').textContent = `OMR ${pkg.prices.large}`;
+
+            // Reset active tab style
+            setGroomingActiveTabStyle();
+            updateGroomingPriceAndWA();
+
+            // Open Modal
+            const modal = document.getElementById('grooming-modal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeGroomingModal() {
+            const modal = document.getElementById('grooming-modal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function selectGroomingBreed(breed) {
+            currentGroomingBreed = breed;
+            setGroomingActiveTabStyle();
+            updateGroomingPriceAndWA();
+        }
+
+        function setGroomingActiveTabStyle() {
+            const tabs = document.querySelectorAll('#grooming-tabs-container .gmodal-tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            if (currentGroomingBreed === 'small') tabs[0].classList.add('active');
+            else if (currentGroomingBreed === 'medium') tabs[1].classList.add('active');
+            else if (currentGroomingBreed === 'large') tabs[2].classList.add('active');
+        }
+
+        function updateGroomingPriceAndWA() {
+            const pkg = groomingPackages[currentGroomingPackageId];
+            if (!pkg) return;
+
+            const price = pkg.prices[currentGroomingBreed];
+            const origPrice = pkg.originalPrices[currentGroomingBreed];
+
+            document.getElementById('grooming-gmodal-current-price').textContent = `OMR ${price}`;
+            document.getElementById('grooming-gmodal-original-price').textContent = `OMR ${origPrice}`;
+            
+            const discount = Math.round((1 - (parseFloat(price) / parseFloat(origPrice))) * 100);
+            document.getElementById('grooming-gmodal-discount-badge').textContent = `${discount}% OFF`;
+
+            const breedLabel = currentGroomingBreed === 'small' ? 'Small Breed Dog/Cat' : 
+                                currentGroomingBreed === 'medium' ? 'Medium Breed Dog' : 'Large Breed Dog';
+            const waMessage = `Hi Petland Oman, I would like to book a grooming session!\n\n` +
+                              `Package: *${pkg.title}*\n` +
+                              `Breed Size: *${breedLabel}*\n` +
+                              `Price: *OMR ${price}*\n\n` +
+                              `Please confirm availability for this session. Thank you!`;
+
+            const waBtn = document.getElementById('grooming-gmodal-btn-book');
+            waBtn.href = `https://wa.me/${contactWhatsApp}?text=${encodeURIComponent(waMessage)}`;
+        }
+
+
+        // ============================================================
+        // BOARDING & DAYCARE MODAL LOGIC (NAMESPACED)
+        // ============================================================
+        const boardingPackages = {
+            1: {
+                title: "VIP Dog Boarding (With Food)",
+                tagline: "Premium Care & Nutrition",
+                desc: "Treat your dog to a luxury resort stay! Includes premium veterinary-formulated dog food, continuous active playtime in our secure play yards, clean comfortable bedding, and round-the-clock safety supervision by professional handlers.",
+                images: [
+                    "extracted_images/boarding_dog_with_food.png",
+                    "extracted_images/boarding_dog_no_food.png"
+                ],
+                prices: {
+                    small: "6.00",
+                    big: "8.00"
+                },
+                originalPrices: {
+                    small: "8.00",
+                    big: "10.00"
+                },
+                labels: {
+                    small: { name: "Small Breed", sub: "Dog" },
+                    big: { name: "Big Breed", sub: "Dog" }
+                },
+                features: [
+                    { name: "Premium Food Included", desc: "Balanced nutritional meals" },
+                    { name: "Play & Socialization", desc: "Supervised group activities" },
+                    { name: "Cozy Lodging", desc: "Clean bedding & personal space" },
+                    { name: "24/7 Supervision", desc: "Safety monitored by pet lovers" }
+                ]
+            },
+            2: {
+                title: "VIP Dog Boarding (Without Food)",
+                tagline: "Custom Feeding & Comfortable Lodge",
+                desc: "Ideal for dogs with specific diets, allergies, or custom recipes. Bring your own food and we will strictly execute your feeding instructions, alongside providing cozy sleeping space and exciting daily playtime.",
+                images: [
+                    "extracted_images/boarding_dog_no_food.png",
+                    "extracted_images/boarding_dog_with_food.png"
+                ],
+                prices: {
+                    small: "5.00",
+                    big: "7.00"
+                },
+                originalPrices: {
+                    small: "6.50",
+                    big: "9.00"
+                },
+                labels: {
+                    small: { name: "Small Breed", sub: "Dog" },
+                    big: { name: "Big Breed", sub: "Dog" }
+                },
+                features: [
+                    { name: "Familiar Diet Administered", desc: "We feed according to your plan" },
+                    { name: "Daily Play & Fun", desc: "Indoor & outdoor exercise" },
+                    { name: "Cozy Boarding", desc: "Soft bed & climate-controlled room" },
+                    { name: "Daily Status Updates", desc: "Photos sent via WhatsApp" }
+                ]
+            },
+            3: {
+                title: "VIP Cat Boarding (With Food)",
+                tagline: "Cozy Condos & Gourmet Feline Dining",
+                desc: "A calm, relaxing environment for cats. Includes high-quality wet and dry food, separate quiet boarding zones away from dogs, multi-level cat condos, fresh water changed daily, and interactive laser and toy play sessions.",
+                images: [
+                    "extracted_images/boarding_cat_with_food.png",
+                    "extracted_images/boarding_cat_no_food.png"
+                ],
+                prices: {
+                    cat: "5.00"
+                },
+                originalPrices: {
+                    cat: "6.50"
+                },
+                labels: {
+                    cat: { name: "Standard Cat", sub: "Feline" }
+                },
+                features: [
+                    { name: "Gourmet Cat Food", desc: "Wet & dry options included" },
+                    { name: "Multi-tier Condo", desc: "Private climbing & sleeping room" },
+                    { name: "Daily Litter Care", desc: "Cleaned and scooped regularly" },
+                    { name: "Feline Play Sessions", desc: "Toys, scratchers, & feather play" }
+                ]
+            },
+            4: {
+                title: "VIP Cat Boarding (Without Food)",
+                tagline: "Quiet Retreat & Custom Feline Feeding",
+                desc: "For felines who strictly prefer their own brand of food or have delicate digestive systems. Bring their custom food and we will feed them exactly on time while offering a peaceful, cozy individual cat suite.",
+                images: [
+                    "extracted_images/boarding_cat_no_food.png",
+                    "extracted_images/boarding_cat_with_food.png"
+                ],
+                prices: {
+                    cat: "4.00"
+                },
+                originalPrices: {
+                    cat: "5.00"
+                },
+                labels: {
+                    cat: { name: "Standard Cat", sub: "Feline" }
+                },
+                features: [
+                    { name: "Own Food Administered", desc: "No diet disruption" },
+                    { name: "Quiet Cat Zone", desc: "Located away from active dogs" },
+                    { name: "Sanitary Litter Box", desc: "Kept clean and fresh daily" },
+                    { name: "Gentle Brushing", desc: "Pampering brush sessions included" }
+                ]
+            }
+        };
+
+        let currentBoardingPackageId = 1;
+        let currentBoardingBreed = 'small';
+
+        function openBoardingModal(packageId) {
+            currentBoardingPackageId = packageId;
+            const pkg = boardingPackages[packageId];
+            if (!pkg) return;
+
+            // Set title, tagline, description
+            document.getElementById('boarding-gmodal-title').textContent = pkg.title;
+            document.getElementById('boarding-gmodal-tag').textContent = pkg.tagline;
+            document.getElementById('boarding-gmodal-desc').textContent = pkg.desc;
+
+            // Set main image
+            document.getElementById('boarding-gmodal-main-img').src = pkg.images[0];
+
+            // Render thumbnails
+            const thumbnailsContainer = document.getElementById('boarding-gmodal-thumbnails-container');
+            thumbnailsContainer.innerHTML = '';
+            pkg.images.forEach((img, idx) => {
+                const thumb = document.createElement('div');
+                thumb.className = `gmodal-thumb ${idx === 0 ? 'active' : ''}`;
+                thumb.innerHTML = `<img src="${img}" alt="thumbnail">`;
+                thumb.addEventListener('click', () => {
+                    document.getElementById('boarding-gmodal-main-img').src = img;
+                    thumbnailsContainer.querySelectorAll('.gmodal-thumb').forEach(t => t.classList.remove('active'));
+                    thumb.classList.add('active');
+                });
+                thumbnailsContainer.appendChild(thumb);
+            });
+
+            // Render highlights
+            const highlightsContainer = document.getElementById('boarding-gmodal-highlights-container');
+            highlightsContainer.innerHTML = '';
+            const icons = [
+                '<i class="fa-solid fa-bowl-food"></i>',
+                '<i class="fa-solid fa-shield-dog"></i>',
+                '<i class="fa-solid fa-house"></i>',
+                '<i class="fa-solid fa-user-shield"></i>'
+            ];
+            pkg.features.forEach((feat, idx) => {
+                const hl = document.createElement('div');
+                hl.className = 'gmodal-hl-item';
+                hl.innerHTML = `
+                    <div class="gmodal-hl-icon">${icons[idx] || '<i class="fa-solid fa-circle-check"></i>'}</div>
+                    <div class="gmodal-hl-text">
+                        <strong>${feat.name}</strong>
+                        <span>${feat.desc}</span>
+                    </div>
+                `;
+                highlightsContainer.appendChild(hl);
+            });
+
+            // Set dynamic breed tabs
+            const tabsContainer = document.getElementById('boarding-gmodal-tabs-container');
+            tabsContainer.innerHTML = '';
+            
+            const keys = Object.keys(pkg.prices);
+            currentBoardingBreed = keys[0];
+            
+            keys.forEach((key) => {
+                const label = pkg.labels[key];
+                const price = pkg.prices[key];
+                
+                const tabButton = document.createElement('button');
+                tabButton.className = `gmodal-tab ${key === currentBoardingBreed ? 'active' : ''}`;
+                tabButton.addEventListener('click', () => {
+                    selectBoardingBreed(key);
+                });
+                
+                tabButton.innerHTML = `
+                    <span class="tab-label">${label.name}</span>
+                    <span class="tab-sub">${label.sub}</span>
+                    <span class="tab-price">OMR ${price}</span>
+                `;
+                tabsContainer.appendChild(tabButton);
+            });
+
+            const selectTitle = document.getElementById('boarding-gmodal-select-title');
+            if (keys.length <= 1) {
+                selectTitle.style.display = 'none';
+            } else {
+                selectTitle.style.display = 'block';
+            }
+
+            updateBoardingPriceAndWA();
+
+            // Open Modal
+            const modal = document.getElementById('boarding-modal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeBoardingModal() {
+            const modal = document.getElementById('boarding-modal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function selectBoardingBreed(breed) {
+            currentBoardingBreed = breed;
+            
+            const tabs = document.querySelectorAll('#boarding-gmodal-tabs-container .gmodal-tab');
+            const pkg = boardingPackages[currentBoardingPackageId];
+            const keys = Object.keys(pkg.prices);
+            
+            tabs.forEach((tab, idx) => {
+                if (keys[idx] === breed) tab.classList.add('active');
+                else tab.classList.remove('active');
+            });
+            
+            updateBoardingPriceAndWA();
+        }
+
+        function updateBoardingPriceAndWA() {
+            const pkg = boardingPackages[currentBoardingPackageId];
+            if (!pkg) return;
+
+            const price = pkg.prices[currentBoardingBreed];
+            const origPrice = pkg.originalPrices[currentBoardingBreed];
+
+            document.getElementById('boarding-gmodal-current-price').textContent = `OMR ${price}`;
+            document.getElementById('boarding-gmodal-original-price').textContent = `OMR ${origPrice}`;
+            
+            const discount = Math.round((1 - (parseFloat(price) / parseFloat(origPrice))) * 100);
+            document.getElementById('boarding-gmodal-discount-badge').textContent = `${discount}% OFF`;
+
+            const breedLabel = pkg.labels[currentBoardingBreed].name;
+            const waMessage = `Hi Petland Oman, I would like to book a luxury boarding stay!\n\n` +
+                              `Package: *${pkg.title}*\n` +
+                              `Selection: *${breedLabel}*\n` +
+                              `Rate: *OMR ${price}/day*\n\n` +
+                              `Please confirm availability. Thank you!`;
+
+            const waBtn = document.getElementById('boarding-gmodal-btn-book');
+            waBtn.href = `https://wa.me/${contactWhatsApp}?text=${encodeURIComponent(waMessage)}`;
+        }
+
+
+        // ============================================================
+        // ESCAPE KEY MODAL CLOSER
+        // ============================================================
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeTaxiModal();
+                closeGroomingModal();
+                closeBoardingModal();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pet Services | Petland Oman</title>
-    <meta name="description" content="Explore elite pet services at Petland Oman. Professional grooming, expert veterinary consultations, spa, luxury boarding, and obedience training.">
+    <title>Our Services | Petland Oman</title>
+    <meta name="description" content="Explore Petland Oman's premium services: professional grooming, VIP dog & cat boarding stays, day care, and reliable pet taxi transportation.">
     <!-- FontAwesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Main Stylesheet -->
-    <link rel="stylesheet" href="style.css?v=16">
+    <link rel="stylesheet" href="style.css?v=18">
     <style>
         /* Make video fill the full viewport height without scroll-seek behaviour */
         .services-video-fullpage {
@@ -37,23 +37,6 @@
             #svc-video-mobile  { display: none !important; }
             #svc-video-desktop { display: block !important; }
         }
-
-        /* --- MOUSE-OVER POP ANIMATION for features bar items --- */
-        @keyframes svcHoverPop {
-            0%   { transform: translateY(0)    scale(1);    }
-            30%  { transform: translateY(-14px) scale(1.08); }
-            55%  { transform: translateY(4px)  scale(0.97); }
-            75%  { transform: translateY(-6px) scale(1.03); }
-            100% { transform: translateY(0)    scale(1);    }
-        }
-
-        /* Items are always visible — animation triggers on mouse enter */
-        .svc-feature-item {
-            cursor: default;
-        }
-        .svc-feature-item.hov-pop {
-            animation: svcHoverPop 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) both;
-        }
     </style>
 </head>
 <body>
@@ -64,6 +47,10 @@
             <button class="mobile-nav-toggle" id="nav-toggle" aria-label="Toggle Navigation">
                 <i class="fa-solid fa-bars"></i>
             </button>
+            <!-- Mobile Logo -->
+            <a href="index.html" class="mobile-logo">
+                <img src="logo_transparent.png" alt="Petland Oman Logo" class="mobile-logo-img">
+            </a>
             <nav id="nav-menu">
                 <ul>
                     <li class="nav-logo-item">
@@ -72,7 +59,7 @@
                         </a>
                     </li>
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="about.html">About</a></li>
                     <li><a href="services.html" class="active">Services</a></li>
                     <li><a href="products.html">Products</a></li>
                     <li><a href="blog.html">Blog</a></li>
@@ -94,14 +81,9 @@
         </video>
     </div>
 
-    <!-- FEATURES / HIGHLIGHTS BAR -->
+    <!-- KEY UTILITY BAR -->
     <section class="svc-features-bar">
-        <!-- decorative paw top-left -->
-        <i class="fa-solid fa-paw svc-deco svc-deco-tl"></i>
-        <i class="fa-solid fa-paw svc-deco svc-deco-br"></i>
-
         <div class="svc-features-grid">
-
             <!-- 1. High Quality -->
             <div class="svc-feature-item">
                 <div class="svc-feat-icon svc-icon-orange">
@@ -157,48 +139,38 @@
 
     <!-- SERVICE CARDS GRID -->
     <section class="svc-cards-section">
-        <div class="svc-cards-grid">
+        <div class="svc-cards-grid services-page-grid">
 
-            <!-- Card 1: Nutritional Consulting -->
-            <a href="contact.html" class="svc-card">
-                <img src="extracted_images/card_nutritional_opt.jpg?v=2" alt="Nutritional Consulting" class="svc-card-main-img">
+            <!-- Card 1: Pet Taxi -->
+            <a href="javascript:void(0)" class="svc-card" onclick="openTaxiModal()">
+                <img src="extracted_images/pet_taxi_card.jpeg" alt="Pet Taxi" class="svc-card-main-img">
                 <div class="svc-card-overlay">
-                    <h3 class="svc-card-title">Nutritional Consulting</h3>
+                    <h3 class="svc-card-title">Pet Taxi</h3>
                     <div class="svc-card-divider"></div>
-                    <p class="svc-card-desc">Expert dietary plans and weight management.</p>
+                    <p class="svc-card-desc">Safe, reliable, and comfortable transportation for your pets.</p>
                     <span class="svc-card-btn">Book Now <i class="fa-solid fa-arrow-right"></i></span>
                 </div>
             </a>
 
-            <!-- Card 2: Obedience Training -->
-            <a href="contact.html" class="svc-card">
-                <img src="extracted_images/card_obedience_opt.jpg?v=2" alt="Obedience Training" class="svc-card-main-img">
-                <div class="svc-card-overlay">
-                    <h3 class="svc-card-title">Obedience Training</h3>
-                    <div class="svc-card-divider"></div>
-                    <p class="svc-card-desc">Expert guidance for a well-behaved companion.</p>
-                    <span class="svc-card-btn">Book Now <i class="fa-solid fa-arrow-right"></i></span>
-                </div>
-            </a>
 
-            <!-- Card 3: Spa Grooming -->
+            <!-- Card 2: Spa Grooming -->
             <a href="grooming.html" class="svc-card">
                 <img src="extracted_images/card_grooming_opt.jpg?v=2" alt="Spa Grooming" class="svc-card-main-img">
                 <div class="svc-card-overlay">
                     <h3 class="svc-card-title">Spa Grooming</h3>
                     <div class="svc-card-divider"></div>
-                    <p class="svc-card-desc">Relaxing baths, stylish cuts, and nail care.</p>
+                    <p class="svc-card-desc">Pampering baths, haircuts, and styling for cats &amp; dogs.</p>
                     <span class="svc-card-btn">Book Now <i class="fa-solid fa-arrow-right"></i></span>
                 </div>
             </a>
 
-            <!-- Card 4: Pet Daycare & Play -->
-            <a href="contact.html" class="svc-card">
-                <img src="extracted_images/card_daycare_opt.jpg?v=2" alt="Pet Daycare & Play" class="svc-card-main-img">
+            <!-- Card 3: Pet Daycare & Play -->
+            <a href="boarding.html" class="svc-card">
+                <img src="extracted_images/card_daycare_opt.jpg?v=2" alt="Pet Daycare &amp; Play" class="svc-card-main-img">
                 <div class="svc-card-overlay">
-                    <h3 class="svc-card-title">Pet Daycare & Play</h3>
+                    <h3 class="svc-card-title">Pet Daycare &amp; Play</h3>
                     <div class="svc-card-divider"></div>
-                    <p class="svc-card-desc">Supervised socialization and fun exercise.</p>
+                    <p class="svc-card-desc">Supervised playtime, socialization, and caring daytime boarding.</p>
                     <span class="svc-card-btn">Book Now <i class="fa-solid fa-arrow-right"></i></span>
                 </div>
             </a>
@@ -234,7 +206,7 @@
                     <h4>Quick Links</h4>
                     <ul>
                         <li><a href="index.html">Home</a></li>
-                        <li><a href="index.html#about">About Us</a></li>
+                        <li><a href="about.html">About Us</a></li>
                         <li><a href="services.html">Services</a></li>
                         <li><a href="products.html">Shop</a></li>
                         <li><a href="blog.html">Blog</a></li>
@@ -290,16 +262,129 @@
         </div>
     </footer>
 
+    <!-- DETAILED PET TAXI MODAL POPUP -->
+    <div class="gmodal" id="pettaxi-modal">
+        <div class="gmodal-backdrop" onclick="closeTaxiModal()"></div>
+        <div class="gmodal-content">
+            <button class="gmodal-close" onclick="closeTaxiModal()" aria-label="Close Modal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="gmodal-grid">
+                <!-- Left side: Image -->
+                <div class="gmodal-left">
+                    <div class="gmodal-main-img-wrap">
+                        <img src="extracted_images/pet_taxi_detail.jpg" alt="Pet Taxi Service" id="gmodal-main-img" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
+                    </div>
+                </div>
+                <!-- Right side: details and selections -->
+                <div class="gmodal-right">
+                    <div class="gmodal-tag" style="background-color: var(--accent-orange); color: var(--white); border-radius: 4px; padding: 0.1rem 0.4rem; display: inline-block; width: fit-content; font-size: 0.75rem; font-weight: 700; margin-bottom: 0.5rem;">Pet Taxi</div>
+                    <h2 class="gmodal-title" style="margin-bottom: 0.4rem;">Safe &amp; Reliable Pet Taxi</h2>
+                    
+                    <div class="gmodal-rating-row" style="margin-bottom: 1.2rem;">
+                        <div class="gmodal-stars">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <span class="gmodal-reviews">(95 Reviews)</span>
+                    </div>
+
+                    <p class="gmodal-desc" style="margin-bottom: 1.2rem;">
+                        Our professional Pet Taxi service provides safe, comfortable, and air-conditioned transportation for your pets. Whether it's a trip to the vet, grooming salon, boarding facility, or airport, we ensure your furry friend travels in complete safety and luxury.
+                    </p>
+
+                    <!-- Highlights Grid -->
+                    <div class="gmodal-highlights" style="margin-bottom: 1.5rem;">
+                        <div class="gmodal-hl-item">
+                            <div class="gmodal-hl-icon"><i class="fa-solid fa-wind"></i></div>
+                            <div class="gmodal-hl-text">
+                                <strong>AC Comfort</strong>
+                                <span>Climate controlled</span>
+                            </div>
+                        </div>
+                        <div class="gmodal-hl-item">
+                            <div class="gmodal-hl-icon"><i class="fa-solid fa-shield-dog"></i></div>
+                            <div class="gmodal-hl-text">
+                                <strong>Pet Safety</strong>
+                                <span>Harnesses &amp; Crates</span>
+                            </div>
+                        </div>
+                        <div class="gmodal-hl-item">
+                            <div class="gmodal-hl-icon"><i class="fa-solid fa-location-dot"></i></div>
+                            <div class="gmodal-hl-text">
+                                <strong>GPS Tracking</strong>
+                                <span>Real-time updates</span>
+                            </div>
+                        </div>
+                        <div class="gmodal-hl-item">
+                            <div class="gmodal-hl-icon"><i class="fa-solid fa-user-tie"></i></div>
+                            <div class="gmodal-hl-text">
+                                <strong>Expert Handler</strong>
+                                <span>Certified &amp; Caring</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Book Now Button (No breed/tabs/OMR price wrapper!) -->
+                    <div style="display: flex; gap: 1rem; align-items: center; margin-top: 0.5rem;">
+                        <a href="https://wa.me/96871122885?text=Hi%20Petland%20Oman%2C%20I%20would%20like%20to%20book%20a%20Pet%20Taxi%20ride!" target="_blank" class="gmodal-btn-book" style="display: inline-flex; align-items: center; justify-content: center; background-color: var(--primary-yellow); color: var(--black); font-weight: 700; font-size: 1.1rem; padding: 0.9rem 2.5rem; border-radius: 30px; transition: all 0.3s; text-decoration: none; border: none; cursor: pointer; box-shadow: 0 4px 14px rgba(252, 194, 3, 0.4); text-align: center; flex: 1;">
+                            Book Ride Now &nbsp;<i class="fa-solid fa-paw"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Modal Footer banner -->
+            <div class="gmodal-footer-banner">
+                <div class="gmodal-footer-features">
+                    <div class="gmodal-footer-feat-item">
+                        <i class="fa-solid fa-calendar-check"></i>
+                        <div>
+                            <strong>Flexible Booking</strong>
+                            <span>Book at your convenience</span>
+                        </div>
+                    </div>
+                    <div class="gmodal-footer-feat-item">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <div>
+                            <strong>Safe &amp; Insured</strong>
+                            <span>Your pet's safety is first</span>
+                        </div>
+                    </div>
+                    <div class="gmodal-footer-feat-item">
+                        <i class="fa-solid fa-heart"></i>
+                        <div>
+                            <strong>Loving Care</strong>
+                            <span>Treated like our own family</span>
+                        </div>
+                    </div>
+                    <div class="gmodal-footer-feat-item">
+                        <i class="fa-solid fa-headset"></i>
+                        <div>
+                            <strong>24/7 Support</strong>
+                            <span>Always here to help you</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="gmodal-footer-priority">
+                    🐾 Your pet's safe journey is our highest priority!
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Main JavaScript File -->
     <script src="script.js"></script>
 
-    <!-- Mouse-over pop-up for features bar items -->
+    <!-- Mouse-over pop-up for features bar items & Modal logic -->
     <script>
         (function () {
             const items = document.querySelectorAll('.svc-feature-item');
             items.forEach(function (el) {
                 el.addEventListener('mouseenter', function () {
-                    // Remove class first (reset), then re-add to retrigger animation
                     el.classList.remove('hov-pop');
                     void el.offsetWidth; // force reflow
                     el.classList.add('hov-pop');
@@ -309,6 +394,26 @@
                 });
             });
         })();
+
+        // Pet Taxi Modal Handlers
+        function openTaxiModal() {
+            const modal = document.getElementById('pettaxi-modal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeTaxiModal() {
+            const modal = document.getElementById('pettaxi-modal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeTaxiModal();
+            }
+        });
     </script>
 </body>
 </html>
