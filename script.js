@@ -5,6 +5,11 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Immediately collapse the scroll container on mobile to prevent gap
+    if (window.innerWidth <= 768) {
+        const scrollSection = document.getElementById('scroll-section');
+        if (scrollSection) scrollSection.style.height = 'auto';
+    }
     initHeader();
     initMobileNav();
     initVideoScrollSeek();
@@ -80,9 +85,8 @@ class VideoScrollSeeker {
         window.addEventListener('resize', () => this.handleResize(), { passive: true });
 
         if (!this.mobileMode) {
-            // Desktop: allocate scroll space and start seek loop
-            const numSlides = this.slides.length || 3;
-            this.container.style.height = `${(numSlides + 1) * 100}vh`;
+            // Desktop: use exactly 100vh — the banner is now outside this container
+            this.container.style.height = '100vh';
             window.addEventListener('scroll', () => this.handleScroll(), { passive: true });
             this.tick();
         }
@@ -110,11 +114,10 @@ class VideoScrollSeeker {
             this.activeVideo.loop = true;
             this.activeVideo.play().catch(() => {});
             // Collapse container so there's no dead scroll zone
-            this.container.style.height = '100vh';
+            this.container.style.height = 'auto';
         } else if (!this.mobileMode && this.container) {
-            // On desktop: restore scroll-seek container height
-            const numSlides = this.slides.length || 3;
-            this.container.style.height = `${(numSlides + 1) * 100}vh`;
+            // On desktop: keep container at exactly 100vh
+            this.container.style.height = '100vh';
             // Show first slide
             if (this.slides[0]) this.slides[0].classList.add('active');
         }

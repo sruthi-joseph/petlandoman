@@ -169,7 +169,7 @@ nav ul li a.active {
    ============================================================ */
 .aboutus-section {
     background: #ffffff;
-    padding: 3rem 2rem;
+    padding: 0 2rem 3rem;
     overflow: hidden;
 }
 
@@ -699,10 +699,53 @@ nav ul li a.active {
 }
 
 @media (max-width: 768px) {
-    .product-circles { gap: 2rem; }
-    .circle-img-wrap { width: 130px; height: 130px; }
+    /* Products grid: 2 columns on mobile */
+    .product-circles {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+        justify-items: center;
+    }
+    .product-circle-card {
+        max-width: 160px;
+        width: 100%;
+    }
+    .circle-img-wrap {
+        width: 110px;
+        height: 110px;
+        display: flex !important;
+        visibility: visible !important;
+        overflow: hidden;
+    }
+    .circle-img-wrap img {
+        display: block !important;
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: contain !important;
+        visibility: visible !important;
+    }
+
+    /* Services cards: vertical stack */
     .service-cards-row { flex-direction: column; align-items: center; }
     .service-preview-card { max-width: 100%; }
+
+    /* Section headings: center and hide overflowing SVG arrows */
+    .sec-heading {
+        text-align: center;
+        padding: 0 1rem;
+    }
+    .sec-heading h2 {
+        font-size: 1.8rem;
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
+        gap: 0.4rem;
+    }
+    /* Hide the large decorative SVG arrows on mobile so they don't overflow */
+    .sec-deco-arrow-l,
+    .sec-deco-arrow-r {
+        display: none;
+    }
 }
 
 /* --- SERVICES PAGE: FEATURES / HIGHLIGHTS BAR --- */
@@ -999,6 +1042,23 @@ nav ul li a.active {
     .svc-cards-grid {
         grid-template-columns: 1fr;
         max-width: 550px;
+        margin: 0 auto;
+    }
+    .svc-card {
+        min-height: 280px;
+    }
+    .svc-card-main-img {
+        width: 100%;
+        height: 280px;
+        object-fit: cover;
+        border-radius: 28px;
+    }
+    .svc-card-title {
+        font-size: 1.8rem;
+        max-width: 70%;
+    }
+    .svc-card-desc {
+        max-width: 70%;
     }
 }
 
@@ -1006,11 +1066,39 @@ nav ul li a.active {
     .svc-cards-section {
         padding: 2rem 1rem 3rem;
     }
+    .svc-cards-grid {
+        max-width: 100%;
+    }
     .svc-card {
         border-radius: 24px;
+        min-height: 240px;
     }
     .svc-card-main-img {
         border-radius: 24px;
+        height: 240px;
+        object-fit: cover;
+    }
+    .svc-card-overlay {
+        padding: 1.5rem;
+        justify-content: flex-end; /* pin text to bottom */
+        background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.1) 60%, transparent 100%);
+    }
+    .svc-card-title {
+        font-size: 1.4rem;
+        max-width: 80%;
+        color: #ffffff !important;
+    }
+    .svc-card-divider {
+        background-color: #FCC203;
+    }
+    .svc-card-desc {
+        color: rgba(255,255,255,0.88) !important;
+        max-width: 80%;
+        font-size: 0.85rem;
+    }
+    .svc-card-btn {
+        background-color: #FCC203;
+        color: #000;
     }
     .service-preview-card {
         min-width: unset !important;
@@ -1367,14 +1455,14 @@ footer {
     padding-bottom: 0;
 }
 
-/* White fade at bottom — masks any dark video/section seam */
+/* Thin fade at bottom — masks video/section seam */
 .sticky-video-wrapper::after {
     content: '';
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 80px;
+    height: 20px;
     background: linear-gradient(to bottom, transparent, #ffffff);
     pointer-events: none;
     z-index: 10;
@@ -1449,42 +1537,26 @@ footer {
 }
 
 /* --- BANNER OVERLAY SLIDESHOW (DESKTOP) --- */
-/* On desktop, .banner-below-video is sticky at the bottom of the scroll section */
+/* On desktop, .banner-below-video is placed naturally below the video frame */
 .banner-below-video {
-    position: sticky;
-    bottom: 4vh;
+    position: relative;
     z-index: 6;
     display: flex;
     justify-content: center;
-    align-items: flex-end;
-    padding-bottom: 2vh;
-    pointer-events: auto;
-    /* Pull it up so it overlays the bottom of the sticky video */
-    margin-top: calc(-20vh - 2rem);
+    align-items: center;
+    padding: 0;
+    background: #ffffff;
+    margin-top: 0;
+    border-bottom: none;
 }
 
 /* Keep the old #slide-banners selector working for JS slideshow targeting */
 #slide-banners {
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
     padding: 0;
-    padding-bottom: 4vh;
-    background: transparent;
+    background: #ffffff;
 }
-
-/* White side mask — hides any dark video edges beside the 80% banner */
-#slide-banners::before,
-#slide-banners::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 10%;
-    background: transparent;
-    z-index: 5;
-}
-#slide-banners::before { left: 0; }
-#slide-banners::after  { right: 0; }
 
 /* Slideshow Wrapper */
 .banner-slideshow-wrapper {
@@ -1545,8 +1617,11 @@ footer {
     /* Collapse to single viewport-height section — no extra scroll zone */
     .scroll-video-container {
         height: auto !important;
-        overflow: hidden; /* prevent dark background bleeding at edges */
+        overflow: hidden;
         width: 100vw;
+        margin-bottom: 0 !important;
+        padding-bottom: 0 !important;
+        display: block;
     }
 
     /* Sticky positioning is not needed on mobile — just a normal block */
@@ -1559,7 +1634,7 @@ footer {
 
     /* Smaller bottom fade on mobile */
     .sticky-video-wrapper::after {
-        height: 50px;
+        height: 10px;
     }
 
     /* Video fills the 65vh wrapper */
@@ -1581,10 +1656,11 @@ footer {
     .banner-below-video {
         position: static !important;
         margin-top: 0 !important;
+        margin-bottom: 0 !important;
         display: block !important;
-        padding: 1.2rem 1rem 1.5rem !important;
+        padding: 0 0.5rem !important;
         background: #ffffff;
-        border-bottom: 1px solid rgba(0,0,0,0.05);
+        border-bottom: none;
     }
 
     .banner-slideshow-wrapper {
@@ -2188,7 +2264,7 @@ footer {
 
 /* --- BLOG PAGE --- */
 .blog-header {
-    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&q=80&w=1500') center/cover;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.9)), url('blog_hero_bg.png') center/cover;
     height: 40vh;
     display: flex;
     align-items: center;
@@ -2568,6 +2644,10 @@ footer {
     nav ul li a {
         font-size: 1.3rem;
         color: var(--white); /* Ensure mobile menu links are white on black dropdown */
+    }
+    nav ul li a.active {
+        color: #FCC203 !important;
+        background-color: transparent !important;
     }
 
     .hero-title {
@@ -4136,6 +4216,9 @@ footer {
         border-radius: 18px !important;
         min-height: 220px !important;
     }
+    .prod-page-grid .svc-card-overlay {
+        justify-content: center !important;
+    }
     .gmodal-content {
         width: 95% !important;
         max-height: 94vh !important;
@@ -4177,3 +4260,4 @@ footer {
         padding: 0.9rem 1.2rem !important;
     }
 }
+
