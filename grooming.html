@@ -8,7 +8,7 @@
     <!-- FontAwesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Main Stylesheet -->
-    <link rel="stylesheet" href="style.css?v=26">
+    <link rel="stylesheet" href="style.css?v=32">
     <style>
         /* --- GROOMING HERO SECTION --- */
         .grooming-hero {
@@ -690,9 +690,6 @@
                 <!-- Card 1: Shower, Nail cut, Ear cleaning -->
                 <div class="grooming-card card-bg-1" onclick="openGroomingModal(1)">
                     <div class="grooming-card-content">
-                        <div class="grooming-card-icon icon-bg-black">
-                            <i class="fa-solid fa-shower"></i>
-                        </div>
                         <h3>Shower, Nail cut, Ear cleaning</h3>
                         <p>Warm relaxing shower with premium blow-dry, hygienic ear cleaning, and expert nail trimming.</p>
                         <button class="grooming-card-btn">View Details &nbsp;➔</button>
@@ -705,9 +702,6 @@
                 <!-- Card 2: Hair cut, Nail cut, Ear cleaning -->
                 <div class="grooming-card card-bg-2" onclick="openGroomingModal(2)">
                     <div class="grooming-card-content">
-                        <div class="grooming-card-icon icon-bg-yellow">
-                            <i class="fa-solid fa-scissors"></i>
-                        </div>
                         <h3>Hair cut, Nail cut, Ear cleaning</h3>
                         <p>Professional clip & styling tailored to your pet's breed, claw clipping, and hygienic ear clean.</p>
                         <button class="grooming-card-btn">View Details &nbsp;➔</button>
@@ -720,9 +714,6 @@
                 <!-- Card 3: Shower, Deshedding, Nail cut & Ear Cleaning -->
                 <div class="grooming-card card-bg-3" onclick="openGroomingModal(3)">
                     <div class="grooming-card-content">
-                        <div class="grooming-card-icon icon-bg-black">
-                            <i class="fa-solid fa-broom"></i>
-                        </div>
                         <h3>Shower, Deshedding, Nail cut & Ear Cleaning</h3>
                         <p>Specialized deshedding wash, deep undercoat blowout, intensive brushing, claw trim, and ear sanitation.</p>
                         <button class="grooming-card-btn">View Details &nbsp;➔</button>
@@ -735,9 +726,6 @@
                 <!-- Card 4: Full Grooming -->
                 <div class="grooming-card card-bg-4" onclick="openGroomingModal(4)">
                     <div class="grooming-card-content">
-                        <div class="grooming-card-icon icon-bg-yellow">
-                            <i class="fa-solid fa-crown"></i>
-                        </div>
                         <h3>Full Grooming</h3>
                         <p>Our royal spa: custom styling, deep cleansing shower, nail filing, ear cleaning, and fresh scent spray.</p>
                         <button class="grooming-card-btn">View Details &nbsp;➔</button>
@@ -748,11 +736,8 @@
                 </div>
 
                 <!-- Card 5: Medicated Wash Option (Styled exactly like the packages above) -->
-                <a href="https://wa.me/96871122885?text=Hi%20Petland%20Oman%2C%20I%27d%20like%20to%20book%20a%20grooming%20session%20with%20the%20Medicated%20Wash%20option%20added." target="_blank" class="grooming-card card-bg-5">
+                <a href="https://wa.me/968792600091?text=Hi%20Petland%20Oman%2C%20I%27d%20like%20to%20book%20a%20grooming%20session%20with%20the%20Medicated%20Wash%20option%20added." target="_blank" class="grooming-card card-bg-5">
                     <div class="grooming-card-content">
-                        <div class="grooming-card-icon icon-bg-black">
-                            <i class="fa-solid fa-prescription-bottle-medical"></i>
-                        </div>
                         <h3>Medicated Wash Option</h3>
                         <p>Add a soothing, anti-itch medicated wash treatment to any of the shower packages above for only <strong>+2.00 OMR</strong> extra.</p>
                         <span class="grooming-card-btn bg-black-btn">Book Now &nbsp;➔</span>
@@ -894,17 +879,15 @@
             <div class="footer-container">
                 <!-- Column 1: Brand Info -->
                 <div class="footer-col brand-col">
-                    <div class="footer-logo">
-                        <i class="fa-solid fa-paw paw-logo-icon"></i>
-                        <span class="logo-text-white">Petland</span>
-                        <span class="logo-text-yellow">Oman</span>
-                    </div>
+                    <a href="index.html" class="footer-logo">
+                        <img src="logo_transparent.png" alt="Petland Oman Logo" class="footer-logo-img">
+                    </a>
                     <p>We provide the best products and care for your furry companions in the Sultanate of Oman.</p>
                     <div class="footer-social-row">
-                        <a href="#" class="social-circle" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                        <a href="#" class="social-circle" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="#" class="social-circle" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
-                        <a href="https://wa.me/96890000000" class="social-circle" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                        <a href="https://www.facebook.com/share/1BKGqpdP43/?mibextid=wwXIfr" target="_blank" class="social-circle" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/pet_land_oman?igsh=dmZ5dGU3N3Y3Z2hq&utm_source=qr" target="_blank" class="social-circle" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://youtube.com/@pet_land_oman?si=OvH06tz9eQdCG0Qj" target="_blank" class="social-circle" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="https://wa.me/968792600091" target="_blank" class="social-circle" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
                     </div>
                 </div>
 
@@ -1090,7 +1073,7 @@
 
         let currentPackageId = 1;
         let currentBreed = 'small';
-        const contactWhatsApp = '96871122885'; // phone number: +968 7112 2885
+        const contactWhatsApp = '968792600091'; // phone number: +968 7112 2885
 
         function openGroomingModal(packageId) {
             currentPackageId = packageId;

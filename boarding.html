@@ -8,7 +8,7 @@
     <!-- FontAwesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Main Stylesheet -->
-    <link rel="stylesheet" href="style.css?v=26">
+    <link rel="stylesheet" href="style.css?v=32">
     <style>
         /* --- BOARDING HERO SECTION --- */
         .boarding-hero {
@@ -693,9 +693,6 @@
                 <!-- Card 1: VIP Dog Boarding (With Food) -->
                 <div class="boarding-card card-bg-1" onclick="openBoardingModal(1)">
                     <div class="boarding-card-content">
-                        <div class="boarding-card-icon icon-bg-black">
-                            <i class="fa-solid fa-hotel"></i>
-                        </div>
                         <h3>VIP Dog Boarding (With Food)</h3>
                         <p>Overnight luxury boarding including high-quality meals, playtime, and round-the-clock supervision.</p>
                         <button class="boarding-card-btn">View Details &nbsp;➔</button>
@@ -708,9 +705,6 @@
                 <!-- Card 2: VIP Dog Boarding (Without Food) -->
                 <div class="boarding-card card-bg-2" onclick="openBoardingModal(2)">
                     <div class="boarding-card-content">
-                        <div class="boarding-card-icon icon-bg-yellow">
-                            <i class="fa-solid fa-bowl-food"></i>
-                        </div>
                         <h3>VIP Dog Boarding (Without Food)</h3>
                         <p>Perfect for custom diets. Bring your pet's own food and we will strictly maintain their feeding schedules.</p>
                         <button class="boarding-card-btn">View Details &nbsp;➔</button>
@@ -723,9 +717,6 @@
                 <!-- Card 3: VIP Cat Boarding (With Food) -->
                 <div class="boarding-card card-bg-3" onclick="openBoardingModal(3)">
                     <div class="boarding-card-content">
-                        <div class="boarding-card-icon icon-bg-black">
-                            <i class="fa-solid fa-cat"></i>
-                        </div>
                         <h3>VIP Cat Boarding (With Food)</h3>
                         <p>Luxury cat lodging featuring individual multi-tier condos, premium cat food, and playful laser sessions.</p>
                         <button class="boarding-card-btn">View Details &nbsp;➔</button>
@@ -738,9 +729,6 @@
                 <!-- Card 4: VIP Cat Boarding (Without Food) -->
                 <div class="boarding-card card-bg-4" onclick="openBoardingModal(4)">
                     <div class="boarding-card-content">
-                        <div class="boarding-card-icon icon-bg-yellow">
-                            <i class="fa-solid fa-paw"></i>
-                        </div>
                         <h3>VIP Cat Boarding (Without Food)</h3>
                         <p>Serene feline boarding option. Bring their familiar daily diet to support sensitive stomachs.</p>
                         <button class="boarding-card-btn">View Details &nbsp;➔</button>
@@ -751,11 +739,8 @@
                 </div>
 
                 <!-- Card 5: Daily Daycare & Play (Custom option) -->
-                <a href="https://wa.me/96871122885?text=Hi%20Petland%20Oman%2C%20I%27d%20like%20to%20enquire%20about%20the%20Daily%20Daycare%20%26%20Play%20options." target="_blank" class="boarding-card card-bg-5">
+                <a href="https://wa.me/968792600091?text=Hi%20Petland%20Oman%2C%20I%27d%20like%20to%20enquire%20about%20the%20Daily%20Daycare%20%26%20Play%20options." target="_blank" class="boarding-card card-bg-5">
                     <div class="boarding-card-content">
-                        <div class="boarding-card-icon icon-bg-black">
-                            <i class="fa-solid fa-shield-dog"></i>
-                        </div>
                         <h3>Daily Daycare & Play Option</h3>
                         <p>Need care for just a few hours? We offer flexible hourly and daily daycare with supervised activities and playtime.</p>
                         <span class="boarding-card-btn bg-black-btn">Enquire Now &nbsp;➔</span>
@@ -883,17 +868,15 @@
             <div class="footer-container">
                 <!-- Column 1: Brand Info -->
                 <div class="footer-col brand-col">
-                    <div class="footer-logo">
-                        <i class="fa-solid fa-paw paw-logo-icon"></i>
-                        <span class="logo-text-white">Petland</span>
-                        <span class="logo-text-yellow">Oman</span>
-                    </div>
+                    <a href="index.html" class="footer-logo">
+                        <img src="logo_transparent.png" alt="Petland Oman Logo" class="footer-logo-img">
+                    </a>
                     <p>We provide the best products and care for your furry companions in the Sultanate of Oman.</p>
                     <div class="footer-social-row">
-                        <a href="#" class="social-circle" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                        <a href="#" class="social-circle" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="#" class="social-circle" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
-                        <a href="https://wa.me/96871122885" class="social-circle" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                        <a href="https://www.facebook.com/share/1BKGqpdP43/?mibextid=wwXIfr" target="_blank" class="social-circle" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/pet_land_oman?igsh=dmZ5dGU3N3Y3Z2hq&utm_source=qr" target="_blank" class="social-circle" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://youtube.com/@pet_land_oman?si=OvH06tz9eQdCG0Qj" target="_blank" class="social-circle" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="https://wa.me/968792600091" target="_blank" class="social-circle" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
                     </div>
                 </div>
 
@@ -1073,7 +1056,7 @@
 
         let currentPackageId = 1;
         let currentBreed = 'small';
-        const contactWhatsApp = '96871122885'; // phone number: +968 7112 2885
+        const contactWhatsApp = '968792600091'; // phone number: +968 7112 2885
 
         function openBoardingModal(packageId) {
             currentPackageId = packageId;

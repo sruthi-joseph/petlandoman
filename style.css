@@ -241,7 +241,8 @@ nav ul li a.active {
 }
 
 .aboutus-btn:hover {
-    background: var(--accent-orange);
+    background: var(--primary-yellow);
+    color: #000000;
     transform: translateY(-2px);
 }
 
@@ -542,21 +543,21 @@ nav ul li a.active {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    background: #FCC203;
-    color: #000000;
+    background: #000000;
+    color: #FCC203;
     padding: 0.85rem 2.2rem;
     border-radius: 50px;
     font-weight: 700;
     font-size: 1rem;
-    box-shadow: 0 4px 15px rgba(252, 194, 3, 0.35);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
     transition: background 0.3s, transform 0.3s, box-shadow 0.3s, color 0.3s;
 }
 
 .products-btn:hover {
-    background: #000000;
-    color: #FCC203;
+    background: #FCC203;
+    color: #000000;
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 6px 20px rgba(252, 194, 3, 0.35);
 }
 
 /* ============================================================
@@ -607,7 +608,7 @@ nav ul li a.active {
     background-color: #f3f2f8;
     border: 1px solid rgba(0, 0, 0, 0.02);
 }
-.svc-card-vet {
+.svc-card-taxi {
     background-color: #fcf6e8;
     border: 1px solid rgba(0, 0, 0, 0.02);
 }
@@ -694,59 +695,91 @@ nav ul li a.active {
     transition: transform 0.3s ease;
 }
 
+.svc-card-taxi .svc-pet-img {
+    width: 145px;
+    height: auto;
+    max-height: 82%;
+    margin-right: 12px;
+    margin-bottom: 28px;
+}
+
+.svc-card-boarding .svc-pet-img {
+    margin-bottom: 15px;
+    height: calc(100% - 15px);
+}
+
 .service-preview-card:hover .svc-pet-img {
     transform: scale(1.04);
 }
 
 @media (max-width: 768px) {
-    /* Products grid: 2 columns on mobile */
-    .product-circles {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1.5rem;
-        justify-items: center;
-    }
-    .product-circle-card {
-        max-width: 160px;
-        width: 100%;
-    }
-    .circle-img-wrap {
-        width: 110px;
-        height: 110px;
-        display: flex !important;
-        visibility: visible !important;
-        overflow: hidden;
-    }
-    .circle-img-wrap img {
-        display: block !important;
-        width: 100% !important;
-        height: 100% !important;
-        object-fit: contain !important;
-        visibility: visible !important;
-    }
-
-    /* Services cards: vertical stack */
+    .product-circles { gap: 2rem; }
+    .circle-img-wrap { width: 130px; height: 130px; }
     .service-cards-row { flex-direction: column; align-items: center; }
     .service-preview-card { max-width: 100%; }
 
-    /* Section headings: center and hide overflowing SVG arrows */
-    .sec-heading {
-        text-align: center;
-        padding: 0 1rem;
+    /* Center service card content on mobile/tablet */
+    .service-preview-card .svc-content {
+        align-items: center !important;
+        text-align: center !important;
+        margin: 0 auto;
+        width: 100%;
     }
-    .sec-heading h2 {
-        font-size: 1.8rem;
-        flex-wrap: wrap;
-        justify-content: center;
-        text-align: center;
-        gap: 0.4rem;
+    .service-preview-card .svc-icon-wrap {
+        margin-left: auto;
+        margin-right: auto;
     }
-    /* Hide the large decorative SVG arrows on mobile so they don't overflow */
-    .sec-deco-arrow-l,
-    .sec-deco-arrow-r {
-        display: none;
+    .service-preview-card .svc-text {
+        display: flex;
+        flex-direction: column;
+        align-items: center !important;
+        text-align: center !important;
+        width: 100%;
+    }
+    .service-preview-card .svc-text p {
+        max-width: 240px !important; /* Allow wider text when centered on mobile overlay */
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .service-preview-card .svc-pet-img {
+        opacity: 0.15 !important; /* Low opacity watermark so centered text is fully readable */
     }
 }
+
+@media (max-width: 480px) {
+    .service-preview-card {
+        height: auto;
+        min-height: 200px;
+        padding: 1.5rem 1.25rem 1.25rem;
+        align-items: center;
+    }
+    .svc-content {
+        z-index: 2;
+    }
+    .svc-pet-img {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        width: 140px;
+        height: auto;
+        max-height: 160px;
+        z-index: 1;
+        opacity: 0.15 !important;
+    }
+    .svc-card-taxi .svc-pet-img {
+        width: 110px;
+        margin-right: 8px;
+        margin-bottom: 8px;
+        opacity: 0.15 !important;
+    }
+    .svc-card-boarding .svc-pet-img {
+        height: auto;
+        max-height: 130px;
+        margin-bottom: 0px;
+        opacity: 0.15 !important;
+    }
+}
+
 
 /* --- SERVICES PAGE: FEATURES / HIGHLIGHTS BAR --- */
 .svc-features-bar {
@@ -799,7 +832,7 @@ nav ul li a.active {
 
 .svc-icon-orange { background: linear-gradient(135deg, #e8682a, #f0943a); }
 .svc-icon-dark   { background: #3a3a3a; }
-.svc-icon-yellow { background: linear-gradient(135deg, #e8a800, #fcc203); }
+.svc-icon-yellow { background: linear-gradient(135deg, #e8a800, #FCC203); }
 
 .svc-feat-text h4 {
     font-size: 1rem;
@@ -939,6 +972,18 @@ nav ul li a.active {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3) !important;
 }
 
+/* Custom white theme for Pet Taxi card to ensure legibility on dark background image */
+.svc-card-taxi-theme .svc-card-title {
+    color: #ffffff !important;
+}
+.svc-card-taxi-theme .svc-card-divider {
+    background-color: #ffffff !important;
+}
+.svc-card-taxi-theme .svc-card-desc {
+    color: #ffffff !important;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+}
+
 /* Let's adjust sizes on medium screens (e.g., tablet / smaller desktop) */
 @media (max-width: 1200px) {
     .svc-card-overlay {
@@ -985,43 +1030,63 @@ nav ul li a.active {
 
 @media (max-width: 580px) {
     .svc-card-overlay {
-        padding: 1.8rem;
+        padding: 1.5rem 1rem 1.5rem 1.5rem;
+        justify-content: center;
+        background: linear-gradient(135deg, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.45) 55%, transparent 100%);
     }
     .svc-card-title {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
+        max-width: 65%;
+        color: #ffffff !important;
+    }
+    .svc-card-divider {
+        margin: 0.6rem 0;
+        height: 3px;
+        width: 30px;
+        background-color: #ffffff !important;
     }
     .svc-card-desc {
-        font-size: 0.85rem;
-        margin-bottom: 0.8rem;
         max-width: 60%;
+        font-size: 0.82rem;
+        line-height: 1.35;
+        margin-bottom: 0.8rem;
+        color: #ffffff !important;
     }
     .svc-card-btn {
         padding: 0.5rem 1rem;
         font-size: 0.8rem;
+        background-color: #FCC203 !important;
+        color: #000000 !important;
     }
 }
 
 @media (max-width: 410px) {
     .svc-card-overlay {
         padding: 1.2rem;
+        background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.5) 60%, transparent 100%);
     }
     .svc-card-title {
         font-size: 1.25rem;
+        color: #ffffff !important;
     }
     .svc-card-divider {
         margin: 0.5rem 0;
         height: 3px;
         width: 30px;
+        background-color: #ffffff !important;
     }
     .svc-card-desc {
         font-size: 0.75rem;
         margin-bottom: 0.6rem;
         max-width: 60%;
         line-height: 1.3;
+        color: #ffffff !important;
     }
     .svc-card-btn {
         padding: 0.4rem 0.8rem;
         font-size: 0.75rem;
+        background-color: #FCC203 !important;
+        color: #000000 !important;
     }
 }
 
@@ -1078,28 +1143,7 @@ nav ul li a.active {
         height: 240px;
         object-fit: cover;
     }
-    .svc-card-overlay {
-        padding: 1.5rem;
-        justify-content: flex-end; /* pin text to bottom */
-        background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.1) 60%, transparent 100%);
-    }
-    .svc-card-title {
-        font-size: 1.4rem;
-        max-width: 80%;
-        color: #ffffff !important;
-    }
-    .svc-card-divider {
-        background-color: #FCC203;
-    }
-    .svc-card-desc {
-        color: rgba(255,255,255,0.88) !important;
-        max-width: 80%;
-        font-size: 0.85rem;
-    }
-    .svc-card-btn {
-        background-color: #FCC203;
-        color: #000;
-    }
+    /* Inherits card text coloring and centering from 580px breakpoint */
     .service-preview-card {
         min-width: unset !important;
         width: 100% !important;
@@ -1120,9 +1164,9 @@ footer {
 }
 
 .footer-main-card {
-    background-color: var(--gray-dark);
+    background-color: var(--primary-yellow);
     border-radius: 40px 40px 0 0;
-    padding: 3rem 4rem 2.5rem;
+    padding: 2.2rem 4rem 1.6rem;
     position: relative;
     z-index: 2;
 }
@@ -1152,6 +1196,13 @@ footer {
     line-height: 1;
 }
 
+.footer-logo-img {
+    height: 55px;
+    width: auto;
+    display: block;
+    object-fit: contain;
+}
+
 .brand-col .paw-logo-icon {
     color: var(--primary-yellow);
     font-size: 2rem;
@@ -1166,7 +1217,7 @@ footer {
 }
 
 .brand-col p {
-    color: var(--gray-light);
+    color: var(--gray-dark);
     font-size: 0.95rem;
     line-height: 1.6;
     margin-bottom: 1rem;
@@ -1182,29 +1233,30 @@ footer {
     width: 38px;
     height: 38px;
     border-radius: 50%;
-    background-color: var(--white);
-    color: var(--black);
+    background-color: #000000;
+    color: #ffffff;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 1.1rem;
     transition: var(--transition-smooth);
+    border: none;
 }
 
 .social-circle:hover {
     background-color: var(--primary-yellow);
-    color: var(--black);
+    color: #000000;
     transform: translateY(-3px);
 }
 
 .col-divider {
-    border-left: 1.5px dashed rgba(255, 255, 255, 0.15);
+    border-left: 1.5px dashed rgba(0, 0, 0, 0.15);
     height: auto;
     align-self: stretch;
 }
 
 .footer-col h4 {
-    color: var(--primary-yellow);
+    color: var(--black);
     font-family: var(--font-rounded);
     font-size: 1.2rem;
     font-weight: 600;
@@ -1221,18 +1273,18 @@ footer {
 }
 
 .footer-col ul li a {
-    color: var(--white);
+    color: var(--gray-dark);
     font-size: 0.95rem;
     transition: var(--transition-smooth);
 }
 
 .footer-col ul li a:hover {
-    color: var(--primary-yellow);
+    color: var(--white);
     padding-left: 5px;
 }
 
 .newsletter-col p {
-    color: var(--gray-light);
+    color: var(--gray-dark);
     font-size: 0.95rem;
     line-height: 1.5;
     margin-bottom: 1.2rem;
@@ -1306,9 +1358,9 @@ footer {
 
 /* Yellow Copyright Bar with Wavy top edge */
 .footer-bottom-bar {
-    background-color: var(--primary-yellow);
-    color: var(--black);
-    padding: 1.2rem 2rem 1.2rem;
+    background-color: var(--gray-dark);
+    color: var(--primary-yellow);
+    padding: 0.8rem 2rem 0.8rem;
     text-align: center;
     position: relative;
     z-index: 5;
@@ -1322,7 +1374,7 @@ footer {
     left: 0;
     width: 100%;
     height: 16px;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 20' width='40' height='20'%3E%3Cpath d='M 0,20 A 20,20 0 0,1 40,20 Z' fill='%23FCC203'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 20' width='40' height='20'%3E%3Cpath d='M 0,20 A 20,20 0 0,1 40,20 Z' fill='%23121212'/%3E%3C/svg%3E");
     background-repeat: repeat-x;
     background-size: 32px 16px;
 }
@@ -1335,8 +1387,8 @@ footer {
     width: 44px;
     height: 44px;
     border-radius: 50%;
-    background-color: var(--black);
-    color: var(--primary-yellow);
+    background-color: var(--primary-yellow);
+    color: var(--gray-dark);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1617,11 +1669,8 @@ footer {
     /* Collapse to single viewport-height section — no extra scroll zone */
     .scroll-video-container {
         height: auto !important;
-        overflow: hidden;
+        overflow: hidden; /* prevent dark background bleeding at edges */
         width: 100vw;
-        margin-bottom: 0 !important;
-        padding-bottom: 0 !important;
-        display: block;
     }
 
     /* Sticky positioning is not needed on mobile — just a normal block */
@@ -1656,7 +1705,6 @@ footer {
     .banner-below-video {
         position: static !important;
         margin-top: 0 !important;
-        margin-bottom: 0 !important;
         display: block !important;
         padding: 0 0.5rem !important;
         background: #ffffff;
@@ -4260,4 +4308,235 @@ footer {
         padding: 0.9rem 1.2rem !important;
     }
 }
+
+/* ============================================================
+   OUR BRANCHES SECTION
+   ============================================================ */
+.branches-section {
+    background-color: #ffffff;
+    padding: 4rem 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.branches-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.branches-subtitle {
+    text-align: center;
+    color: var(--gray-light);
+    font-size: 1.05rem;
+    margin-bottom: 3rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: var(--font-primary);
+}
+
+/* Decorative floating paw & bone icons */
+@keyframes branches-float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.12; }
+    50%       { transform: translateY(-18px) rotate(12deg); opacity: 0.22; }
+}
+
+.branch-deco {
+    position: absolute;
+    color: #FCC203;
+    pointer-events: none;
+    z-index: 0;
+    animation: branches-float 5s ease-in-out infinite;
+}
+
+.branch-deco-1 { top: 5%;  left: 3%;   font-size: 3.5rem; animation-delay: 0s;    animation-duration: 6s; }
+.branch-deco-2 { top: 15%; right: 4%;  font-size: 2.2rem; animation-delay: 1.2s;  animation-duration: 7s; }
+.branch-deco-3 { top: 50%; left: 1.5%; font-size: 1.8rem; animation-delay: 0.6s;  animation-duration: 5.5s; }
+.branch-deco-4 { top: 8%;  right: 10%; font-size: 2.8rem; animation-delay: 2s;    animation-duration: 8s; }
+.branch-deco-5 { bottom: 12%; right: 2.5%; font-size: 2.5rem; animation-delay: 1.6s; animation-duration: 6.5s; }
+.branch-deco-6 { bottom: 5%;  left: 6%; font-size: 2rem;   animation-delay: 0.3s; animation-duration: 5.8s; }
+
+
+
+.branches-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.branch-card {
+    background: #fbfbfd;
+    border-radius: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.branch-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+}
+
+.branch-card-img-wrap {
+    width: 100%;
+    height: 160px;
+    overflow: hidden;
+    position: relative;
+}
+
+.branch-storefront-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.branch-card:hover .branch-storefront-img {
+    transform: scale(1.05);
+}
+
+.branch-card-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.branch-card-content h3 {
+    font-family: var(--font-rounded);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--black);
+    margin-bottom: 0.8rem;
+}
+
+.branch-info-text {
+    font-size: 0.92rem;
+    color: var(--gray-medium);
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.branch-info-text i {
+    color: var(--primary-yellow);
+    font-size: 1rem;
+    width: 16px;
+    text-align: center;
+}
+
+.branch-card-actions {
+    margin-top: auto;
+    display: flex;
+    gap: 0.8rem;
+    padding-top: 1.2rem;
+}
+
+.branch-btn {
+    flex: 1;
+    font-family: var(--font-rounded);
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 0.6rem 0.5rem;
+    border-radius: 30px;
+    text-align: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.btn-direction {
+    background: #000000;
+    color: #FCC203;
+    border: 1px solid #000000;
+}
+
+.btn-direction:hover {
+    background: #FCC203;
+    color: #000000;
+}
+
+.btn-whatsapp {
+    background: #000000;
+    color: #ffffff;
+    border: 1px solid #000000;
+}
+
+.btn-whatsapp i {
+    color: #FCC203;
+}
+
+.btn-whatsapp:hover {
+    background: #FCC203;
+    color: #000000;
+    border-color: #FCC203;
+}
+
+.btn-whatsapp:hover i {
+    color: #000000;
+}
+
+
+/* ============================================================
+   OUR BRANCHES SECTION - RESPONSIVENESS
+   ============================================================ */
+@media (max-width: 768px) {
+    .branches-section {
+        padding: 3rem 1.5rem;
+    }
+    .branches-subtitle {
+        margin-bottom: 2rem;
+    }
+    .branches-grid {
+        gap: 1.25rem;
+    }
+    .branch-card-content {
+        padding: 1.25rem;
+        text-align: center !important;
+        align-items: center !important;
+    }
+    .branch-info-text {
+        justify-content: center !important;
+    }
+    .branch-card-actions {
+        flex-direction: column !important;
+        gap: 0.6rem;
+        padding-top: 1rem;
+        width: 100%;
+    }
+    .branch-btn {
+        width: 100% !important;
+        flex: none !important;
+    }
+    .branch-deco {
+        display: none !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .branches-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .branches-section {
+        padding: 2.5rem 1rem;
+    }
+    .branches-section .sec-heading h2 {
+        font-size: 1.8rem;
+    }
+    .branches-section .sec-arrow {
+        display: none !important;
+    }
+}
+
+
 

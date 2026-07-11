@@ -5,11 +5,6 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Immediately collapse the scroll container on mobile to prevent gap
-    if (window.innerWidth <= 768) {
-        const scrollSection = document.getElementById('scroll-section');
-        if (scrollSection) scrollSection.style.height = 'auto';
-    }
     initHeader();
     initMobileNav();
     initVideoScrollSeek();
@@ -234,7 +229,7 @@ function initModals() {
     const modalBenefitsList = document.getElementById('modal-benefits-list-el');
 
     // WhatsApp Contact Number
-    const phoneNo = '96890000000';
+    const phoneNo = '968792600091';
 
     // Products Click Handlers
     document.querySelectorAll('.product-item').forEach(item => {
@@ -335,7 +330,7 @@ function initContactForm() {
 
     const btnWhatsApp = document.getElementById('btn-submit-whatsapp');
     const btnEmail = document.getElementById('btn-submit-email');
-    const contactPhone = '96890000000';
+    const contactPhone = '968792600091';
     const contactEmail = 'info@petlandoman.com';
 
     function getFormData() {
