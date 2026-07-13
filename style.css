@@ -715,68 +715,42 @@ nav ul li a.active {
 @media (max-width: 768px) {
     .product-circles { gap: 2rem; }
     .circle-img-wrap { width: 130px; height: 130px; }
-    .service-cards-row { flex-direction: column; align-items: center; }
-    .service-preview-card { max-width: 100%; }
-
-    /* Center service card content on mobile/tablet */
-    .service-preview-card .svc-content {
-        align-items: center !important;
-        text-align: center !important;
-        margin: 0 auto;
-        width: 100%;
-    }
-    .service-preview-card .svc-icon-wrap {
-        margin-left: auto;
-        margin-right: auto;
-    }
-    .service-preview-card .svc-text {
-        display: flex;
-        flex-direction: column;
-        align-items: center !important;
-        text-align: center !important;
-        width: 100%;
-    }
-    .service-preview-card .svc-text p {
-        max-width: 240px !important; /* Allow wider text when centered on mobile overlay */
-        margin-left: auto;
-        margin-right: auto;
-    }
-    .service-preview-card .svc-pet-img {
-        opacity: 0.15 !important; /* Low opacity watermark so centered text is fully readable */
-    }
-}
-
-@media (max-width: 480px) {
+    .service-cards-row { flex-direction: column; align-items: center; gap: 1.5rem; }
+    
     .service-preview-card {
-        height: auto;
-        min-height: 200px;
-        padding: 1.5rem 1.25rem 1.25rem;
-        align-items: center;
+        max-width: 100%;
+        min-width: 100%;
+        height: 260px;
+        padding: 1.25rem 0 0 1.25rem;
+        align-items: flex-end;
     }
-    .svc-content {
-        z-index: 2;
+    
+    .service-preview-card .svc-content {
+        align-self: flex-start;
+        padding-bottom: 1.25rem;
     }
-    .svc-pet-img {
-        position: absolute;
-        right: 0;
-        bottom: 0;
-        width: 140px;
-        height: auto;
-        max-height: 160px;
-        z-index: 1;
-        opacity: 0.15 !important;
+    
+    .service-preview-card .svc-text p {
+        max-width: 155px;
     }
+    
+    .service-preview-card .svc-pet-img {
+        width: 45%;
+        max-width: 200px;
+        height: 100%;
+        object-fit: contain;
+        object-position: bottom right;
+        align-self: flex-end;
+        flex-shrink: 0;
+        margin-right: 0;
+        margin-bottom: 0;
+    }
+    
     .svc-card-taxi .svc-pet-img {
-        width: 110px;
+        width: 38%;
+        max-width: 145px;
         margin-right: 8px;
-        margin-bottom: 8px;
-        opacity: 0.15 !important;
-    }
-    .svc-card-boarding .svc-pet-img {
-        height: auto;
-        max-height: 130px;
-        margin-bottom: 0px;
-        opacity: 0.15 !important;
+        margin-bottom: 20px;
     }
 }
 
@@ -1032,27 +1006,27 @@ nav ul li a.active {
     .svc-card-overlay {
         padding: 1.5rem 1rem 1.5rem 1.5rem;
         justify-content: center;
-        background: linear-gradient(135deg, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.45) 55%, transparent 100%);
+        background: transparent !important;
     }
     .svc-card-title {
         font-size: 1.4rem;
         max-width: 65%;
-        color: #ffffff !important;
+        color: #121212 !important;
     }
     .svc-card-divider {
         margin: 0.6rem 0;
         height: 3px;
         width: 30px;
-        background-color: #ffffff !important;
+        background-color: #121212 !important;
     }
     .svc-card-desc {
         max-width: 60%;
         font-size: 0.82rem;
         line-height: 1.35;
         margin-bottom: 0.8rem;
-        color: #ffffff !important;
+        color: #333333 !important;
     }
-    .svc-card-btn {
+    .svc-card-btn, .prod-card-btn {
         padding: 0.5rem 1rem;
         font-size: 0.8rem;
         background-color: #FCC203 !important;
@@ -1063,26 +1037,26 @@ nav ul li a.active {
 @media (max-width: 410px) {
     .svc-card-overlay {
         padding: 1.2rem;
-        background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.5) 60%, transparent 100%);
+        background: transparent !important;
     }
     .svc-card-title {
         font-size: 1.25rem;
-        color: #ffffff !important;
+        color: #121212 !important;
     }
     .svc-card-divider {
         margin: 0.5rem 0;
         height: 3px;
         width: 30px;
-        background-color: #ffffff !important;
+        background-color: #121212 !important;
     }
     .svc-card-desc {
         font-size: 0.75rem;
         margin-bottom: 0.6rem;
         max-width: 60%;
         line-height: 1.3;
-        color: #ffffff !important;
+        color: #333333 !important;
     }
-    .svc-card-btn {
+    .svc-card-btn, .prod-card-btn {
         padding: 0.4rem 0.8rem;
         font-size: 0.75rem;
         background-color: #FCC203 !important;
@@ -1116,6 +1090,7 @@ nav ul li a.active {
         width: 100%;
         height: 280px;
         object-fit: cover;
+        object-position: 85% center;
         border-radius: 28px;
     }
     .svc-card-title {
@@ -1142,6 +1117,7 @@ nav ul li a.active {
         border-radius: 24px;
         height: 240px;
         object-fit: cover;
+        object-position: 85% center;
     }
     /* Inherits card text coloring and centering from 580px breakpoint */
     .service-preview-card {
@@ -1597,8 +1573,9 @@ footer {
     justify-content: center;
     align-items: center;
     padding: 0;
-    background: #ffffff;
-    margin-top: 0;
+    background: transparent;
+    margin-top: -60px;
+    margin-bottom: 30px;
     border-bottom: none;
 }
 

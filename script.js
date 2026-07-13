@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Petland Oman - Core JavaScript Controller
  * Implements: Sticky Header, Mobile Navigation, Smooth Video Scroll-Seeking,
  * Infinite Marquee Speeds, Popups, and Contact Form routing.
@@ -229,7 +229,7 @@ function initModals() {
     const modalBenefitsList = document.getElementById('modal-benefits-list-el');
 
     // WhatsApp Contact Number
-    const phoneNo = '968792600091';
+    const phoneNo = '96879260091';
 
     // Products Click Handlers
     document.querySelectorAll('.product-item').forEach(item => {
@@ -330,7 +330,7 @@ function initContactForm() {
 
     const btnWhatsApp = document.getElementById('btn-submit-whatsapp');
     const btnEmail = document.getElementById('btn-submit-email');
-    const contactPhone = '968792600091';
+    const contactPhone = '96879260091';
     const contactEmail = 'info@petlandoman.com';
 
     function getFormData() {
