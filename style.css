@@ -1029,8 +1029,8 @@ nav ul li a.active {
     .svc-card-btn, .prod-card-btn {
         padding: 0.5rem 1rem;
         font-size: 0.8rem;
-        background-color: #FCC203 !important;
-        color: #000000 !important;
+        background-color: #000000 !important;
+        color: #FCC203 !important;
     }
 }
 
@@ -1059,8 +1059,8 @@ nav ul li a.active {
     .svc-card-btn, .prod-card-btn {
         padding: 0.4rem 0.8rem;
         font-size: 0.75rem;
-        background-color: #FCC203 !important;
-        color: #000000 !important;
+        background-color: #000000 !important;
+        color: #FCC203 !important;
     }
 }
 
@@ -2738,8 +2738,8 @@ footer {
     font-family: var(--font-primary);
     font-weight: 700;
     font-size: 0.95rem;
-    background-color: #FCC203;
-    color: #000000;
+    background-color: #000000;
+    color: #FCC203;
     padding: 0.7rem 1.6rem;
     border-radius: 30px;
     display: inline-flex;
@@ -4514,6 +4514,75 @@ footer {
         display: none !important;
     }
 }
+
+/* ============================================================
+   PRODUCT PAGE CUSTOM CARDS & RESPONSIVENESS
+   ============================================================ */
+.prod-page-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 2.2rem !important;
+    max-width: 1150px;
+    margin: 0 auto;
+}
+
+.prod-card {
+    background: transparent !important;
+    border-radius: 38px !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08) !important;
+    overflow: hidden;
+    height: auto !important;
+    min-height: unset !important;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+}
+
+.prod-card:hover {
+    transform: translateY(-8px) !important;
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.12) !important;
+}
+
+.prod-card .svc-card-main-img {
+    width: 100% !important;
+    height: auto !important;
+    max-height: unset !important;
+    display: block !important;
+    object-fit: contain !important;
+    border-radius: 38px !important;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1) !important;
+}
+
+.prod-card:hover .svc-card-main-img {
+    transform: scale(1.03) !important;
+}
+
+/* Responsiveness for product cards */
+@media (max-width: 850px) {
+    .prod-page-grid {
+        grid-template-columns: 1fr !important;
+        max-width: 550px !important;
+        margin: 0 auto !important;
+        padding: 0 1rem !important;
+    }
+    .prod-card {
+        border-radius: 28px !important;
+    }
+    .prod-card .svc-card-main-img {
+        border-radius: 28px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .prod-page-grid {
+        gap: 1.25rem !important;
+    }
+    .prod-card {
+        border-radius: 20px !important;
+    }
+    .prod-card .svc-card-main-img {
+        border-radius: 20px !important;
+    }
+}
+
 
 
 
