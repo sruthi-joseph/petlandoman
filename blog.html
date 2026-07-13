@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -51,84 +51,12 @@
     <!-- ARTICLES GRID -->
     <section class="section-padding" style="background-color: var(--white);">
         <div class="container">
-            <div class="blog-grid">
-                <!-- Article 1 -->
-                <article class="blog-card">
-                    <div class="blog-image">
-                        <img src="extracted_images/card_grooming_blog.png" alt="Dog Grooming Tips">
-                    </div>
-                    <div class="blog-info">
-                        <span class="blog-date">Grooming &bull; June 20, 2026</span>
-                        <h3 class="blog-title">5 Essential Tips for Grooming Your Dog at Home</h3>
-                        <p class="blog-desc">Regular grooming keeps your dog healthy and clean. Discover simple techniques for brushing, bathing, and clipping nails without stress.</p>
-                        <a href="#" class="blog-read-more">Read Full Post <i class="fa-solid fa-arrow-right-long"></i></a>
-                    </div>
-                </article>
-
-                <!-- Article 2 -->
-                <article class="blog-card">
-                    <div class="blog-image">
-                        <img src="extracted_images/card_cat_blog.png" alt="Cat Body Language">
-                    </div>
-                    <div class="blog-info">
-                        <span class="blog-date">Cat Behavior &bull; June 15, 2026</span>
-                        <h3 class="blog-title">Understanding Your Cat's Body Language</h3>
-                        <p class="blog-desc">Cats communicate with their tails, ears, and whiskers. Read our guide to deciphering what your feline companion is trying to tell you.</p>
-                        <a href="#" class="blog-read-more">Read Full Post <i class="fa-solid fa-arrow-right-long"></i></a>
-                    </div>
-                </article>
-
-                <!-- Article 3 -->
-                <article class="blog-card">
-                    <div class="blog-image">
-                        <img src="extracted_images/card_vet_blog.png" alt="Veterinary Health">
-                    </div>
-                    <div class="blog-info">
-                        <span class="blog-date">Pet Health &bull; June 10, 2026</span>
-                        <h3 class="blog-title">The Importance of Regular Veterinary Checkups</h3>
-                        <p class="blog-desc">Routine wellness checkups can help detect health issues early and extend your pet's life. Learn what a typical checkup includes.</p>
-                        <a href="#" class="blog-read-more">Read Full Post <i class="fa-solid fa-arrow-right-long"></i></a>
-                    </div>
-                </article>
-
-                <!-- Article 4 -->
-                <article class="blog-card">
-                    <div class="blog-image">
-                        <img src="extracted_images/card_nutrition_blog.png" alt="Pet Nutrition">
-                    </div>
-                    <div class="blog-info">
-                        <span class="blog-date">Nutrition &bull; June 05, 2026</span>
-                        <h3 class="blog-title">Transitioning Your Pet to a New Diet Smoothly</h3>
-                        <p class="blog-desc">Switching food too quickly can cause stomach upset. Here is our veterinarian-approved 7-day plan to transition your pet safely.</p>
-                        <a href="#" class="blog-read-more">Read Full Post <i class="fa-solid fa-arrow-right-long"></i></a>
-                    </div>
-                </article>
-
-                <!-- Article 5 -->
-                <article class="blog-card">
-                    <div class="blog-image">
-                        <img src="extracted_images/card_dog_summer_blog.png" alt="Summer Care">
-                    </div>
-                    <div class="blog-info">
-                        <span class="blog-date">Wellness &bull; May 28, 2026</span>
-                        <h3 class="blog-title">How to Keep Your Pets Hydrated in the Summer</h3>
-                        <p class="blog-desc">Oman's high temperatures can put pets at risk of dehydration. Discover easy tips to ensure your pet stays cool and hydrated.</p>
-                        <a href="#" class="blog-read-more">Read Full Post <i class="fa-solid fa-arrow-right-long"></i></a>
-                    </div>
-                </article>
-
-                <!-- Article 6 -->
-                <article class="blog-card">
-                    <div class="blog-image">
-                        <img src="extracted_images/card_puppy_blog.png" alt="Puppy Care">
-                    </div>
-                    <div class="blog-info">
-                        <span class="blog-date">Training &bull; May 20, 2026</span>
-                        <h3 class="blog-title">Creating a Stress-Free Environment for a New Puppy</h3>
-                        <p class="blog-desc">Bringing home a new puppy is exciting, but can be overwhelming for them. Learn how to set up their crate, space, and schedule.</p>
-                        <a href="#" class="blog-read-more">Read Full Post <i class="fa-solid fa-arrow-right-long"></i></a>
-                    </div>
-                </article>
+            <div class="blog-grid" id="blog-grid-container">
+                <!-- Dynamically loaded from Supabase -->
+                <div class="loading-spinner" style="grid-column: 1/-1; text-align: center; padding: 3rem; color: #888;">
+                    <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 2rem; margin-bottom: 1rem; color: var(--primary-yellow);"></i>
+                    <p>Loading pet care posts...</p>
+                </div>
             </div>
         </div>
     </section>
@@ -237,51 +165,27 @@
         </div>
     </div>
 
+    <!-- Supabase CDN and Config -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase_config.js"></script>
+
     <!-- Main JavaScript File -->
     <script src="script.js"></script>
 
     <!-- Blog Modal Logic -->
     <script>
         (function () {
-            const blogPosts = {
-                1: {
-                    tag: "Grooming • June 20, 2026",
-                    title: "5 Essential Tips for Grooming Your Dog at Home",
-                    image: "extracted_images/card_grooming_blog.png",
-                    desc: "Regular grooming keeps your dog healthy, clean, and happy. Follow these essential veterinarian-approved tips:\n\n1. **Regular Brushing**: Brush your dog's coat at least 3-4 times a week. This removes loose hair, prevents matting, and distributes natural skin oils for a healthy shine.\n\n2. **Use the Right Tools**: Choose brushes designed for your dog's hair type (slicker brushes for long hair, bristle brushes for short). Never use regular scissors to cut mats; use a proper de-matting tool.\n\n3. **Nail Trimming Safety**: Clip nails regularly. If you hear them clicking on the floor, they are too long. Cut small amounts at a time and avoid the quick (the pink blood vessel).\n\n4. **Dog-Safe Shampoo**: Wash your dog with lukewarm water and always use dog-formulated shampoo. Human products can disrupt their skin pH, causing dryness and irritation.\n\n5. **Positive Reinforcement**: Make grooming enjoyable by offering high-value treats and praise, turning it into a bonding experience."
-                },
-                2: {
-                    tag: "Cat Behavior • June 15, 2026",
-                    title: "Understanding Your Cat's Body Language",
-                    image: "extracted_images/card_cat_blog.png",
-                    desc: "Cats communicate through subtle body movements. Here is how to understand what your feline companion is telling you:\n\n1. **Decoding Tail Movements**: A tail pointing straight up with a slight curve represents a happy, welcoming cat. A thrashing or thumping tail is a clear warning of irritation, while a puffed-up tail indicates fear.\n\n2. **Ear Positions**: Forward-pointing ears indicate curiosity or interest. Ears flattened backward ('airplane ears') signify fear, anxiety, or aggression.\n\n3. **The Eye Language**: Slow blinking is the ultimate sign of affection, often called a 'cat kiss'. Wide dilated pupils show high excitement, fear, or playfulness.\n\n4. **Whiskers Alignment**: A relaxed cat keeps its whiskers pointed outwards to the sides. Curious cats push whiskers forward, while scared or defensive cats pull them back tightly against their cheeks.\n\n5. **The Mystery of Purring**: Although purring usually means comfort, cats also purr to self-soothe when stressed, sick, or in pain. Check their overall posture to understand their mood."
-                },
-                3: {
-                    tag: "Pet Health • June 10, 2026",
-                    title: "The Importance of Regular Veterinary Checkups",
-                    image: "extracted_images/card_vet_blog.png",
-                    desc: "Routine veterinary checkups are the cornerstone of a long, healthy life for your pets. Here is why you shouldn't skip them:\n\n1. **Early Disease Detection**: Annual exams allow veterinarians to identify warning signs of diseases (like kidney issues, diabetes, or heart conditions) before symptoms manifest.\n\n2. **Core Vaccinations & Preventions**: Staying current on vaccines, flea, tick, and worm preventatives shields your pet from highly contagious and life-threatening infections.\n\n3. **Weight & Nutrition Monitoring**: Vets check weight trends to customize diet plans. Obesity is a major trigger for arthritis, diabetes, and cardiovascular complications.\n\n4. **Dental Health Evaluation**: Over 80% of adult pets show signs of periodontal disease. Regular vet dental checks prevent decay, tooth loss, and systemic bacterial infections.\n\n5. **Senior Wellness (Ages 7+)**: Senior pets age faster and require bi-annual checkups with detailed blood profiles to manage arthritis and age-related changes."
-                },
-                4: {
-                    tag: "Nutrition • June 05, 2026",
-                    title: "Transitioning Your Pet to a New Diet Smoothly",
-                    image: "extracted_images/card_nutrition_blog.png",
-                    desc: "Switching your pet's food abruptly can lead to vomiting, diarrhea, and digestive upset. Use this safe, veterinarian-approved 7-day transition guide:\n\n* **Days 1 & 2**: Feed a mix of 75% old food and 25% new food. Check for any digestive changes.\n* **Days 3 & 4**: Increase to a 50/50 ratio of old and new food.\n* **Days 5 & 6**: Serve 25% old food mixed with 75% new food.\n* **Day 7**: Transition completely to 100% new food.\n\n**Pro Tip**: If your pet experiences stomach upset or rejects the new food at any stage, return to the previous mix for a couple of days and slow down the transition speed."
-                },
-                5: {
-                    tag: "Wellness • May 28, 2026",
-                    title: "How to Keep Your Pets Hydrated in the Summer",
-                    image: "extracted_images/card_dog_summer_blog.png",
-                    desc: "Oman's summer heat can quickly lead to severe dehydration in pets. Safeguard your furry family members with these hydration strategies:\n\n1. **Abundant Water Stations**: Place multiple clean water bowls around your home. Keep water cool by throwing in fresh ice cubes.\n\n2. **Use Water Fountains**: Flowing water attracts pets. A pet drinking fountain filters water and encourages more frequent drinking.\n\n3. **Increase Wet Food**: Mix wet food or low-sodium bone broths into dry kibble to naturally boost their daily moisture intake.\n\n4. **Walk Safely**: Walk pets only in the early mornings or late evenings. Hot pavements can burn paws and lead to rapid heat exhaustion.\n\n5. **Know the Dehydration Signs**: Look out for dry/sticky gums, extreme panting, lethargy, and loss of skin elasticity. If you suspect heatstroke, contact a vet immediately."
-                },
-                6: {
-                    tag: "Training • May 20, 2026",
-                    title: "Creating a Stress-Free Environment for a New Puppy",
-                    image: "extracted_images/card_puppy_blog.png",
-                    desc: "Moving to a new home can be overwhelming for a young puppy. Create a calm, welcoming environment with these steps:\n\n1. **Establish a Safe Space**: Place a cozy wire crate or playpen in a quiet corner. Fill it with a comfortable bed and safe chew toys to make it their private sanctuary.\n\n2. **Thorough Puppy-Proofing**: Remove reachable hazards, secure loose electrical cords, place toxic houseplants out of reach, and secure cabinet doors.\n\n3. **Set a Reliable Schedule**: Feed, walk, play, and put your puppy to sleep at the exact same times daily. Predictability builds confidence and speeds up potty training.\n\n4. **Calm Introductions**: Introduce the puppy to family members and other pets one-by-one. Keep the environment quiet and free of sudden loud noises.\n\n5. **Patience & Positive Reinforcement**: Puppies learn through repetition and positive rewards. Never punish mistakes; instead, reward successful behaviors with treats and soft praise."
+            // Initialize Supabase Client
+            let supabaseClient;
+            try {
+                if (typeof supabase !== 'undefined' && SUPABASE_URL && SUPABASE_ANON_KEY && !SUPABASE_URL.includes("your-project-ref")) {
+                    supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
                 }
-            };
+            } catch (e) {
+                console.error("Failed to initialize Supabase:", e);
+            }
 
+            const gridContainer = document.getElementById('blog-grid-container');
             const modal = document.getElementById('blog-modal');
             const backdrop = document.getElementById('blog-modal-backdrop');
             const closeBtn = document.getElementById('blog-modal-close');
@@ -291,26 +195,146 @@
             const modalImg = document.getElementById('blog-modal-img');
             const modalDesc = document.getElementById('blog-modal-desc');
 
-            document.querySelectorAll('.blog-card').forEach((card, index) => {
-                const btn = card.querySelector('.blog-read-more');
-                if (btn) {
-                    btn.addEventListener('click', function (e) {
+            let postsData = [];
+
+            // Fallback hardcoded posts in case Supabase is not configured yet
+            const fallbackPosts = [
+                {
+                    id: 1,
+                    tag: "Grooming • June 20, 2026",
+                    title: "5 Essential Tips for Grooming Your Dog at Home",
+                    image: "extracted_images/card_grooming_blog.png",
+                    description: "Regular grooming keeps your dog healthy and clean. Discover simple techniques for brushing, bathing, and clipping nails without stress.",
+                    content: "Regular grooming keeps your dog healthy, clean, and happy. Follow these essential veterinarian-approved tips:\n\n1. **Regular Brushing**: Brush your dog's coat at least 3-4 times a week. This removes loose hair, prevents matting, and distributes natural skin oils for a healthy shine.\n\n2. **Use the Right Tools**: Choose brushes designed for your dog's hair type (slicker brushes for long hair, bristle brushes for short). Never use regular scissors to cut mats; use a proper de-matting tool.\n\n3. **Nail Trimming Safety**: Clip nails regularly. If you hear them clicking on the floor, they are too long. Cut small amounts at a time and avoid the quick (the pink blood vessel).\n\n4. **Dog-Safe Shampoo**: Wash your dog with lukewarm water and always use dog-formulated shampoo. Human products can disrupt their skin pH, causing dryness and irritation.\n\n5. **Positive Reinforcement**: Make grooming enjoyable by offering high-value treats and praise, turning it into a bonding experience."
+                },
+                {
+                    id: 2,
+                    tag: "Cat Behavior • June 15, 2026",
+                    title: "Understanding Your Cat's Body Language",
+                    image: "extracted_images/card_cat_blog.png",
+                    description: "Cats communicate with their tails, ears, and whiskers. Read our guide to deciphering what your feline companion is trying to tell you.",
+                    content: "Cats communicate through subtle body movements. Here is how to understand what your feline companion is telling you:\n\n1. **Decoding Tail Movements**: A tail pointing straight up with a slight curve represents a happy, welcoming cat. A thrashing or thumping tail is a clear warning of irritation, while a puffed-up tail indicates fear.\n\n2. **Ear Positions**: Forward-pointing ears indicate curiosity or interest. Ears flattened backward ('airplane ears') signify fear, anxiety, or aggression.\n\n3. **The Eye Language**: Slow blinking is the ultimate sign of affection, often called a 'cat kiss'. Wide dilated pupils show high excitement, fear, or playfulness.\n\n4. **Whiskers Alignment**: A relaxed cat keeps its whiskers pointed outwards to the sides. Curious cats push whiskers forward, while scared or defensive cats pull them back tightly against their cheeks.\n\n5. **The Mystery of Purring**: Although purring usually means comfort, cats also purr to self-soothe when stressed, sick, or in pain. Check their overall posture to understand their mood."
+                },
+                {
+                    id: 3,
+                    tag: "Pet Health • June 10, 2026",
+                    title: "The Importance of Regular Veterinary Checkups",
+                    image: "extracted_images/card_vet_blog.png",
+                    description: "Routine wellness checkups can help detect health issues early and extend your pet's life. Learn what a typical checkup includes.",
+                    content: "Routine veterinary checkups are the cornerstone of a long, healthy life for your pets. Here is why you shouldn't skip them:\n\n1. **Early Disease Detection**: Annual exams allow veterinarians to identify warning signs of diseases (like kidney issues, diabetes, or heart conditions) before symptoms manifest.\n\n2. **Core Vaccinations & Preventions**: Staying current on vaccines, flea, tick, and worm preventatives shields your pet from highly contagious and life-threatening infections.\n\n3. **Weight & Nutrition Monitoring**: Vets check weight trends to customize diet plans. Obesity is a major trigger for arthritis, diabetes, and cardiovascular complications.\n\n4. **Dental Health Evaluation**: Over 80% of adult pets show signs of periodontal disease. Regular vet dental checks prevent decay, tooth loss, and systemic bacterial infections.\n\n5. **Senior Wellness (Ages 7+)**: Senior pets age faster and require bi-annual checkups with detailed blood profiles to manage arthritis and age-related changes."
+                },
+                {
+                    id: 4,
+                    tag: "Nutrition • June 05, 2026",
+                    title: "Transitioning Your Pet to a New Diet Smoothly",
+                    image: "extracted_images/card_nutrition_blog.png",
+                    description: "Switching food too quickly can cause stomach upset. Here is our veterinarian-approved 7-day plan to transition your pet safely.",
+                    content: "Switching your pet's food abruptly can lead to vomiting, diarrhea, and digestive upset. Use this safe, veterinarian-approved 7-day transition guide:\n\n* **Days 1 & 2**: Feed a mix of 75% old food and 25% new food. Check for any digestive changes.\n* **Days 3 & 4**: Increase to a 50/50 ratio of old and new food.\n* **Days 5 & 6**: Serve 25% old food mixed with 75% new food.\n* **Day 7**: Transition completely to 100% new food.\n\n**Pro Tip**: If your pet experiences stomach upset or rejects the new food at any stage, return to the previous mix for a couple of days and slow down the transition speed."
+                },
+                {
+                    id: 5,
+                    tag: "Wellness • May 28, 2026",
+                    title: "How to Keep Your Pets Hydrated in the Summer",
+                    image: "extracted_images/card_dog_summer_blog.png",
+                    description: "Oman's high temperatures can put pets at risk of dehydration. Discover easy tips to ensure your pet stays cool and hydrated.",
+                    content: "Oman's summer heat can quickly lead to severe dehydration in pets. Safeguard your furry family members with these hydration strategies:\n\n1. **Abundant Water Stations**: Place multiple clean water bowls around your home. Keep water cool by throwing in fresh ice cubes.\n\n2. **Use Water Fountains**: Flowing water attracts pets. A pet drinking fountain filters water and encourages more frequent drinking.\n\n3. **Increase Wet Food**: Mix wet food or low-sodium bone broths into dry kibble to naturally boost their daily moisture intake.\n\n4. **Walk Safely**: Walk pets only in the early mornings or late evenings. Hot pavements can burn paws and lead to rapid heat exhaustion.\n\n5. **Know the Dehydration Signs**: Look out for dry/sticky gums, extreme panting, lethargy, and loss of skin elasticity. If you suspect heatstroke, contact a vet immediately."
+                },
+                {
+                    id: 6,
+                    tag: "Training • May 20, 2026",
+                    title: "Creating a Stress-Free Environment for a New Puppy",
+                    image: "extracted_images/card_puppy_blog.png",
+                    description: "Bringing home a new puppy is exciting, but can be overwhelming for them. Learn how to set up their crate, space, and schedule.",
+                    content: "Moving to a new home can be overwhelming for a young puppy. Create a calm, welcoming environment with these steps:\n\n1. **Establish a Safe Space**: Place a cozy wire crate or playpen in a quiet corner. Fill it with a comfortable bed and safe chew toys to make it their private sanctuary.\n\n2. **Thorough Puppy-Proofing**: Remove reachable hazards, secure loose electrical cords, place toxic houseplants out of reach, and secure cabinet doors.\n\n3. **Set a Reliable Schedule**: Feed, walk, play, and put your puppy to sleep at the exact same times daily. Predictability builds confidence and speeds up potty training.\n\n4. **Calm Introductions**: Introduce the puppy to family members and other pets one-by-one. Keep the environment quiet and free of sudden loud noises.\n\n5. **Patience & Positive Reinforcement**: Puppies learn through repetition and positive rewards. Never punish mistakes; instead, reward successful behaviors with treats and soft praise."
+                }
+            ];
+
+            // Render posts to grid
+            function renderPosts(posts) {
+                if (!gridContainer) return;
+                
+                if (posts.length === 0) {
+                    gridContainer.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 3rem; color: #888;">No posts found.</div>';
+                    return;
+                }
+                
+                gridContainer.innerHTML = '';
+                posts.forEach((post, index) => {
+                    const article = document.createElement('article');
+                    article.className = 'blog-card';
+                    
+                    // Check if image path is relative or absolute URL
+                    let imgSrc = post.image;
+                    if (!imgSrc.startsWith('http') && !imgSrc.startsWith('extracted_images/') && !imgSrc.startsWith('product list/')) {
+                        imgSrc = 'extracted_images/' + imgSrc;
+                    }
+
+                    // Format dates and tags
+                    const displayTag = post.tag || (post.type ? post.type.toUpperCase() : "Blog");
+
+                    article.innerHTML = `
+                        <div class="blog-image">
+                            <img src="${imgSrc}" alt="${post.title}" onerror="this.src='extracted_images/card_grooming_blog.png'">
+                        </div>
+                        <div class="blog-info">
+                            <span class="blog-date">${displayTag} &bull; ${post.date}</span>
+                            <h3 class="blog-title">${post.title}</h3>
+                            <p class="blog-desc">${post.description || post.desc}</p>
+                            <a href="#" class="blog-read-more" data-idx="${index}">Read Full Post <i class="fa-solid fa-arrow-right-long"></i></a>
+                        </div>
+                    `;
+                    gridContainer.appendChild(article);
+                });
+
+                // Attach modal click events
+                gridContainer.querySelectorAll('.blog-read-more').forEach(btn => {
+                    btn.addEventListener('click', function(e) {
                         e.preventDefault();
-                        const id = index + 1;
-                        const post = blogPosts[id];
+                        const idx = parseInt(this.getAttribute('data-idx'));
+                        const post = posts[idx];
                         if (post) {
-                            modalTag.textContent = post.tag;
+                            modalTag.textContent = (post.tag || (post.type ? post.type.toUpperCase() : "Blog")) + " • " + post.date;
                             modalTitle.textContent = post.title;
-                            modalImg.src = post.image;
+                            
+                            let imgSrc = post.image;
+                            if (!imgSrc.startsWith('http') && !imgSrc.startsWith('extracted_images/') && !imgSrc.startsWith('product list/')) {
+                                imgSrc = 'extracted_images/' + imgSrc;
+                            }
+                            modalImg.src = imgSrc;
                             modalImg.alt = post.title;
-                            modalDesc.textContent = post.desc;
+                            modalDesc.textContent = post.content || post.desc || post.description;
                             
                             modal.classList.add('active');
                             document.body.style.overflow = 'hidden';
                         }
                     });
+                });
+            }
+
+            async function loadBlogs() {
+                // If Supabase client is initialized and placeholders are replaced
+                if (supabaseClient) {
+                    try {
+                        const { data, error } = await supabaseClient
+                            .from('blogs')
+                            .select('*')
+                            .order('created_at', { ascending: false });
+                        
+                        if (error) throw error;
+                        
+                        postsData = data;
+                        renderPosts(postsData);
+                        return;
+                    } catch (e) {
+                        console.warn("Supabase fetch failed, falling back to local list:", e);
+                    }
                 }
-            });
+                
+                // Fallback to static lists
+                console.log("Using local fallback posts list.");
+                postsData = fallbackPosts;
+                renderPosts(postsData);
+            }
 
             function closeModal() {
                 modal.classList.remove('active');
@@ -325,6 +349,9 @@
                     closeModal();
                 }
             });
+
+            // Initial load
+            loadBlogs();
         })();
     </script>
 </body>
