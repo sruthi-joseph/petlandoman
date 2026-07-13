@@ -9,8 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css?v=32">
     <style>
-        .acc-hero{position:relative;width:100%;min-height:340px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:linear-gradient(135deg,#1a1a2e 0%,#16213e 40%,#0f3460 100%);padding-top:100px;}
-        .acc-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(252,194,3,.18) 0%,transparent 65%),radial-gradient(ellipse at 75% 30%,rgba(236,107,18,.15) 0%,transparent 55%);}
+        .acc-hero{position:relative;width:100%;min-height:340px;display:flex;align-items:center;justify-content:center;overflow:hidden;background: url('pet_food_hero_bg.png') center/cover no-repeat;padding-top:100px;}
+        .acc-hero::before{display:none;}
         .acc-hero-paw{position:absolute;color:rgba(252,194,3,.10);font-size:clamp(60px,10vw,130px);animation:floatPaw 6s ease-in-out infinite;}
         .acc-hero-paw:nth-child(1){top:10%;left:5%;animation-delay:0s;}
         .acc-hero-paw:nth-child(2){top:20%;right:8%;animation-delay:2s;font-size:clamp(40px,6vw,80px);}
@@ -223,22 +223,7 @@
         </div>
     </header>
 
-    <section class="acc-hero">
-        <i class="fa-solid fa-paw acc-hero-paw"></i>
-        <i class="fa-solid fa-paw acc-hero-paw"></i>
-        <i class="fa-solid fa-paw acc-hero-paw"></i>
-        <div class="acc-hero-content">
-            <nav class="acc-hero-breadcrumb" aria-label="breadcrumb">
-                <a href="index.html">Home</a>
-                <i class="fa-solid fa-chevron-right" style="font-size:.65rem;"></i>
-                <a href="products.html">Products</a>
-                <i class="fa-solid fa-chevron-right" style="font-size:.65rem;"></i>
-                <span>Pet Food</span>
-            </nav>
-            <h1 class="acc-hero-title">Pet <span>Food</span></h1>
-            <p class="acc-hero-subtitle">Nutritious, high-quality, and delicious meals for your cats and dogs. Give your furry friends the best diet they deserve.</p>
-        </div>
-    </section>
+
 
     <div class="acc-stats-bar">
         <div class="acc-stats-inner">
