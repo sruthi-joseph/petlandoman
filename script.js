@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Petland Oman - Core JavaScript Controller
  * Implements: Sticky Header, Mobile Navigation, Smooth Video Scroll-Seeking,
  * Infinite Marquee Speeds, Popups, and Contact Form routing.
@@ -7,7 +7,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     initHeader();
     initMobileNav();
-    initVideoScrollSeek();
+    initCanvasScrollSeek();
     initBannerSlideshow();
     initModals();
     initContactForm();
@@ -54,133 +54,247 @@ function initMobileNav() {
 }
 
 /* ==========================================================================
-   2. SMOOTH VIDEO SCROLL-SEEKING
+   2. SMOOTH CANVAS SCROLL-SEEK ANIMATION
    ========================================================================== */
-class VideoScrollSeeker {
-    constructor(containerId) {
+class CanvasScrollScrubber {
+    constructor(containerId, canvasId, frameCount) {
         this.container = document.getElementById(containerId);
-        if (!this.container) return;
+        this.canvas = document.getElementById(canvasId);
+        if (!this.container || !this.canvas) return;
 
-        this.videoDesktop = document.getElementById('scroll-video-desktop');
-        this.videoMobile  = document.getElementById('scroll-video-mobile');
-        this.slides       = this.container.querySelectorAll('.overlay-slide');
+        this.ctx = this.canvas.getContext('2d');
+        
+        // Detect mobile viewport (768px or below)
+        this.isMobile = window.innerWidth <= 768;
+        this.frameCount = this.isMobile ? 211 : frameCount; // 211 for mobile, 169 for desktop
 
-        this.activeVideo  = null;
-        this.targetTime   = 0;
-        this.currentTime  = 0;
-        this.lerpFactor   = 0.12; // slightly snappier on desktop
-        this.isMobile     = false;
-        this.mobileMode   = false; // true = autoplay loop, no seek
+        this.images = [];
+        this.currentProgress = 0;
+        this.targetProgress = 0;
+        this.lerpFactor = 0.08; // smooth scrubbing factor
+        this.lastRenderedFrame = -1;
+
+        // Overlay UI elements
+        this.loadingOverlay = document.getElementById('canvas-loading');
 
         this.init();
     }
 
     init() {
-        this.handleResize();
-        window.addEventListener('resize', () => this.handleResize(), { passive: true });
+        // Set canvas resolution
+        this.resizeCanvas();
+        window.addEventListener('resize', () => this.resizeCanvas(), { passive: true });
 
-        if (!this.mobileMode) {
-            // Desktop: use exactly 100vh — the banner is now outside this container
-            this.container.style.height = '100vh';
-            window.addEventListener('scroll', () => this.handleScroll(), { passive: true });
-            this.tick();
-        }
-        // Mobile: container stays at 100vh (set by CSS), video just autoplays
+        // Start loading images progressively
+        this.preloadImages();
+
+        // Listen for scroll
+        window.addEventListener('scroll', () => this.handleScroll(), { passive: true });
+
+        // Start render ticker
+        this.tick();
     }
 
-    handleResize() {
-        const width = window.innerWidth;
-        const previouslyMobile = this.isMobile;
-        this.isMobile  = width <= 768;
-        this.mobileMode = this.isMobile;
-
-        if (this.isMobile && this.videoMobile) {
-            if (this.videoDesktop) this.videoDesktop.style.display = 'none';
-            this.videoMobile.style.display = 'block';
-            this.activeVideo = this.videoMobile;
-        } else if (this.videoDesktop) {
-            if (this.videoMobile) this.videoMobile.style.display = 'none';
-            this.videoDesktop.style.display = 'block';
-            this.activeVideo = this.videoDesktop;
+    resizeCanvas() {
+        const dpr = window.devicePixelRatio || 1;
+        this.canvas.width = window.innerWidth * dpr;
+        this.canvas.height = window.innerHeight * dpr;
+        
+        // Draw the last rendered frame to keep canvas correct after resize
+        if (this.lastRenderedFrame !== -1) {
+            this.drawFrame(this.lastRenderedFrame);
         }
+    }
 
-        if (this.mobileMode && this.activeVideo) {
-            // On mobile: ensure the video just autoplays as a loop, no seeking
-            this.activeVideo.loop = true;
-            this.activeVideo.play().catch(() => {});
-            // Collapse container so there's no dead scroll zone
-            this.container.style.height = 'auto';
-        } else if (!this.mobileMode && this.container) {
-            // On desktop: keep container at exactly 100vh
-            this.container.style.height = '100vh';
-            // Show first slide
-            if (this.slides[0]) this.slides[0].classList.add('active');
-        }
+    preloadImages() {
+        let loadedCount = 0;
 
-        // Reload video if switching breakpoint
-        if (this.activeVideo && previouslyMobile !== this.isMobile) {
-            if (!this.mobileMode) {
-                // Desktop: pause for seek
-                this.activeVideo.load();
-                this.activeVideo.play().then(() => {
-                    this.activeVideo.pause();
-                }).catch(() => {});
+        // Helper to format frame path
+        const getFramePath = (index) => {
+            const paddedIndex = String(index).padStart(3, '0');
+            const dir = this.isMobile 
+                ? 'hero%20section%20scroll%20animation%20frames%20for%20mobile%20view'
+                : 'hero%20section%20scroll%20animation%20frames';
+            return `${dir}/ezgif-frame-${paddedIndex}.png`;
+        };
+
+        // Load an image returning a promise
+        const loadImage = (index) => {
+            return new Promise((resolve) => {
+                const img = new Image();
+                img.onload = () => {
+                    this.images[index] = img;
+                    loadedCount++;
+                    resolve(true);
+                };
+                img.onerror = () => {
+                    // Fail gracefully
+                    resolve(false);
+                };
+                img.src = getFramePath(index);
+            });
+        };
+
+        // PRIORITY 1: Load Frame 1 immediately for first paint
+        loadImage(1).then(() => {
+            // Render first frame immediately
+            this.drawFrame(1);
+
+            // PRIORITY 2: Load the starting sequence (Frames 2-30) for instant scrolling feedback
+            const priority2Promises = [];
+            for (let i = 2; i <= 30 && i <= this.frameCount; i++) {
+                priority2Promises.push(loadImage(i));
             }
-        }
+
+            Promise.all(priority2Promises).then(() => {
+                // Fade out loader once the initial 30 frames are ready
+                if (this.loadingOverlay) {
+                    this.loadingOverlay.classList.add('fade-out');
+                }
+
+                // PRIORITY 3: Sparse loading of remaining sequence (every 5th frame)
+                // This builds a fast framerate placeholder structure across the full scroll area
+                const priority3Promises = [];
+                for (let i = 35; i <= this.frameCount; i += 5) {
+                    if (!this.images[i]) {
+                        priority3Promises.push(loadImage(i));
+                    }
+                }
+
+                Promise.all(priority3Promises).then(() => {
+                    // PRIORITY 4: Load all intermediate frames in sequence
+                    const remainingIndices = [];
+                    for (let i = 2; i <= this.frameCount; i++) {
+                        if (!this.images[i]) {
+                            remainingIndices.push(i);
+                        }
+                    }
+
+                    // Load remainder sequentially to not flood network
+                    let indexPointer = 0;
+                    const loadNextSequential = () => {
+                        if (indexPointer >= remainingIndices.length) return;
+                        loadImage(remainingIndices[indexPointer]).then(() => {
+                            indexPointer++;
+                            loadNextSequential();
+                        });
+                    };
+
+                    // Start parallel loaders
+                    const parallelLoadersCount = 4;
+                    for (let i = 0; i < parallelLoadersCount; i++) {
+                        loadNextSequential();
+                    }
+                });
+            });
+        });
     }
 
     handleScroll() {
-        // Never seek on mobile — let the video loop
-        if (this.mobileMode) return;
-        if (!this.activeVideo || isNaN(this.activeVideo.duration)) return;
-
-        const rect            = this.container.getBoundingClientRect();
+        const rect = this.container.getBoundingClientRect();
         const containerHeight = rect.height;
-        const viewHeight      = window.innerHeight;
+        const viewHeight = window.innerHeight;
         const totalScrollable = containerHeight - viewHeight;
-        const currentScroll   = -rect.top;
+        
+        if (totalScrollable <= 0) return;
 
+        const currentScroll = -rect.top;
         let progress = currentScroll / totalScrollable;
         progress = Math.min(Math.max(0, progress), 1);
 
-        this.targetTime = progress * this.activeVideo.duration;
-
-        // Update slide visibility
-        const numSlides = this.slides.length;
-        if (numSlides > 0) {
-            const unit = 1 / numSlides;
-            this.slides.forEach((slide, idx) => {
-                const start  = idx * unit;
-                const end    = (idx + 1) * unit;
-                const margin = 0.05;
-                if (progress >= (start - (idx === 0 ? 0 : margin)) && progress <= end) {
-                    slide.classList.add('active');
-                } else {
-                    slide.classList.remove('active');
-                }
-            });
-        }
+        this.targetProgress = progress;
     }
 
     tick() {
-        // Only runs on desktop (mobileMode skips seek entirely)
-        if (!this.mobileMode && this.activeVideo && !isNaN(this.activeVideo.duration)) {
-            this.currentTime += (this.targetTime - this.currentTime) * this.lerpFactor;
-            const delta = Math.abs(this.targetTime - this.currentTime);
-            if (delta > 0.004) {
-                this.activeVideo.currentTime = Math.min(
-                    Math.max(0, this.currentTime),
-                    this.activeVideo.duration - 0.05
-                );
+        // Smoothly lerp current progress to target progress
+        this.currentProgress += (this.targetProgress - this.currentProgress) * this.lerpFactor;
+        
+        // Calculate frame index
+        const frameIndex = Math.min(
+            this.frameCount,
+            Math.max(1, Math.round(this.currentProgress * (this.frameCount - 1) + 1))
+        );
+
+        if (frameIndex !== this.lastRenderedFrame) {
+            this.drawFrame(frameIndex);
+            this.lastRenderedFrame = frameIndex;
+        }
+
+        requestAnimationFrame(() => this.tick());
+    }
+
+    drawFrame(index) {
+        // Fallback algorithm to find closest loaded frame to prevent black screens/flickering
+        let img = this.images[index];
+        if (!img) {
+            let offset = 1;
+            while (offset < this.frameCount) {
+                const prev = index - offset;
+                const next = index + offset;
+                if (prev >= 1 && this.images[prev]) {
+                    img = this.images[prev];
+                    break;
+                }
+                if (next <= this.frameCount && this.images[next]) {
+                    img = this.images[next];
+                    break;
+                }
+                offset++;
             }
         }
-        requestAnimationFrame(() => this.tick());
+
+        if (!img) return;
+
+        const w = this.canvas.width;
+        const h = this.canvas.height;
+        
+        this.ctx.clearRect(0, 0, w, h);
+
+        const iw = img.width;
+        const ih = img.height;
+
+        if (this.isMobile) {
+            // Mobile: contain without stretching or cropping, using matching #fdfdfd background
+            const r = Math.min(w / iw, h / ih);
+            const nw = iw * r;
+            const nh = ih * r;
+            const x = (w - nw) / 2;
+            const y = (h - nh) / 2;
+
+            this.ctx.fillStyle = '#fdfdfd';
+            this.ctx.fillRect(0, 0, w, h);
+            this.ctx.drawImage(img, x, y, nw, nh);
+        } else {
+            // Desktop: remain exactly as it is (object-fit: cover)
+            const r = Math.min(w / iw, h / ih);
+            let nw = iw * r;
+            let nh = ih * r;
+            let cx, cy, cw, ch, ar = 1;
+
+            if (nw < w) ar = w / nw;
+            if (Math.abs(ar - 1) < 1e-14 && nh < h) ar = h / nh;
+            nw *= ar;
+            nh *= ar;
+
+            cw = iw / (nw / w);
+            ch = ih / (nh / h);
+
+            cx = (iw - cw) * 0.5;
+            cy = (ih - ch) * 0.5;
+
+            if (cx < 0) cx = 0;
+            if (cy < 0) cy = 0;
+            if (cw > iw) cw = iw;
+            if (ch > ih) ch = ih;
+
+            this.ctx.drawImage(img, cx, cy, cw, ch, 0, 0, w, h);
+        }
     }
 }
 
-function initVideoScrollSeek() {
-    const seeker = new VideoScrollSeeker('scroll-section');
-}
+function initCanvasScrollSeek() {
+    new CanvasScrollScrubber('scroll-canvas-section', 'scroll-animation-canvas', 169);
+};
 
 /* ==========================================================================
    3. BANNER SLIDESHOW  — runs continuously

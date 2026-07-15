@@ -10,7 +10,7 @@
     <!-- FontAwesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Main Stylesheet -->
-    <link rel="stylesheet" href="style.css?v=32">
+    <link rel="stylesheet" href="style.css?v=40">
 </head>
 
 <body>
@@ -42,30 +42,19 @@
             </nav>
         </div>
     </header>
-
-    <!-- 1. SCROLL ANIMATION SECTION (Opens immediately below header) -->
-    <section class="scroll-video-container" id="scroll-section">
-
-        <!-- VIDEO + LOGO OVERLAY -->
-        <div class="sticky-video-wrapper">
-            <!-- Desktop Video -->
-            <video class="scroll-video" id="scroll-video-desktop" preload="auto" muted playsinline autoplay loop>
-                <source src="hero page desktop1.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-            <!-- Mobile Video -->
-            <video class="scroll-video" id="scroll-video-mobile" style="display: none;" preload="auto" muted playsinline
-                autoplay loop>
-                <source src="heropage phoneview.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-
-            <!-- Overlay: only the logo slide stays inside the video wrapper -->
-            <div class="scroll-video-overlays">
-                <div class="overlay-slide active" id="slide-logo"></div>
+    <!-- 1. SCROLL CANVAS ANIMATION SECTION -->
+    <section class="scroll-canvas-container" id="scroll-canvas-section">
+        <div class="sticky-canvas-wrapper">
+            <canvas id="scroll-animation-canvas"></canvas>
+            
+            <!-- Loading Indicator overlay -->
+            <div class="canvas-loading-overlay" id="canvas-loading">
+                <div class="loading-spinner"></div>
+                <span>Loading Animation...</span>
             </div>
         </div>
     </section>
+
 
     <!-- BANNER SLIDESHOW — sibling of sticky wrapper.
              Desktop: position:sticky keeps it at the viewport bottom while scrolling.
@@ -492,7 +481,7 @@
                 <!-- Branch 7: Petland Mabellah -->
                 <div class="branch-card">
                     <div class="branch-card-img-wrap">
-                        <img src="extracted_images/branch_storefront_2.png" alt="Petland Mabellah"
+                        <img src="branches/petland%20mabella.jpeg" alt="Petland Mabellah"
                             class="branch-storefront-img">
                     </div>
                     <div class="branch-card-content">
@@ -520,7 +509,7 @@
                 <!-- Branch 8: Petland Bousher -->
                 <div class="branch-card">
                     <div class="branch-card-img-wrap">
-                        <img src="extracted_images/branch_storefront_3.png" alt="Petland Bousher"
+                        <img src="branches/petland%20bousher.jpeg" alt="Petland Bousher"
                             class="branch-storefront-img">
                     </div>
                     <div class="branch-card-content">
@@ -719,7 +708,7 @@
     </footer>
 
     <!-- Main JavaScript File -->
-    <script src="script.js"></script>
+    <script src="script.js?v=4"></script>
 </body>
 
 </html>

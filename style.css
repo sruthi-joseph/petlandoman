@@ -27,14 +27,14 @@
 html {
     scroll-behavior: smooth;
     font-size: 16px;
-    overflow-x: hidden; /* prevent horizontal scroll / black edge bleed */
+    overflow-x: clip; /* prevent horizontal scroll / black edge bleed without breaking position:sticky */
 }
 
 body {
     font-family: var(--font-primary);
     background-color: var(--white);
     color: var(--black);
-    overflow-x: hidden;
+    overflow-x: clip;
     line-height: 1.6;
 }
 
@@ -171,6 +171,7 @@ nav ul li a.active {
     background: #ffffff;
     padding: 0 2rem 3rem;
     overflow: hidden;
+    scroll-margin-top: 100px;
 }
 
 .aboutus-container {
@@ -355,6 +356,12 @@ nav ul li a.active {
 
 /* Responsive */
 @media (max-width: 768px) {
+    .aboutus-section {
+        padding: 2rem 1.5rem 3rem !important;
+        overflow: visible !important;
+        position: relative;
+        z-index: 1; /* render above canvas section background */
+    }
     .aboutus-container {
         flex-direction: column;
         gap: 2.5rem;
@@ -1459,10 +1466,11 @@ footer {
     transform: translateY(-3px);
 }
 
-/* --- SCROLL SEEK VIDEO FRAMEWORK --- */
-.scroll-video-container {
+/* --- SCROLL CANVAS ANIMATION FRAMEWORK --- */
+.scroll-canvas-container {
     position: relative;
     width: 100%;
+    height: 350vh; /* Determines pinning scroll depth */
     background-color: var(--white);
     margin: 0;
     padding: 0;
@@ -1470,7 +1478,16 @@ footer {
     outline: none;
 }
 
-.sticky-video-wrapper {
+@media (max-width: 768px) {
+    /* Pull the banner up over the canvas bottom whitespace on mobile */
+    .scroll-canvas-container {
+        margin-bottom: -250px;
+    }
+}
+
+
+
+.sticky-canvas-wrapper {
     position: sticky;
     top: 0;
     height: 100vh;
@@ -1479,93 +1496,122 @@ footer {
     background-color: var(--white);
     border: none;
     outline: none;
-    margin-bottom: 0;
-    padding-bottom: 0;
 }
 
-/* Thin fade at bottom — masks video/section seam */
-.sticky-video-wrapper::after {
+/* Bottom shadow fade to transition canvas into next sections */
+.sticky-canvas-wrapper::after {
     content: '';
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 20px;
+    height: 30px;
     background: linear-gradient(to bottom, transparent, #ffffff);
     pointer-events: none;
     z-index: 10;
 }
 
-.scroll-video {
+#scroll-animation-canvas {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    background-color: var(--white);
-    pointer-events: none;
     display: block;
-    /* GPU compositing hints — avoids repaint lag during scroll */
-    will-change: transform;
-    transform: translateZ(0);
-    backface-visibility: hidden;
+    background-color: var(--white);
 }
 
-.scroll-video-overlays {
+/* Loading Overlay */
+.canvas-loading-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    pointer-events: none;
-}
-
-.overlay-slide {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    background-color: var(--white);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    z-index: 20;
+    transition: opacity 0.5s ease-out;
+}
+
+.canvas-loading-overlay.fade-out {
     opacity: 0;
-    transition: opacity 0.5s ease-out, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-    transform: translateY(40px);
     pointer-events: none;
-    padding: 2rem;
-    text-align: center;
 }
 
-.overlay-slide.active {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid rgba(252, 194, 3, 0.2);
+    border-top: 5px solid var(--primary-yellow);
+    border-radius: 50%;
+    animation: canvasSpinnerSpin 1s linear infinite;
+    margin-bottom: 15px;
 }
 
-.overlay-slide h2 {
-    font-family: var(--font-rounded);
-    font-size: 3.5rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    margin-bottom: 1.5rem;
-    color: var(--black);
-    text-shadow: none;
+@keyframes canvasSpinnerSpin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
-.overlay-slide h2 span {
-    color: var(--accent-orange);
-}
-
-.overlay-slide p {
-    font-size: 1.2rem;
-    max-width: 650px;
-    margin-bottom: 2rem;
+.canvas-loading-overlay span {
+    font-family: var(--font-primary);
+    font-size: 1.1rem;
     color: var(--gray-medium);
-    text-shadow: none;
+    font-weight: 500;
+}
+
+/* Scroll Indicator Overlay */
+.scroll-indicator {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: var(--black);
+    font-size: 0.9rem;
+    font-weight: 500;
+    z-index: 10;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+}
+
+.scroll-indicator.fade-out {
+    opacity: 0;
+}
+
+.mouse-icon {
+    width: 24px;
+    height: 40px;
+    border: 2px solid var(--black);
+    border-radius: 12px;
+    position: relative;
+}
+
+.mouse-icon .wheel {
+    width: 4px;
+    height: 8px;
+    background-color: var(--primary-yellow);
+    border-radius: 2px;
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: scroll-wheel-anim 1.5s infinite;
+}
+
+@keyframes scroll-wheel-anim {
+    0% { opacity: 0; transform: translate(-50%, 0); }
+    15% { opacity: 1; }
+    50% { opacity: 1; transform: translate(-50%, 10px); }
+    100% { opacity: 0; transform: translate(-50%, 10px); }
 }
 
 /* --- BANNER OVERLAY SLIDESHOW (DESKTOP) --- */
-/* On desktop, .banner-below-video is placed naturally below the video frame */
+/* On desktop, .banner-below-video is at the top of the content area, clearing the sticky header */
 .banner-below-video {
     position: relative;
     z-index: 6;
@@ -1574,7 +1620,7 @@ footer {
     align-items: center;
     padding: 0;
     background: transparent;
-    margin-top: -60px;
+    margin-top: -240px; /* pull the banner up to overlap the image bottom white border */
     margin-bottom: 30px;
     border-bottom: none;
 }
@@ -1641,50 +1687,15 @@ footer {
 
 
 @media (max-width: 768px) {
-    /* ---- MOBILE HERO VIDEO: Autoplay loop, no scroll-seek ---- */
-
-    /* Collapse to single viewport-height section — no extra scroll zone */
-    .scroll-video-container {
-        height: auto !important;
-        overflow: hidden; /* prevent dark background bleeding at edges */
-        width: 100vw;
-    }
-
-    /* Sticky positioning is not needed on mobile — just a normal block */
-    .sticky-video-wrapper {
+    /* Banner: uses z-index:2 so it paints above the canvas background even with overlap */
+    .banner-below-video,
+    #slide-banners {
         position: relative !important;
-        height: 65vh !important;
-        overflow: hidden;
-        width: 100%;
-    }
-
-    /* Smaller bottom fade on mobile */
-    .sticky-video-wrapper::after {
-        height: 10px;
-    }
-
-    /* Video fills the 65vh wrapper */
-    .scroll-video {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100% !important;
-        height: 100% !important;
-        object-fit: cover;
-    }
-
-    /* Overlay container: no absolute slides needed on mobile */
-    .scroll-video-overlays {
-        display: none !important;
-    }
-
-    /* Banner: natural block below the video */
-    .banner-below-video {
-        position: static !important;
+        z-index: 2 !important;
         margin-top: 0 !important;
         display: block !important;
         padding: 0 0.5rem !important;
-        background: #ffffff;
+        background: transparent !important;
         border-bottom: none;
     }
 
