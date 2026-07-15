@@ -1518,48 +1518,6 @@ footer {
     background-color: var(--white);
 }
 
-/* Loading Overlay */
-.canvas-loading-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: var(--white);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 20;
-    transition: opacity 0.5s ease-out;
-}
-
-.canvas-loading-overlay.fade-out {
-    opacity: 0;
-    pointer-events: none;
-}
-
-.loading-spinner {
-    width: 50px;
-    height: 50px;
-    border: 5px solid rgba(252, 194, 3, 0.2);
-    border-top: 5px solid var(--primary-yellow);
-    border-radius: 50%;
-    animation: canvasSpinnerSpin 1s linear infinite;
-    margin-bottom: 15px;
-}
-
-@keyframes canvasSpinnerSpin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-.canvas-loading-overlay span {
-    font-family: var(--font-primary);
-    font-size: 1.1rem;
-    color: var(--gray-medium);
-    font-weight: 500;
-}
 
 /* Scroll Indicator Overlay */
 .scroll-indicator {

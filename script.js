@@ -59,132 +59,121 @@ function initMobileNav() {
 class CanvasScrollScrubber {
     constructor(containerId, canvasId, frameCount) {
         this.container = document.getElementById(containerId);
-        this.canvas = document.getElementById(canvasId);
+        this.canvas    = document.getElementById(canvasId);
         if (!this.container || !this.canvas) return;
 
         this.ctx = this.canvas.getContext('2d');
-        
+
         // Detect mobile viewport (768px or below)
-        this.isMobile = window.innerWidth <= 768;
-        this.frameCount = this.isMobile ? 211 : frameCount; // 211 for mobile, 169 for desktop
+        this.isMobile  = window.innerWidth <= 768;
+        this.frameCount = this.isMobile ? 211 : frameCount; // 211 mobile / 169 desktop
 
         this.images = [];
-        this.currentProgress = 0;
-        this.targetProgress = 0;
-        this.lerpFactor = 0.08; // smooth scrubbing factor
-        this.lastRenderedFrame = -1;
 
-        // Overlay UI elements
-        this.loadingOverlay = document.getElementById('canvas-loading');
+        // --- Scroll state ---
+        // Desktop uses smooth lerp; mobile maps scroll directly to avoid lag
+        this.currentProgress = 0;
+        this.targetProgress  = 0;
+        this.lerpFactor      = this.isMobile ? 1 : 0.08; // 1 = no easing on mobile
+
+        this.lastRenderedFrame = -1;
+        this.rafScheduled      = false; // prevents duplicate rAF calls
 
         this.init();
     }
 
     init() {
-        // Set canvas resolution
         this.resizeCanvas();
         window.addEventListener('resize', () => this.resizeCanvas(), { passive: true });
 
-        // Start loading images progressively
+        // Apply GPU acceleration hint to canvas on mobile
+        if (this.isMobile) {
+            this.canvas.style.willChange   = 'transform';
+            this.canvas.style.transform    = 'translateZ(0)';
+            this.canvas.style.backfaceVisibility = 'hidden';
+        }
+
         this.preloadImages();
 
-        // Listen for scroll
-        window.addEventListener('scroll', () => this.handleScroll(), { passive: true });
+        // Throttled scroll: only schedule one rAF per scroll event burst
+        window.addEventListener('scroll', () => {
+            this.handleScroll();
+            if (!this.rafScheduled) {
+                this.rafScheduled = true;
+                requestAnimationFrame(() => this.tick());
+            }
+        }, { passive: true });
 
-        // Start render ticker
-        this.tick();
+        // Desktop: continuous rAF loop for smooth lerp; mobile: event-driven only
+        if (!this.isMobile) {
+            this.tick();
+        } else {
+            // Initial render once first frame is ready (handled in preload callback)
+        }
     }
 
     resizeCanvas() {
-        const dpr = window.devicePixelRatio || 1;
-        this.canvas.width = window.innerWidth * dpr;
+        // Cap DPR at 2 on mobile to save GPU bandwidth
+        const dpr = this.isMobile
+            ? Math.min(window.devicePixelRatio || 1, 2)
+            : (window.devicePixelRatio || 1);
+
+        this.canvas.width  = window.innerWidth  * dpr;
         this.canvas.height = window.innerHeight * dpr;
-        
-        // Draw the last rendered frame to keep canvas correct after resize
+
         if (this.lastRenderedFrame !== -1) {
             this.drawFrame(this.lastRenderedFrame);
         }
     }
 
     preloadImages() {
-        let loadedCount = 0;
-
-        // Helper to format frame path
         const getFramePath = (index) => {
-            const paddedIndex = String(index).padStart(3, '0');
-            const dir = this.isMobile 
+            const pad = String(index).padStart(3, '0');
+            const dir = this.isMobile
                 ? 'hero%20section%20scroll%20animation%20frames%20for%20mobile%20view'
                 : 'hero%20section%20scroll%20animation%20frames';
-            return `${dir}/ezgif-frame-${paddedIndex}.png`;
+            return `${dir}/ezgif-frame-${pad}.png`;
         };
 
-        // Load an image returning a promise
-        const loadImage = (index) => {
-            return new Promise((resolve) => {
-                const img = new Image();
-                img.onload = () => {
-                    this.images[index] = img;
-                    loadedCount++;
-                    resolve(true);
-                };
-                img.onerror = () => {
-                    // Fail gracefully
-                    resolve(false);
-                };
-                img.src = getFramePath(index);
-            });
-        };
+        const loadImage = (index) => new Promise((resolve) => {
+            if (this.images[index]) { resolve(true); return; }
+            const img  = new Image();
+            img.onload = () => { this.images[index] = img; resolve(true); };
+            img.onerror = () => resolve(false);
+            img.src = getFramePath(index);
+        });
 
-        // PRIORITY 1: Load Frame 1 immediately for first paint
+        // PRIORITY 1: Frame 1 → immediate first paint
         loadImage(1).then(() => {
-            // Render first frame immediately
             this.drawFrame(1);
+            this.lastRenderedFrame = 1;
 
-            // PRIORITY 2: Load the starting sequence (Frames 2-30) for instant scrolling feedback
-            const priority2Promises = [];
-            for (let i = 2; i <= 30 && i <= this.frameCount; i++) {
-                priority2Promises.push(loadImage(i));
-            }
+            // PRIORITY 2: Frames 2-20 → fast early-scroll coverage
+            const p2 = [];
+            for (let i = 2; i <= Math.min(20, this.frameCount); i++) p2.push(loadImage(i));
 
-            Promise.all(priority2Promises).then(() => {
-                // Fade out loader once the initial 30 frames are ready
-                if (this.loadingOverlay) {
-                    this.loadingOverlay.classList.add('fade-out');
+            Promise.all(p2).then(() => {
+                // PRIORITY 3: Sparse every-4th frame across the full sequence
+                const p3 = [];
+                for (let i = 24; i <= this.frameCount; i += 4) {
+                    if (!this.images[i]) p3.push(loadImage(i));
                 }
 
-                // PRIORITY 3: Sparse loading of remaining sequence (every 5th frame)
-                // This builds a fast framerate placeholder structure across the full scroll area
-                const priority3Promises = [];
-                for (let i = 35; i <= this.frameCount; i += 5) {
-                    if (!this.images[i]) {
-                        priority3Promises.push(loadImage(i));
-                    }
-                }
-
-                Promise.all(priority3Promises).then(() => {
-                    // PRIORITY 4: Load all intermediate frames in sequence
-                    const remainingIndices = [];
+                Promise.all(p3).then(() => {
+                    // PRIORITY 4: Fill all remaining frames
+                    const remaining = [];
                     for (let i = 2; i <= this.frameCount; i++) {
-                        if (!this.images[i]) {
-                            remainingIndices.push(i);
-                        }
+                        if (!this.images[i]) remaining.push(i);
                     }
 
-                    // Load remainder sequentially to not flood network
-                    let indexPointer = 0;
-                    const loadNextSequential = () => {
-                        if (indexPointer >= remainingIndices.length) return;
-                        loadImage(remainingIndices[indexPointer]).then(() => {
-                            indexPointer++;
-                            loadNextSequential();
-                        });
+                    // More parallel loaders on mobile to saturate bandwidth faster
+                    const loaderCount = this.isMobile ? 6 : 4;
+                    let ptr = 0;
+                    const next = () => {
+                        if (ptr >= remaining.length) return;
+                        loadImage(remaining[ptr++]).then(next);
                     };
-
-                    // Start parallel loaders
-                    const parallelLoadersCount = 4;
-                    for (let i = 0; i < parallelLoadersCount; i++) {
-                        loadNextSequential();
-                    }
+                    for (let i = 0; i < loaderCount; i++) next();
                 });
             });
         });
@@ -192,80 +181,79 @@ class CanvasScrollScrubber {
 
     handleScroll() {
         const rect = this.container.getBoundingClientRect();
-        const containerHeight = rect.height;
-        const viewHeight = window.innerHeight;
-        const totalScrollable = containerHeight - viewHeight;
-        
+        const totalScrollable = rect.height - window.innerHeight;
         if (totalScrollable <= 0) return;
 
-        const currentScroll = -rect.top;
-        let progress = currentScroll / totalScrollable;
-        progress = Math.min(Math.max(0, progress), 1);
+        const scrolled = -rect.top;
+        let progress   = scrolled / totalScrollable;
+        progress       = Math.min(Math.max(0, progress), 1);
 
         this.targetProgress = progress;
     }
 
     tick() {
-        // Smoothly lerp current progress to target progress
-        this.currentProgress += (this.targetProgress - this.currentProgress) * this.lerpFactor;
-        
-        // Calculate frame index
+        this.rafScheduled = false;
+
+        // Lerp (desktop) or direct (mobile)
+        if (this.lerpFactor < 1) {
+            this.currentProgress += (this.targetProgress - this.currentProgress) * this.lerpFactor;
+        } else {
+            this.currentProgress = this.targetProgress;
+        }
+
         const frameIndex = Math.min(
             this.frameCount,
             Math.max(1, Math.round(this.currentProgress * (this.frameCount - 1) + 1))
         );
 
+        // Skip draw if frame hasn't changed — eliminates unnecessary GPU work
         if (frameIndex !== this.lastRenderedFrame) {
             this.drawFrame(frameIndex);
             this.lastRenderedFrame = frameIndex;
         }
 
-        requestAnimationFrame(() => this.tick());
+        // Desktop: keep looping for smooth lerp
+        if (!this.isMobile) {
+            requestAnimationFrame(() => this.tick());
+        }
     }
 
     drawFrame(index) {
-        // Fallback algorithm to find closest loaded frame to prevent black screens/flickering
+        // Fallback: find nearest loaded frame to prevent blank screens
         let img = this.images[index];
         if (!img) {
             let offset = 1;
             while (offset < this.frameCount) {
                 const prev = index - offset;
                 const next = index + offset;
-                if (prev >= 1 && this.images[prev]) {
-                    img = this.images[prev];
-                    break;
-                }
-                if (next <= this.frameCount && this.images[next]) {
-                    img = this.images[next];
-                    break;
-                }
+                if (prev >= 1 && this.images[prev]) { img = this.images[prev]; break; }
+                if (next <= this.frameCount && this.images[next]) { img = this.images[next]; break; }
                 offset++;
             }
         }
-
         if (!img) return;
 
         const w = this.canvas.width;
         const h = this.canvas.height;
-        
+
         this.ctx.clearRect(0, 0, w, h);
 
         const iw = img.width;
         const ih = img.height;
 
         if (this.isMobile) {
-            // Mobile: contain without stretching or cropping, using matching #fdfdfd background
-            const r = Math.min(w / iw, h / ih);
+            // Mobile: object-fit contain with matching background
+            const r  = Math.min(w / iw, h / ih);
             const nw = iw * r;
             const nh = ih * r;
-            const x = (w - nw) / 2;
-            const y = (h - nh) / 2;
+            const x  = (w - nw) / 2;
+            const y  = (h - nh) / 2;
 
             this.ctx.fillStyle = '#fdfdfd';
             this.ctx.fillRect(0, 0, w, h);
             this.ctx.drawImage(img, x, y, nw, nh);
         } else {
-            // Desktop: remain exactly as it is (object-fit: cover)
+            // Desktop: object-fit cover — UNCHANGED
             const r = Math.min(w / iw, h / ih);
             let nw = iw * r;
             let nh = ih * r;
