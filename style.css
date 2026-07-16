@@ -1632,7 +1632,7 @@ footer {
     justify-content: center;
     align-items: center;
     padding: 0;
-    background: #ffffff;
+    background: transparent;
 }
 
 /* Slideshow Wrapper */
@@ -1660,25 +1660,28 @@ footer {
 }
 
 @keyframes bannerFadeIn {
-    from { opacity: 0; transform: scale(0.98); }
-    to   { opacity: 1; transform: scale(1); }
+    from { opacity: 0; }
+    to   { opacity: 1; }
 }
 
 .banner-slideshow-wrapper {
     width: 80%;
     margin: 0 auto;
     overflow: hidden;
-    border-radius: 24px;
+    border-radius: 36px;
 }
 
 .banner-img {
-    width: 100%;
-    height: auto;
+    width: 106% !important;
+    height: auto !important;
     display: block;
     object-fit: contain;
-    border-radius: 24px;
+    border-radius: 36px;
     box-shadow: none;
     transition: var(--transition-smooth);
+    margin-left: -3% !important;
+    margin-top: -4.2% !important;
+    margin-bottom: -2% !important;
 }
 
 /* Navigation Arrow Buttons — hidden */
@@ -1694,7 +1697,7 @@ footer {
     #slide-banners {
         position: relative !important;
         z-index: 2 !important;
-        margin-top: 0 !important;
+        margin-top: 18px !important;
         display: block !important;
         padding: 0 0.5rem !important;
         background: transparent !important;
@@ -1703,13 +1706,11 @@ footer {
 
     .banner-slideshow-wrapper {
         width: 96% !important;
-        border-radius: 16px;
+        border-radius: 14px !important;
         margin: 0 auto;
     }
     .banner-img {
-        border-radius: 16px;
-        width: 100%;
-        height: auto;
+        border-radius: 14px !important;
     }
     .banner-nav-btn {
         width: 38px;
@@ -4676,6 +4677,61 @@ footer {
 @media (max-width: 767px) {
     .hero-logo-img {
         width: clamp(140px, 60vw, 300px);
+    }
+}
+
+/* --- FLOATING WHATSAPP BUTTON --- */
+.whatsapp-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 24px;
+    right: 24px;
+    background-color: #25d366;
+    color: #ffffff !important;
+    border-radius: 50%;
+    text-align: center;
+    box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4);
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    animation: whatsappPulse 2.2s infinite;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1) translateY(-3px);
+    background-color: #22c35e;
+    box-shadow: 0 8px 24px rgba(37, 211, 102, 0.55);
+}
+
+.whatsapp-float i {
+    color: #ffffff !important;
+}
+
+@keyframes whatsappPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5);
+    }
+    70% {
+        box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+    }
+}
+
+/* Adjust floating button on very small screens to avoid overlaying essential content */
+@media (max-width: 480px) {
+    .whatsapp-float {
+        width: 52px;
+        height: 52px;
+        bottom: 20px;
+        right: 20px;
+        font-size: 28px;
     }
 }
 
