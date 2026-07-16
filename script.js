@@ -11,6 +11,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initBannerSlideshow();
     initModals();
     initContactForm();
+    initHeroLogoOverlay();
+    initMobileCarousels();
 });
 
 /* ==========================================================================
@@ -311,7 +313,6 @@ function initBannerSlideshow() {
     setInterval(() => goTo(current + 1), INTERVAL);
 }
 
-
 /* ==========================================================================
    4. DETAILS POPUP MODALS
    ========================================================================== */
@@ -424,7 +425,7 @@ function initModals() {
 }
 
 /* ==========================================================================
-   4. CONTACT FORM SUBMISSION ROUTING
+   5. CONTACT FORM SUBMISSION ROUTING
    ========================================================================== */
 function initContactForm() {
     const form = document.getElementById('petland-contact-form');
@@ -480,4 +481,105 @@ function initContactForm() {
         const url = `mailto:${contactEmail}?subject=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(mailBody)}`;
         window.location.href = url;
     });
+}
+
+/* ==========================================================================
+   6. HERO LOGO OVERLAY — fades out as scroll animation frames come in
+   ========================================================================== */
+function initHeroLogoOverlay() {
+    const overlay   = document.getElementById('hero-logo-overlay');
+    const container = document.getElementById('scroll-canvas-section');
+    if (!overlay || !container) return;
+
+    // Fade the logo out over the first 30% of the scroll-canvas travel
+    const FADE_END = 0.30;
+
+    const update = () => {
+        const rect = container.getBoundingClientRect();
+        const totalScrollable = rect.height - window.innerHeight;
+        if (totalScrollable <= 0) return;
+
+        const scrolled  = -rect.top;
+        const progress  = Math.min(Math.max(0, scrolled / totalScrollable), 1);
+
+        // Map 0 → FADE_END to opacity 1 → 0
+        const opacity = Math.max(0, 1 - (progress / FADE_END));
+        overlay.style.opacity = opacity;
+    };
+
+    window.addEventListener('scroll', update, { passive: true });
+    update(); // run once on load
+}
+
+/* ==========================================================================
+   7. MOBILE CAROUSELS — infinite continuous marquee for services & branches
+   ========================================================================== */
+function initMobileCarousels() {
+    function setupMarquee(trackSelector) {
+        const track = document.querySelector(trackSelector);
+        if (!track) return;
+
+        // Clone children once to ensure seamless infinite looping translation
+        const children = Array.from(track.children);
+        children.forEach(child => {
+            const clone = child.cloneNode(true);
+            track.appendChild(clone);
+        });
+
+        // Set up continuous scrolling via scrollLeft ticker
+        let scrollSpeed = 0.5; // pixels per frame (adjust for speed)
+        let isInteracting = false;
+        let interactionTimeout = null;
+
+        function tick() {
+            if (!isInteracting) {
+                track.scrollLeft += scrollSpeed;
+
+                // Loop halfway: since we cloned once, the total content length is exactly doubled.
+                // Reset scrollLeft back to 0 when it passes halfway scrollWidth.
+                const halfway = track.scrollWidth / 2;
+                if (track.scrollLeft >= halfway) {
+                    track.scrollLeft -= halfway;
+                }
+            }
+            requestAnimationFrame(tick);
+        }
+
+        // Pause auto-scroll on manual touch/drag interaction
+        const pauseInteraction = () => {
+            isInteracting = true;
+            clearTimeout(interactionTimeout);
+            interactionTimeout = setTimeout(() => {
+                isInteracting = false;
+            }, 3000); // Resume auto-scroll after 3 seconds of inactivity
+        };
+
+        track.addEventListener('touchstart', pauseInteraction, { passive: true });
+        track.addEventListener('touchmove', pauseInteraction, { passive: true });
+        
+        // Desktop support: pause on hover
+        track.addEventListener('mouseenter', () => { isInteracting = true; });
+        track.addEventListener('mouseleave', () => { isInteracting = false; });
+
+        track.addEventListener('scroll', () => {
+            // Keep index loop matching if user manual scrolls past halfway
+            const halfway = track.scrollWidth / 2;
+            if (track.scrollLeft >= halfway) {
+                track.scrollLeft -= halfway;
+            } else if (track.scrollLeft <= 0) {
+                track.scrollLeft += halfway;
+            }
+        }, { passive: true });
+
+        // Start scrolling loop
+        requestAnimationFrame(tick);
+    }
+
+    // Only set up services marquee on mobile viewports
+    if (window.innerWidth <= 768) {
+        setupMarquee('.service-cards-row');
+    }
+
+    // Always set up branches marquee (both desktop and mobile)
+    setupMarquee('.branches-grid');
 }
