@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Care Blog | Petland Oman</title>
+    <meta name="description" content="Read the latest pet care tips, training guidelines, nutritional insights, and updates from the experts at Petland Oman.">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="../style.css?v=32">
+</head>
+<body>
+
+    <!-- STICKY HEADER -->
+    <header id="main-header">
+        <div class="header-container">
+            <button class="mobile-nav-toggle" id="nav-toggle" aria-label="Toggle Navigation">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <!-- Mobile Logo -->
+            <a href="../index.html" class="mobile-logo">
+                <img src="../assets/images/logo_transparent.png" alt="Petland Oman Logo" class="mobile-logo-img">
+            </a>
+            <nav id="nav-menu">
+                <ul>
+                    <li class="nav-logo-item">
+                        <a href="../index.html">
+                            <img src="../assets/images/logo_transparent.png" alt="Petland Oman Logo" class="nav-logo-img">
+                        </a>
+                    </li>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="blog.html" class="active">Blog</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- BLOG HEADER -->
+    <section class="blog-header">
+        <div class="container text-center">
+            <h1 class="section-title">Petland <span>Blog</span></h1>
+            <p style="color: var(--primary-yellow); text-transform: uppercase; font-weight: 700; letter-spacing: 2px;">Pet Care Tips & Updates</p>
+        </div>
+    </section>
+
+    <!-- ARTICLES GRID -->
+    <section class="section-padding" style="background-color: var(--white);">
+        <div class="container">
+            <div class="blog-grid">
+                <!-- Blog posts will be populated dynamically from Sanity CMS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-main-card">
+            <div class="footer-container">
+                <!-- Column 1: Brand Info -->
+                <div class="footer-col brand-col">
+                    <a href="../index.html" class="footer-logo">
+                        <img src="../assets/images/logo_transparent.png" alt="Petland Oman Logo" class="footer-logo-img">
+                    </a>
+                    <p>We provide the best products and care for your furry companions in the Sultanate of Oman.</p>
+                    <div class="footer-social-row">
+                        <a href="https://www.facebook.com/share/1BKGqpdP43/?mibextid=wwXIfr" target="_blank"
+                            class="social-circle" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/pet_land_oman?igsh=dmZ5dGU3N3Y3Z2hq&utm_source=qr"
+                            target="_blank" class="social-circle" aria-label="Instagram"><i
+                                class="fa-brands fa-instagram"></i></a>
+                        <a href="https://youtube.com/@pet_land_oman?si=OvH06tz9eQdCG0Qj" target="_blank"
+                            class="social-circle" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="https://wa.me/96879260091" target="_blank" class="social-circle"
+                            aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <!-- Dotted Divider -->
+                <div class="col-divider"></div>
+
+                <!-- Column 2: Quick Links -->
+                <div class="footer-col links-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="products.html">Shop</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+
+
+                <!-- Dotted Divider -->
+                <div class="col-divider"></div>
+
+
+                <!-- Column 4: Newsletter -->
+                <div class="footer-col newsletter-col">
+                    <h4>Subscribe to our Newsletter</h4>
+                    <p>Get special offers &amp; updates straight to your inbox!</p>
+                    <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Subscribed!');">
+                        <input type="email" placeholder="Enter your email" required class="newsletter-input">
+                        <button type="submit" class="newsletter-btn" aria-label="Subscribe">
+                            <i class="fa-solid fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Cute cartoon pets illustration -->
+            <div class="footer-pets-wrap">
+                <img src="../assets/images/extracted_images/footer_pets.png" alt="Cute dog and cat cartoon" class="footer-pets-img">
+            </div>
+        </div>
+
+        <!-- Yellow Copyright Bar with Wavy top edge -->
+        <div class="footer-bottom-bar">
+            <!-- Paw print badge overlapping the bottom wave -->
+            <div class="footer-bottom-badge">
+                <i class="fa-solid fa-paw"></i>
+            </div>
+            <div class="footer-copyright-text">
+                &copy; 2026 Petland Oman. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- DETAILS POPUP MODAL (BLOG ARTICLES) -->
+    <div id="blog-modal" class="gmodal">
+        <div class="gmodal-backdrop" id="blog-modal-backdrop"></div>
+        <div class="gmodal-content" style="max-height: 90vh; overflow-y: auto; max-width: 800px; border-radius: 24px;">
+            <button class="gmodal-close" id="blog-modal-close" aria-label="Close Modal" style="font-size: 2rem; border: none; background: transparent; cursor: pointer; color: #333;">&times;</button>
+            <div class="gmodal-grid" style="display: flex; flex-direction: column; padding: 2.5rem;">
+                <span class="gmodal-tag" id="blog-modal-tag" style="font-size: 0.85rem; font-weight: 800; color: var(--accent-orange); text-transform: uppercase; margin-bottom: 0.5rem; display: block;"></span>
+                <h2 class="gmodal-title" id="blog-modal-title" style="font-family: var(--font-rounded); font-size: 2rem; font-weight: 700; color: #000; margin-bottom: 1.5rem;"></h2>
+                <div class="gmodal-img-wrap" style="width: 100%; height: 350px; border-radius: 18px; overflow: hidden; margin-bottom: 1.5rem;">
+                    <img src="" alt="" id="blog-modal-img" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="gmodal-desc" id="blog-modal-desc" style="font-family: var(--font-primary); font-size: 1.05rem; line-height: 1.7; color: #333; white-space: pre-line;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main JavaScript File -->
+    <script src="../script.js"></script>
+
+    <!-- Blog Modal Logic -->
+    <script>
+        (async function () {
+            const modal = document.getElementById('blog-modal');
+            const backdrop = document.getElementById('blog-modal-backdrop');
+            const closeBtn = document.getElementById('blog-modal-close');
+            
+            const modalTag = document.getElementById('blog-modal-tag');
+            const modalTitle = document.getElementById('blog-modal-title');
+            const modalImg = document.getElementById('blog-modal-img');
+            const modalDesc = document.getElementById('blog-modal-desc');
+            const blogGrid = document.querySelector('.blog-grid');
+
+            // Sanity CMS Configuration
+            const projectId = '1dvvzwi3';
+            const dataset = 'production';
+            const apiVersion = 'v2022-03-07';
+            const query = encodeURIComponent(`*[_type == "post"] | order(publishedAt desc) {
+                title,
+                publishedAt,
+                mainImage{
+                    asset->{
+                        url
+                    }
+                },
+                categories[]->{
+                    title
+                },
+                body
+            }`);
+            const url = `https://${projectId}.api.sanity.io/${apiVersion}/data/query/${dataset}?query=${query}`;
+
+            try {
+                const response = await fetch(url);
+                const { result } = await response.json();
+
+                if (!result || result.length === 0) {
+                    blogGrid.innerHTML = '<p style="text-align: center; grid-column: 1 / -1;">No blog posts available.</p>';
+                    return;
+                }
+
+                blogGrid.innerHTML = ''; // Clear loading state
+
+                result.forEach(post => {
+                    const category = post.categories && post.categories.length > 0 ? post.categories[0].title : 'Uncategorized';
+                    const date = new Date(post.publishedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+                    const tagString = `${category} &bull; ${date}`;
+                    
+                    // Parse block content to plain text for preview
+                    const descText = (post.body || []).map(block => block.children.map(child => child.text).join('')).join('\\n\\n');
+                    const previewText = descText.length > 150 ? descText.substring(0, 150) + '...' : descText;
+                    
+                    const imageUrl = post.mainImage?.asset?.url || '../assets/images/logo_transparent.png';
+
+                    const article = document.createElement('article');
+                    article.className = 'blog-card';
+                    article.innerHTML = `
+                        <div class="blog-image">
+                            <img src="${imageUrl}" alt="${post.title}">
+                        </div>
+                        <div class="blog-info">
+                            <span class="blog-date">${tagString}</span>
+                            <h3 class="blog-title">${post.title}</h3>
+                            <p class="blog-desc">${previewText}</p>
+                            <a href="#" class="blog-read-more">Read Full Post <i class="fa-solid fa-arrow-right-long"></i></a>
+                        </div>
+                    `;
+
+                    // Add click listener for modal
+                    const btn = article.querySelector('.blog-read-more');
+                    btn.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        modalTag.innerHTML = tagString;
+                        modalTitle.textContent = post.title;
+                        modalImg.src = imageUrl;
+                        modalImg.alt = post.title;
+                        modalDesc.textContent = descText;
+                        
+                        modal.classList.add('active');
+                        document.body.style.overflow = 'hidden';
+                    });
+
+                    blogGrid.appendChild(article);
+                });
+            } catch (error) {
+                console.error("Error fetching blog posts from Sanity:", error);
+                blogGrid.innerHTML = '<p style="text-align: center; grid-column: 1 / -1; color: red;">Failed to load blog posts. Please try again later.</p>';
+            }
+
+            function closeModal() {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+
+            if (closeBtn) closeBtn.addEventListener('click', closeModal);
+            if (backdrop) backdrop.addEventListener('click', closeModal);
+            
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && modal && modal.classList.contains('active')) {
+                    closeModal();
+                }
+            });
+        })();
+    </script>
+    <!-- Floating WhatsApp Contact Button -->
+    <a href="https://wa.me/96879260091" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+</body>
+</html>

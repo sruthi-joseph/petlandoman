@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pet Accessories | Petland Oman</title>
-    <meta name="description" content="Shop premium pet accessories at Petland Oman. Order directly via WhatsApp.">
+    <title>Hygiene & Supplements | Petland Oman</title>
+    <meta name="description" content="Shop premium pet hygiene products and supplements at Petland Oman. Order directly via WhatsApp.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=32">
+    <link rel="stylesheet" href="../style.css?v=32">
     <style>
-        .acc-hero{position:relative;width:100%;min-height:340px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:linear-gradient(135deg,#1a1a2e 0%,#16213e 40%,#0f3460 100%);padding-top:100px;}
-        .acc-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(252,194,3,.18) 0%,transparent 65%),radial-gradient(ellipse at 75% 30%,rgba(236,107,18,.15) 0%,transparent 55%);}
+        .acc-hero{position:relative;width:100%;min-height:340px;display:flex;align-items:center;justify-content:center;overflow:hidden;background: url('pet_food_hero_bg.png') center/cover no-repeat;padding-top:100px;}
+        .acc-hero::before{display:none;}
         .acc-hero-paw{position:absolute;color:rgba(252,194,3,.10);font-size:clamp(60px,10vw,130px);animation:floatPaw 6s ease-in-out infinite;}
         .acc-hero-paw:nth-child(1){top:10%;left:5%;animation-delay:0s;}
         .acc-hero-paw:nth-child(2){top:20%;right:8%;animation-delay:2s;font-size:clamp(40px,6vw,80px);}
@@ -63,13 +63,10 @@
         .acc-cta-btn:hover{transform:translateY(-3px);box-shadow:0 12px 36px rgba(252,194,3,.55);color:#000;}
         @media(max-width:768px){.acc-grid{grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:18px;}.acc-card-img-wrap{margin:12px;border-radius:14px;}.acc-card-body{padding:2px 14px 16px;}.acc-card-footer{flex-direction:column;align-items:flex-start;gap:10px;}.acc-buy-btn{width:100%;justify-content:center;}.acc-stats-inner{flex-direction:column;align-items:flex-start;gap:10px;}}
         @media(max-width:480px){.acc-grid{grid-template-columns:1fr 1fr;gap:14px;}}
-
-        /* ---- clickable card cursor ---- */
+        
         .acc-card{cursor:pointer;}
 
-        /* ================================================
-           PRODUCT DETAIL MODAL
-        ================================================ */
+        /* Modal Overlay */
         .pdm-overlay{
             position:fixed;inset:0;z-index:9000;
             background:rgba(10,10,20,.75);
@@ -205,19 +202,17 @@
             .pdm-info{padding:16px 18px 22px;}
             .pdm-thumb{width:58px;height:58px;}
         }
-
-
     </style>
 </head>
 <body class="acc-page">
     <header id="main-header">
         <div class="header-container">
             <button class="mobile-nav-toggle" id="nav-toggle" aria-label="Toggle Navigation"><i class="fa-solid fa-bars"></i></button>
-            <a href="index.html" class="mobile-logo"><img src="logo_transparent.png" alt="Petland Oman Logo" class="mobile-logo-img"></a>
+            <a href="../index.html" class="mobile-logo"><img src="../assets/images/logo_transparent.png" alt="Petland Oman Logo" class="mobile-logo-img"></a>
             <nav id="nav-menu">
                 <ul>
-                    <li class="nav-logo-item"><a href="index.html"><img src="logo_transparent.png" alt="Petland Oman Logo" class="nav-logo-img"></a></li>
-                    <li><a href="index.html">Home</a></li>
+                    <li class="nav-logo-item"><a href="../index.html"><img src="../assets/images/logo_transparent.png" alt="Petland Oman Logo" class="nav-logo-img"></a></li>
+                    <li><a href="../index.html">Home</a></li>
                     <li><a href="about.html">About</a></li>
                     <li><a href="services.html">Services</a></li>
                     <li><a href="products.html" class="active">Products</a></li>
@@ -232,7 +227,7 @@
 
     <div class="acc-stats-bar">
         <div class="acc-stats-inner">
-            <p class="acc-stats-label">Showing <strong>10 products</strong> in Accessories</p>
+            <p class="acc-stats-label">Showing <strong>11 products</strong> in Hygiene & Supplements</p>
             <div class="acc-stats-badges">
                 <span class="acc-badge"><i class="fa-solid fa-truck-fast"></i> Fast Delivery</span>
                 <span class="acc-badge"><i class="fa-solid fa-shield-halved"></i> Quality Assured</span>
@@ -241,161 +236,185 @@
         </div>
     </div>
 
-
-
     <section class="acc-products-section">
         <div class="acc-section-heading">
-            <h2>Shop <span>Accessories</span></h2>
-            <p>Handpicked accessories to keep your pets comfortable, happy, and stylish.</p>
+            <h2>Shop <span>Hygiene & Supplements</span></h2>
+            <p>Premium grooming professional formulas, health supplements, and hygiene essentials to keep your pets clean, fresh, and healthy.</p>
         </div>
-        <div class="acc-grid" id="accessories-grid">
+        <div class="acc-grid" id="hygiene-grid">
 
-            <div class="acc-card" data-product="1" data-title="Stacked Slow-Feeder Set" data-tag="Feeder" data-desc="Multi-level slow feeder with stainless steel balls — promotes healthy eating habits for cats and dogs." data-images='["product list/product 1.jpeg"]' data-wa="Hi!%20I%20would%20like%20to%20buy%20the%20Stacked%20Slow-Feeder%20Set">
+            <!-- Product 1: Groom Professional Lavender Cologne -->
+            <div class="acc-card" data-product="1" data-title="Groom Professional Lavender Cologne" data-tag="Hygiene" data-desc="Use between washes for a relaxing lavender scent. Made in the UK." data-images='["Hygiene suppliments/HS1.jpeg","Hygiene suppliments/HS11.jpeg"]' data-wa="Hi!%20I%20would%20like%20to%20buy%20the%20Groom%20Professional%20Lavender%20Cologne">
                 <div class="acc-card-img-wrap">
-                    <img src="product list/product 1.jpeg" alt="Stacked Slow-Feeder Set" loading="lazy">
+                    <img src="../assets/images/hygiene_supplements/HS1.jpeg" alt="Groom Professional Lavender Cologne" loading="lazy">
                     <button class="acc-wishlist-btn" aria-label="Add to wishlist" onclick="toggleWishlist(this)"><i class="fa-regular fa-heart"></i></button>
                 </div>
                 <div class="acc-card-body">
-                    <span class="acc-card-tag">Feeder</span>
-                    <h3 class="acc-card-title">Stacked Slow-Feeder Set</h3>
-                    <p class="acc-card-desc">Multi-level slow feeder with stainless steel balls — promotes healthy eating habits.</p>
+                    <span class="acc-card-tag">Hygiene</span>
+                    <h3 class="acc-card-title">Groom Professional Lavender</h3>
+                    <p class="acc-card-desc">Use between washes for a relaxing, soothing lavender scent.</p>
                     <div class="acc-card-footer">
-                        <a href="https://wa.me/96879260091?text=Hi!%20I%20would%20like%20to%20buy%20the%20Stacked%20Slow-Feeder%20Set" target="_blank" class="acc-buy-btn" id="buy-product-1">Buy Now <i class="fa-brands fa-whatsapp"></i></a>
+                        <a href="https://wa.me/96879260091?text=Hi!%20I%20would%20like%20to%20buy%20the%20Groom%20Professional%20Lavender%20Cologne" target="_blank" class="acc-buy-btn" id="buy-product-1">Buy Now <i class="fa-brands fa-whatsapp"></i></a>
                     </div>
                 </div>
             </div>
 
-            <div class="acc-card" data-product="2" data-title="Cottage Pet House (Small)" data-tag="House" data-desc="Charming cottage-style plastic house with ventilation window — ideal for small dogs and comfortable resting." data-images='["product list/product 2.jpeg","product list/p2.jpeg"]' data-wa="Hi!%20I%20would%20like%20to%20buy%20the%20Cottage%20Pet%20House">
+            <!-- Product 2: Groom Professional Diva Cologne -->
+            <div class="acc-card" data-product="2" data-title="Groom Professional Diva Cologne" data-tag="Hygiene" data-desc="Exotic female scent to keep your pet smelling fresh. Long lasting freshness, made in the UK." data-images='["Hygiene suppliments/HS2.jpeg","Hygiene suppliments/HS22.jpeg"]' data-wa="Hi!%20I%20would%20like%20to%20buy%20the%20Groom%20Professional%20Diva%20Cologne">
                 <div class="acc-card-img-wrap">
-                    <img src="product list/product 2.jpeg" alt="Cottage Pet House Small" loading="lazy">
+                    <img src="../assets/images/hygiene_supplements/HS2.jpeg" alt="Groom Professional Diva Cologne" loading="lazy">
                     <button class="acc-wishlist-btn" aria-label="Add to wishlist" onclick="toggleWishlist(this)"><i class="fa-regular fa-heart"></i></button>
                 </div>
                 <div class="acc-card-body">
-                    <span class="acc-card-tag">House</span>
-                    <h3 class="acc-card-title">Cottage Pet House (Small)</h3>
-                    <p class="acc-card-desc">Charming cottage-style plastic house with ventilation — ideal for small dogs.</p>
+                    <span class="acc-card-tag">Hygiene</span>
+                    <h3 class="acc-card-title">Groom Professional Diva</h3>
+                    <p class="acc-card-desc">Exotic female scent with long-lasting freshness to deodorize coats.</p>
                     <div class="acc-card-footer">
-                        <a href="https://wa.me/96879260091?text=Hi!%20I%20would%20like%20to%20buy%20the%20Cottage%20Pet%20House" target="_blank" class="acc-buy-btn" id="buy-product-2">Buy Now <i class="fa-brands fa-whatsapp"></i></a>
+                        <a href="https://wa.me/96879260091?text=Hi!%20I%20would%20like%20to%20buy%20the%20Groom%20Professional%20Diva%20Cologne" target="_blank" class="acc-buy-btn" id="buy-product-2">Buy Now <i class="fa-brands fa-whatsapp"></i></a>
                     </div>
                 </div>
             </div>
 
-            <div class="acc-card" data-product="3" data-title="Enclosed Cat Litter Box" data-tag="Cat Essentials" data-desc="Hooded litter box with removable tray and built-in scoop holder — odour control design for cleaner homes." data-images='["product list/product 3.jpeg","product list/p3.jpeg"]' data-wa="Hi!%20I%20would%20like%20to%20buy%20the%20Enclosed%20Cat%20Litter%20Box">
+            <!-- Product 3: Groom Professional Princess Cologne -->
+            <div class="acc-card" data-product="3" data-title="Groom Professional Princess Cologne" data-tag="Hygiene" data-desc="Fine female fragrance for a premium, long-lasting freshness. Made in the UK." data-images='["Hygiene suppliments/HS3.jpeg","Hygiene suppliments/HS33.jpeg"]' data-wa="Hi!%20I%20would%20like%20to%20buy%20the%20Groom%20Professional%20Princess%20Cologne">
                 <div class="acc-card-img-wrap">
-                    <img src="product list/product 3.jpeg" alt="Enclosed Cat Litter Box" loading="lazy">
+                    <img src="../assets/images/hygiene_supplements/HS3.jpeg" alt="Groom Professional Princess Cologne" loading="lazy">
                     <button class="acc-wishlist-btn" aria-label="Add to wishlist" onclick="toggleWishlist(this)"><i class="fa-regular fa-heart"></i></button>
                 </div>
                 <div class="acc-card-body">
-                    <span class="acc-card-tag">Cat Essentials</span>
-                    <h3 class="acc-card-title">Enclosed Cat Litter Box</h3>
-                    <p class="acc-card-desc">Hooded litter box with removable tray and built-in scoop holder — odour control design.</p>
+                    <span class="acc-card-tag">Hygiene</span>
+                    <h3 class="acc-card-title">Groom Professional Princess</h3>
+                    <p class="acc-card-desc">Fine sweet female fragrance to keep coats smelling clean and fresh.</p>
                     <div class="acc-card-footer">
-                        <a href="https://wa.me/96879260091?text=Hi!%20I%20would%20like%20to%20buy%20the%20Enclosed%20Cat%20Litter%20Box" target="_blank" class="acc-buy-btn" id="buy-product-3">Buy Now <i class="fa-brands fa-whatsapp"></i></a>
+                        <a href="https://wa.me/96879260091?text=Hi!%20I%20would%20like%20to%20buy%20the%20Groom%20Professional%20Princess%20Cologne" target="_blank" class="acc-buy-btn" id="buy-product-3">Buy Now <i class="fa-brands fa-whatsapp"></i></a>
                     </div>
                 </div>
             </div>
 
-            <div class="acc-card" data-product="4" data-title="Silent Pet Water Fountain" data-tag="Water Fountain" data-desc="Ultra-quiet circulating water fountain — keeps water fresh and encourages your pet to stay well hydrated." data-images='["product list/product 4.jpeg","product list/p4.jpeg"]' data-wa="Hi!%20I%20would%20like%20to%20buy%20the%20Silent%20Pet%20Water%20Fountain">
+            <!-- Product 4: Groom Professional First Love Cologne -->
+            <div class="acc-card" data-product="4" data-title="Groom Professional First Love Cologne" data-tag="Hygiene" data-desc="Subtle baby scent for delicate freshness. Long lasting and contains no harmful chemicals." data-images='["Hygiene suppliments/HS4.jpeg","Hygiene suppliments/HS44.jpeg"]' data-wa="Hi!%20I%20would%20like%20to%20buy%20the%20Groom%20Professional%20First%20Love%20Cologne">
                 <div class="acc-card-img-wrap">
-                    <img src="product list/product 4.jpeg" alt="Silent Pet Water Fountain" loading="lazy">
+                    <img src="../assets/images/hygiene_supplements/HS4.jpeg" alt="Groom Professional First Love Cologne" loading="lazy">
                     <button class="acc-wishlist-btn" aria-label="Add to wishlist" onclick="toggleWishlist(this)"><i class="fa-regular fa-heart"></i></button>
                 </div>
                 <div class="acc-card-body">
-                    <span class="acc-card-tag">Water Fountain</span>
-                    <h3 class="acc-card-title">Silent Pet Water Fountain</h3>
-                    <p class="acc-card-desc">Ultra-quiet circulating water fountain — keeps water fresh and encourages hydration.</p>
+                    <span class="acc-card-tag">Hygiene</span>
+                    <h3 class="acc-card-title">Groom Professional First Love</h3>
+                    <p class="acc-card-desc">Subtle, clean baby scent for delicate, long-lasting freshness.</p>
                     <div class="acc-card-footer">
-                        <a href="https://wa.me/96879260091?text=Hi!%20I%20would%20like%20to%20buy%20the%20Silent%20Pet%20Water%20Fountain" target="_blank" class="acc-buy-btn" id="buy-product-4">Buy Now <i class="fa-brands fa-whatsapp"></i></a>
+                        <a href="https://wa.me/96879260091?text=Hi!%20I%20would%20like%20to%20buy%20the%20Groom%20Professional%20First%20Love%20Cologne" target="_blank" class="acc-buy-btn" id="buy-product-4">Buy Now <i class="fa-brands fa-whatsapp"></i></a>
                     </div>
                 </div>
             </div>
 
-            <div class="acc-card" data-product="5" data-title="Double Bowl &amp; Auto Dispenser" data-tag="Feeder" data-desc="Twin feeding bowls with integrated auto water dispenser — perfect for busy pet parents who want convenience." data-images='["product list/product 5.jpeg","product list/p5.jpeg"]' data-wa="Hi!%20I%20would%20like%20to%20buy%20the%20Double%20Bowl%20and%20Auto%20Dispenser">
+            <!-- Product 5: Bioline Ear Mite Treatment -->
+            <div class="acc-card" data-product="5" data-title="Bioline Ear Mite Treatment" data-tag="Hygiene" data-desc="Gently cleanses and treats ear mites in dogs and cats. Relieves itching, eliminates ear odor, and prevents irritation." data-images='["product list/hygiene/bioline_ear_mite_treatment_30ml.webp"]' data-wa="Hi!%20I%20would%20like%20to%20buy%20the%20Bioline%20Ear%20Mite%20Treatment">
                 <div class="acc-card-img-wrap">
-                    <img src="product list/product 5.jpeg" alt="Double Bowl and Auto Dispenser" loading="lazy">
+                    <img src="../assets/images/product_list/hygiene/bioline_ear_mite_treatment_30ml.webp" alt="Bioline Ear Mite Treatment" loading="lazy">
                     <button class="acc-wishlist-btn" aria-label="Add to wishlist" onclick="toggleWishlist(this)"><i class="fa-regular fa-heart"></i></button>
                 </div>
                 <div class="acc-card-body">
-                    <span class="acc-card-tag">Feeder</span>
-                    <h3 class="acc-card-title">Double Bowl &amp; Auto Dispenser</h3>
-                    <p class="acc-card-desc">Twin feeding bowls with integrated auto water dispenser — perfect for busy pet parents.</p>
+                    <span class="acc-card-tag">Hygiene</span>
+                    <h3 class="acc-card-title">Bioline Ear Mite Treatment</h3>
+                    <p class="acc-card-desc">Gently cleanses and treats ear mites, relieving itching and irritation.</p>
                     <div class="acc-card-footer">
-                        <a href="https://wa.me/96879260091?text=Hi!%20I%20would%20like%20to%20buy%20the%20Double%20Bowl%20and%20Auto%20Dispenser" target="_blank" class="acc-buy-btn" id="buy-product-5">Buy Now <i class="fa-brands fa-whatsapp"></i></a>
+                        <a href="https://wa.me/96879260091?text=Hi!%20I%20would%20like%20to%20buy%20the%20Bioline%20Ear%20Mite%20Treatment" target="_blank" class="acc-buy-btn" id="buy-product-5">Buy Now <i class="fa-brands fa-whatsapp"></i></a>
                     </div>
                 </div>
             </div>
 
-            <div class="acc-card" data-product="6" data-title="Daisy Embroidered Harness Set" data-tag="Harness" data-desc="Soft linen harness with daisy embroidery + matching rope leash — stylish, breathable and comfortable." data-images='["product list/product 6.jpeg","product list/p6.jpeg"]' data-wa="Hi!%20I%20would%20like%20to%20buy%20the%20Daisy%20Embroidered%20Harness%20Set">
+            <!-- Product 6: Bioline Kitten Shampoo -->
+            <div class="acc-card" data-product="6" data-title="Bioline Kitten Shampoo" data-tag="Grooming" data-desc="Extremely mild shampoo formulated especially for delicate kitten skin and fur. Keeps coats clean, soft, and healthy without harsh chemicals." data-images='["product list/hygiene/bioline_kitten_shampoo_200ml.webp"]' data-wa="Hi!%20I%20would%20like%20to%20buy%20the%20Bioline%20Kitten%20Shampoo">
                 <div class="acc-card-img-wrap">
-                    <img src="product list/product 6.jpeg" alt="Daisy Embroidered Harness Set" loading="lazy">
-                    <button class="acc-wishlist-btn" aria-label="Add to wishlist" onclick="toggleWishlist(this)"><i class="fa-regular fa-heart"></i></button>
-                </div>
-                <div class="acc-card-body">
-                    <span class="acc-card-tag">Harness</span>
-                    <h3 class="acc-card-title">Daisy Embroidered Harness Set</h3>
-                    <p class="acc-card-desc">Soft linen harness with daisy embroidery + matching rope leash — stylish and comfortable.</p>
-                    <div class="acc-card-footer">
-                        <a href="https://wa.me/96879260091?text=Hi!%20I%20would%20like%20to%20buy%20the%20Daisy%20Embroidered%20Harness%20Set" target="_blank" class="acc-buy-btn" id="buy-product-6">Buy Now <i class="fa-brands fa-whatsapp"></i></a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="acc-card" data-product="7" data-title="Heavy-Duty Dog House with Gate" data-tag="House" data-desc="Spacious gated dog house with sturdy wire door and ventilated roof — suitable for medium to large breeds." data-images='["product list/product 7.jpeg","product list/p7.jpeg"]' data-wa="Hi!%20I%20would%20like%20to%20buy%20the%20Heavy-Duty%20Dog%20House%20with%20Gate">
-                <div class="acc-card-img-wrap">
-                    <img src="product list/product 7.jpeg" alt="Heavy-Duty Dog House with Gate" loading="lazy">
-                    <button class="acc-wishlist-btn" aria-label="Add to wishlist" onclick="toggleWishlist(this)"><i class="fa-regular fa-heart"></i></button>
-                </div>
-                <div class="acc-card-body">
-                    <span class="acc-card-tag">House</span>
-                    <h3 class="acc-card-title">Heavy-Duty Dog House with Gate</h3>
-                    <p class="acc-card-desc">Spacious gated dog house with sturdy wire door — suitable for medium to large breeds.</p>
-                    <div class="acc-card-footer">
-                        <a href="https://wa.me/96879260091?text=Hi!%20I%20would%20like%20to%20buy%20the%20Heavy-Duty%20Dog%20House%20with%20Gate" target="_blank" class="acc-buy-btn" id="buy-product-7">Buy Now <i class="fa-brands fa-whatsapp"></i></a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="acc-card" data-product="8" data-title="Retractable Dog Leash" data-tag="Leash" data-desc="Ergonomic retractable leash with one-button brake — gives your pet freedom to explore safely on walks." data-images='["product list/product 8.jpeg","product list/p8.jpeg"]' data-wa="Hi!%20I%20would%20like%20to%20buy%20the%20Retractable%20Dog%20Leash">
-                <div class="acc-card-img-wrap">
-                    <img src="product list/product 8.jpeg" alt="Retractable Dog Leash" loading="lazy">
-                    <button class="acc-wishlist-btn" aria-label="Add to wishlist" onclick="toggleWishlist(this)"><i class="fa-regular fa-heart"></i></button>
-                </div>
-                <div class="acc-card-body">
-                    <span class="acc-card-tag">Leash</span>
-                    <h3 class="acc-card-title">Retractable Dog Leash</h3>
-                    <p class="acc-card-desc">Ergonomic retractable leash with one-button brake — gives your pet freedom to explore safely.</p>
-                    <div class="acc-card-footer">
-                        <a href="https://wa.me/96879260091?text=Hi!%20I%20would%20like%20to%20buy%20the%20Retractable%20Dog%20Leash" target="_blank" class="acc-buy-btn" id="buy-product-8">Buy Now <i class="fa-brands fa-whatsapp"></i></a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="acc-card" data-product="9" data-title="UV Flea Comb Brush" data-tag="Grooming" data-desc="Smart UV light grooming comb — detects and removes fleas while keeping your pet's coat smooth and healthy." data-images='["product list/product 9.jpeg","product list/p9.jpeg"]' data-wa="Hi!%20I%20would%20like%20to%20buy%20the%20UV%20Flea%20Comb%20Brush">
-                <div class="acc-card-img-wrap">
-                    <img src="product list/product 9.jpeg" alt="UV Flea Comb Brush" loading="lazy">
+                    <img src="../assets/images/product_list/hygiene/bioline_kitten_shampoo_200ml.webp" alt="Bioline Kitten Shampoo" loading="lazy">
                     <button class="acc-wishlist-btn" aria-label="Add to wishlist" onclick="toggleWishlist(this)"><i class="fa-regular fa-heart"></i></button>
                 </div>
                 <div class="acc-card-body">
                     <span class="acc-card-tag">Grooming</span>
-                    <h3 class="acc-card-title">UV Flea Comb Brush</h3>
-                    <p class="acc-card-desc">Smart UV light grooming comb — detects and removes fleas while keeping your pet coat smooth.</p>
+                    <h3 class="acc-card-title">Bioline Kitten Shampoo</h3>
+                    <p class="acc-card-desc">Extremely mild shampoo for delicate kitten skin to keep coats soft and clean.</p>
                     <div class="acc-card-footer">
-                        <a href="https://wa.me/96879260091?text=Hi!%20I%20would%20like%20to%20buy%20the%20UV%20Flea%20Comb%20Brush" target="_blank" class="acc-buy-btn" id="buy-product-9">Buy Now <i class="fa-brands fa-whatsapp"></i></a>
+                        <a href="https://wa.me/96879260091?text=Hi!%20I%20would%20like%20to%20buy%20the%20Bioline%20Kitten%20Shampoo" target="_blank" class="acc-buy-btn" id="buy-product-6">Buy Now <i class="fa-brands fa-whatsapp"></i></a>
                     </div>
                 </div>
             </div>
 
-            <div class="acc-card" data-product="10" data-title="Luxury Velvet Pet Sofa Bed" data-tag="Bed" data-desc="Premium suede-feel sofa bed with plush cushioning — the ultimate comfort nap spot for pets of all sizes." data-images='["product list/product 10.jpeg","product list/p10.jpeg"]' data-wa="Hi!%20I%20would%20like%20to%20buy%20the%20Luxury%20Velvet%20Pet%20Sofa%20Bed">
+            <!-- Product 7: Bioline Aloe Vera Conditioner -->
+            <div class="acc-card" data-product="7" data-title="Bioline Aloe Vera Conditioner" data-tag="Grooming" data-desc="Nourishes and detangles fur. Enriched with natural aloe vera to provide deep hydration, leaving coats smooth and shiny." data-images='["product list/hygiene/bioline_aloevera_conditioner.webp"]' data-wa="Hi!%20I%20would%20like%20to%20buy%20the%20Bioline%20Aloe%20Vera%20Conditioner">
                 <div class="acc-card-img-wrap">
-                    <img src="product list/product 10.jpeg" alt="Luxury Velvet Pet Sofa Bed" loading="lazy">
+                    <img src="../assets/images/product_list/hygiene/bioline_aloevera_conditioner.webp" alt="Bioline Aloe Vera Conditioner" loading="lazy">
                     <button class="acc-wishlist-btn" aria-label="Add to wishlist" onclick="toggleWishlist(this)"><i class="fa-regular fa-heart"></i></button>
                 </div>
                 <div class="acc-card-body">
-                    <span class="acc-card-tag">Bed</span>
-                    <h3 class="acc-card-title">Luxury Velvet Pet Sofa Bed</h3>
-                    <p class="acc-card-desc">Premium suede-feel sofa bed with plush cushioning — the ultimate comfort nap spot for pets.</p>
+                    <span class="acc-card-tag">Grooming</span>
+                    <h3 class="acc-card-title">Bioline Aloe Vera Conditioner</h3>
+                    <p class="acc-card-desc">Nourishes and detangles fur with natural aloe vera for hydration and shine.</p>
                     <div class="acc-card-footer">
-                        <a href="https://wa.me/96879260091?text=Hi!%20I%20would%20like%20to%20buy%20the%20Luxury%20Velvet%20Pet%20Sofa%20Bed" target="_blank" class="acc-buy-btn" id="buy-product-10">Buy Now <i class="fa-brands fa-whatsapp"></i></a>
+                        <a href="https://wa.me/96879260091?text=Hi!%20I%20would%20like%20to%20buy%20the%20Bioline%20Aloe%20Vera%20Conditioner" target="_blank" class="acc-buy-btn" id="buy-product-7">Buy Now <i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 8: Beaphar Dental Powder -->
+            <div class="acc-card" data-product="8" data-title="Beaphar Dental Powder" data-tag="Oral Care" data-desc="Premium dental powder made from natural brown seaweed to reduce plaque, tartar, and bad breath in dogs and cats." data-images='["product list/hygiene/beaphar_dental_powder_75g.webp"]' data-wa="Hi!%20I%20would%20like%20to%20buy%20the%20Beaphar%20Dental%20Powder">
+                <div class="acc-card-img-wrap">
+                    <img src="../assets/images/product_list/hygiene/beaphar_dental_powder_75g.webp" alt="Beaphar Dental Powder" loading="lazy">
+                    <button class="acc-wishlist-btn" aria-label="Add to wishlist" onclick="toggleWishlist(this)"><i class="fa-regular fa-heart"></i></button>
+                </div>
+                <div class="acc-card-body">
+                    <span class="acc-card-tag">Oral Care</span>
+                    <h3 class="acc-card-title">Beaphar Dental Powder</h3>
+                    <p class="acc-card-desc">Premium dental powder to reduce plaque, tartar, and bad breath.</p>
+                    <div class="acc-card-footer">
+                        <a href="https://wa.me/96879260091?text=Hi!%20I%20would%20like%20to%20buy%20the%20Beaphar%20Dental%20Powder" target="_blank" class="acc-buy-btn" id="buy-product-8">Buy Now <i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 9: Bioline Ear Care -->
+            <div class="acc-card" data-product="9" data-title="Bioline Ear Care" data-tag="Hygiene" data-desc="Safe and gentle ear cleaning drops. Easily removes dirt, excess wax, and odor, preventing infections in pet ears." data-images='["product list/hygiene/bioline_ear_care_50ml.webp"]' data-wa="Hi!%20I%20would%20like%20to%20buy%20the%20Bioline%20Ear%20Care">
+                <div class="acc-card-img-wrap">
+                    <img src="../assets/images/product_list/hygiene/bioline_ear_care_50ml.webp" alt="Bioline Ear Care" loading="lazy">
+                    <button class="acc-wishlist-btn" aria-label="Add to wishlist" onclick="toggleWishlist(this)"><i class="fa-regular fa-heart"></i></button>
+                </div>
+                <div class="acc-card-body">
+                    <span class="acc-card-tag">Hygiene</span>
+                    <h3 class="acc-card-title">Bioline Ear Care</h3>
+                    <p class="acc-card-desc">Gentle ear cleaning drops to remove dirt, wax, and control ear odor.</p>
+                    <div class="acc-card-footer">
+                        <a href="https://wa.me/96879260091?text=Hi!%20I%20would%20like%20to%20buy%20the%20Bioline%20Ear%20Care" target="_blank" class="acc-buy-btn" id="buy-product-9">Buy Now <i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 10: Bioline Tear Stain Remover -->
+            <div class="acc-card" data-product="10" data-title="Bioline Tear Stain Remover" data-tag="Hygiene" data-desc="Specially formulated gentle drops to remove unsightly tear stains and crust around your pet's eyes safely." data-images='["product list/hygiene/bioline_tear_stain_remover_50ml.webp"]' data-wa="Hi!%20I%20would%20like%20to%20buy%20the%20Bioline%20Tear%20Stain%20Remover">
+                <div class="acc-card-img-wrap">
+                    <img src="../assets/images/product_list/hygiene/bioline_tear_stain_remover_50ml.webp" alt="Bioline Tear Stain Remover" loading="lazy">
+                    <button class="acc-wishlist-btn" aria-label="Add to wishlist" onclick="toggleWishlist(this)"><i class="fa-regular fa-heart"></i></button>
+                </div>
+                <div class="acc-card-body">
+                    <span class="acc-card-tag">Hygiene</span>
+                    <h3 class="acc-card-title">Bioline Tear Stain Remover</h3>
+                    <p class="acc-card-desc">Gentle cleaning drops to safely remove tear stains around pet eyes.</p>
+                    <div class="acc-card-footer">
+                        <a href="https://wa.me/96879260091?text=Hi!%20I%20would%20like%20to%20buy%20the%20Bioline%20Tear%20Stain%20Remover" target="_blank" class="acc-buy-btn" id="buy-product-10">Buy Now <i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 11: Bioline Dry Foam Shampoo -->
+            <div class="acc-card" data-product="11" data-title="Bioline Dry Foam Shampoo" data-tag="Grooming" data-desc="Convenient waterless dry foam shampoo. Cleanses and deodorizes your pet's coat without rinsing, leaving it fresh and fragrant." data-images='["product list/hygiene/bioline_dry_foam_shampoo_220ml.jpg"]' data-wa="Hi!%20I%20would%20like%20to%20buy%20the%20Bioline%20Dry%20Foam%20Shampoo">
+                <div class="acc-card-img-wrap">
+                    <img src="../assets/images/product_list/hygiene/bioline_dry_foam_shampoo_220ml.jpg" alt="Bioline Dry Foam Shampoo" loading="lazy">
+                    <button class="acc-wishlist-btn" aria-label="Add to wishlist" onclick="toggleWishlist(this)"><i class="fa-regular fa-heart"></i></button>
+                </div>
+                <div class="acc-card-body">
+                    <span class="acc-card-tag">Grooming</span>
+                    <h3 class="acc-card-title">Bioline Dry Foam Shampoo</h3>
+                    <p class="acc-card-desc">Waterless foam shampoo to clean and deodorize pet coats without water.</p>
+                    <div class="acc-card-footer">
+                        <a href="https://wa.me/96879260091?text=Hi!%20I%20would%20like%20to%20buy%20the%20Bioline%20Dry%20Foam%20Shampoo" target="_blank" class="acc-buy-btn" id="buy-product-11">Buy Now <i class="fa-brands fa-whatsapp"></i></a>
                     </div>
                 </div>
             </div>
@@ -403,57 +422,48 @@
         </div>
     </section>
 
-    <!-- ===== PRODUCT DETAIL MODAL ===== -->
-    <div class="pdm-overlay" id="pdm-overlay" role="dialog" aria-modal="true" aria-label="Product Details">
-        <div class="pdm-box" id="pdm-box">
-            <button class="pdm-close" id="pdm-close" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
-
-            <!-- Gallery -->
+    <!-- PRODUCT DETAIL MODAL SYSTEM -->
+    <div class="pdm-overlay" id="pdm-overlay">
+        <div class="pdm-box">
+            <button class="pdm-close" id="pdm-close" aria-label="Close modal"><i class="fa-solid fa-xmark"></i></button>
+            
+            <!-- Left: Gallery -->
             <div class="pdm-gallery">
                 <div class="pdm-main-img-wrap">
-                    <img id="pdm-main-img" src="" alt="Product image">
+                    <img src="" id="pdm-main-img" alt="Product main image">
                 </div>
-                <div class="pdm-thumbs" id="pdm-thumbs"></div>
-                <p class="pdm-img-counter" id="pdm-counter"></p>
+                <div class="pdm-thumbs" id="pdm-thumbs">
+                    <!-- Javascript will dynamically inject thumbnails here -->
+                </div>
+                <div class="pdm-img-counter" id="pdm-counter">1 / 1</div>
             </div>
 
-            <!-- Info -->
+            <!-- Right: Info -->
             <div class="pdm-info">
-                <span class="pdm-tag" id="pdm-tag"></span>
-                <h2 class="pdm-title" id="pdm-title"></h2>
-                <p class="pdm-desc" id="pdm-desc"></p>
+                <span class="pdm-tag" id="pdm-tag">Hygiene</span>
+                <h2 class="pdm-title" id="pdm-title">Product Title</h2>
                 <div class="pdm-divider"></div>
+                <p class="pdm-desc" id="pdm-desc">Product description goes here.</p>
                 <div class="pdm-features">
-                    <div class="pdm-feat"><i class="fa-solid fa-truck-fast"></i> Fast delivery across Oman</div>
-                    <div class="pdm-feat"><i class="fa-solid fa-shield-halved"></i> Quality guaranteed</div>
-                    <div class="pdm-feat"><i class="fa-solid fa-rotate-left"></i> Easy returns &amp; exchanges</div>
+                    <div class="pdm-feat"><i class="fa-solid fa-circle-check"></i> Premium grooming professional formula</div>
+                    <div class="pdm-feat"><i class="fa-solid fa-circle-check"></i> Long-lasting fragrance & freshness</div>
+                    <div class="pdm-feat"><i class="fa-solid fa-circle-check"></i> Safe for regular use on pets</div>
                 </div>
                 <div class="pdm-buy-wrap">
-                    <a href="#" id="pdm-buy-btn" target="_blank" class="pdm-buy-btn">
-                        <i class="fa-brands fa-whatsapp" style="font-size:1.15rem;"></i>
-                        Buy Now via WhatsApp
-                    </a>
+                    <a href="#" target="_blank" class="pdm-buy-btn" id="pdm-buy-btn">Order via WhatsApp <i class="fa-brands fa-whatsapp"></i></a>
                 </div>
             </div>
         </div>
     </div>
 
-    <section class="acc-cta-banner">
-        <h3>Need help choosing the right accessory?</h3>
-        <p>Our pet care experts are just a WhatsApp message away!</p>
-        <a href="https://wa.me/96879260091?text=Hi!%20I%20need%20help%20choosing%20a%20pet%20accessory." target="_blank" class="acc-cta-btn" id="cta-whatsapp-btn">
-            <i class="fa-brands fa-whatsapp" style="font-size:1.2rem;"></i>
-            Chat with Us on WhatsApp
-        </a>
-    </section>
-
+    <!-- FOOTER -->
     <footer>
         <div class="footer-main-card">
             <div class="footer-container">
                 <!-- Column 1: Brand Info -->
                 <div class="footer-col brand-col">
-                    <a href="index.html" class="footer-logo">
-                        <img src="logo_transparent.png" alt="Petland Oman Logo" class="footer-logo-img">
+                    <a href="../index.html" class="footer-logo">
+                        <img src="../assets/images/logo_transparent.png" alt="Petland Oman Logo" class="footer-logo-img">
                     </a>
                     <p>We provide the best products and care for your furry companions in the Sultanate of Oman.</p>
                     <div class="footer-social-row">
@@ -476,7 +486,7 @@
                 <div class="footer-col links-col">
                     <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="index.html">Home</a></li>
+                        <li><a href="../index.html">Home</a></li>
                         <li><a href="about.html">About Us</a></li>
                         <li><a href="services.html">Services</a></li>
                         <li><a href="products.html">Shop</a></li>
@@ -505,7 +515,7 @@
 
             <!-- Cute cartoon pets illustration -->
             <div class="footer-pets-wrap">
-                <img src="extracted_images/footer_pets.png" alt="Cute dog and cat cartoon" class="footer-pets-img">
+                <img src="../assets/images/extracted_images/footer_pets.png" alt="Cute dog and cat cartoon" class="footer-pets-img">
             </div>
         </div>
 
@@ -521,17 +531,25 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <!-- Main JavaScript File -->
+    <script src="../script.js"></script>
+
+    <!-- Wishlist toggle functionality -->
     <script>
-        /* ---- Wishlist toggle ---- */
         function toggleWishlist(btn) {
             btn.classList.toggle('active');
             var icon = btn.querySelector('i');
-            icon.className = btn.classList.contains('active') ? 'fa-solid fa-heart' : 'fa-regular fa-heart';
+            if (btn.classList.contains('active')) {
+                icon.className = 'fa-solid fa-heart';
+            } else {
+                icon.className = 'fa-regular fa-heart';
+            }
         }
+    </script>
 
-        /* ---- Staggered card entrance ---- */
-        (function () {
+    <!-- Product Grid Entrance Animation -->
+    <script>
+        (function() {
             var cards = document.querySelectorAll('.acc-card');
             var observer = new IntersectionObserver(function(entries) {
                 entries.forEach(function(entry) {
@@ -544,7 +562,8 @@
                         observer.unobserve(entry.target);
                     }
                 });
-            }, { threshold: 0.10 });
+            }, { threshold: 0.1 });
+
             cards.forEach(function(card) {
                 card.style.opacity = '0';
                 card.style.transform = 'translateY(30px)';
@@ -613,7 +632,7 @@
                 titleEl.textContent = title;
                 tagEl.textContent   = tag;
                 descEl.textContent  = desc;
-                buyBtn.href         = 'https://wa.me/96879260091?text=' + wa;
+                buyBtn.href='https://wa.me/96879260091?text=' + wa;
 
                 buildThumbs();
                 mainImg.src     = images[0];

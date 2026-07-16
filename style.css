@@ -2303,7 +2303,7 @@ footer {
 
 /* --- BLOG PAGE --- */
 .blog-header {
-    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.9)), url('blog_hero_bg.png') center/cover;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.9)), url('assets/images/blog_hero_bg.png') center/cover;
     height: 40vh;
     display: flex;
     align-items: center;
@@ -3025,7 +3025,7 @@ footer {
 
 .loc-banner-card {
     background-color: #f7f6f2;
-    background-image: url('extracted_images/contact_map.png');
+    background-image: url('assets/images/extracted_images/contact_map.png');
     background-size: cover;
     background-position: center;
     border-radius: 40px;
@@ -3200,7 +3200,7 @@ footer {
    ABOUT PAGE STYLING
    ============================================================ */
 .about-page-hero {
-    background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.85)), url('about_hero_bg.png') center/cover no-repeat;
+    background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.85)), url('assets/images/about_hero_bg.png') center/cover no-repeat;
     height: 40vh;
     display: flex;
     align-items: center;

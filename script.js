@@ -131,10 +131,11 @@ class CanvasScrollScrubber {
     preloadImages() {
         const getFramePath = (index) => {
             const pad = String(index).padStart(3, '0');
+            const pathPrefix = window.location.pathname.includes('/pages/') ? '../' : '';
             const dir = this.isMobile
-                ? 'hero%20section%20scroll%20animation%20frames%20for%20mobile%20view'
-                : 'hero%20section%20scroll%20animation%20frames';
-            return `${dir}/ezgif-frame-${pad}.png`;
+                ? 'assets/frames/hero_mobile'
+                : 'assets/frames/hero_desktop';
+            return `${pathPrefix}${dir}/ezgif-frame-${pad}.png`;
         };
 
         const loadImage = (index) => new Promise((resolve) => {
