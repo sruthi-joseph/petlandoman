@@ -127,8 +127,8 @@ class CanvasScrollScrubber {
             ? Math.min(window.devicePixelRatio || 1, 2)
             : (window.devicePixelRatio || 1);
 
-        this.canvas.width  = window.innerWidth  * dpr;
-        this.canvas.height = window.innerHeight * dpr;
+        this.canvas.width  = this.canvas.clientWidth  * dpr;
+        this.canvas.height = this.canvas.clientHeight * dpr;
 
         if (this.lastRenderedFrame !== -1) {
             this.drawFrame(this.lastRenderedFrame);

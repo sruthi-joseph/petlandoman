@@ -1527,14 +1527,18 @@ footer {
     .scroll-canvas-container {
         margin-bottom: -250px;
     }
+    .sticky-canvas-wrapper {
+        top: 0 !important;
+        height: 100vh !important;
+    }
 }
 
 
 
 .sticky-canvas-wrapper {
     position: sticky;
-    top: 0;
-    height: 100vh;
+    top: 82px; /* Clear fixed desktop header (20px top + 62px height) */
+    height: calc(100vh - 82px);
     width: 100%;
     overflow: hidden;
     background-color: var(--white);
