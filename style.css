@@ -1560,6 +1560,9 @@ footer {
     height: 100%;
     display: block;
     background-color: var(--white);
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
 
@@ -4657,7 +4660,7 @@ footer {
     justify-content: center;
     z-index: 10;
     pointer-events: none;
-    transition: opacity 0.1s linear;
+    transition: none;
 }
 
 .hero-logo-img {

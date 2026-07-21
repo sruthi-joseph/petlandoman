@@ -22,13 +22,19 @@ function initHeader() {
     const header = document.getElementById('main-header');
     if (!header) return;
 
+    let isScrolled = false;
+
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
+        const scrolled = window.scrollY > 50;
+        if (scrolled !== isScrolled) {
+            isScrolled = scrolled;
+            if (isScrolled) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
         }
-    });
+    }, { passive: true });
 }
 
 function initMobileNav() {
@@ -79,14 +85,21 @@ class CanvasScrollScrubber {
         this.lerpFactor      = this.isMobile ? 1 : 0.08; // 1 = no easing on mobile
 
         this.lastRenderedFrame = -1;
-        this.rafScheduled      = false; // prevents duplicate rAF calls
+        this.isMoving = false; // prevents duplicate rAF loops, tracks active rendering
+
+        this.containerOffsetTop = 0;
+        this.containerHeight = 0;
 
         this.init();
     }
 
     init() {
+        this.updateMetrics();
         this.resizeCanvas();
-        window.addEventListener('resize', () => this.resizeCanvas(), { passive: true });
+        window.addEventListener('resize', () => {
+            this.updateMetrics();
+            this.resizeCanvas();
+        }, { passive: true });
 
         // Apply GPU acceleration hint to canvas on mobile
         if (this.isMobile) {
@@ -97,21 +110,15 @@ class CanvasScrollScrubber {
 
         this.preloadImages();
 
-        // Throttled scroll: only schedule one rAF per scroll event burst
         window.addEventListener('scroll', () => {
             this.handleScroll();
-            if (!this.rafScheduled) {
-                this.rafScheduled = true;
-                requestAnimationFrame(() => this.tick());
-            }
         }, { passive: true });
+    }
 
-        // Desktop: continuous rAF loop for smooth lerp; mobile: event-driven only
-        if (!this.isMobile) {
-            this.tick();
-        } else {
-            // Initial render once first frame is ready (handled in preload callback)
-        }
+    updateMetrics() {
+        const rect = this.container.getBoundingClientRect();
+        this.containerOffsetTop = rect.top + window.scrollY;
+        this.containerHeight = rect.height;
     }
 
     resizeCanvas() {
@@ -183,19 +190,24 @@ class CanvasScrollScrubber {
     }
 
     handleScroll() {
-        const rect = this.container.getBoundingClientRect();
-        const totalScrollable = rect.height - window.innerHeight;
+        const totalScrollable = this.containerHeight - window.innerHeight;
         if (totalScrollable <= 0) return;
 
-        const scrolled = -rect.top;
+        const scrolled = window.scrollY - this.containerOffsetTop;
         let progress   = scrolled / totalScrollable;
         progress       = Math.min(Math.max(0, progress), 1);
 
         this.targetProgress = progress;
+
+        // Start requestAnimationFrame loop if not active
+        if (!this.isMoving) {
+            this.isMoving = true;
+            requestAnimationFrame(() => this.tick());
+        }
     }
 
     tick() {
-        this.rafScheduled = false;
+        if (!this.isMoving) return;
 
         // Lerp (desktop) or direct (mobile)
         if (this.lerpFactor < 1) {
@@ -215,10 +227,30 @@ class CanvasScrollScrubber {
             this.lastRenderedFrame = frameIndex;
         }
 
-        // Desktop: keep looping for smooth lerp
+        // Desktop: stop loop once animation has settled
         if (!this.isMobile) {
-            requestAnimationFrame(() => this.tick());
+            const diff = Math.abs(this.targetProgress - this.currentProgress);
+            if (diff < 0.0001) {
+                this.currentProgress = this.targetProgress;
+                this.isMoving = false;
+                // Final render to snap exactly to target
+                const finalFrame = Math.min(
+                    this.frameCount,
+                    Math.max(1, Math.round(this.currentProgress * (this.frameCount - 1) + 1))
+                );
+                if (finalFrame !== this.lastRenderedFrame) {
+                    this.drawFrame(finalFrame);
+                    this.lastRenderedFrame = finalFrame;
+                }
+                return;
+            }
+        } else {
+            // Mobile: direct mapped progress is completed instantly in one frame
+            this.isMoving = false;
+            return;
         }
+
+        requestAnimationFrame(() => this.tick());
     }
 
     drawFrame(index) {
@@ -495,12 +527,23 @@ function initHeroLogoOverlay() {
     // Fade the logo out over the first 30% of the scroll-canvas travel
     const FADE_END = 0.30;
 
-    const update = () => {
+    let containerOffsetTop = 0;
+    let containerHeight = 0;
+
+    const updateMetrics = () => {
         const rect = container.getBoundingClientRect();
-        const totalScrollable = rect.height - window.innerHeight;
+        containerOffsetTop = rect.top + window.scrollY;
+        containerHeight = rect.height;
+    };
+
+    updateMetrics();
+    window.addEventListener('resize', updateMetrics, { passive: true });
+
+    const update = () => {
+        const totalScrollable = containerHeight - window.innerHeight;
         if (totalScrollable <= 0) return;
 
-        const scrolled  = -rect.top;
+        const scrolled  = window.scrollY - containerOffsetTop;
         const progress  = Math.min(Math.max(0, scrolled / totalScrollable), 1);
 
         // Map 0 → FADE_END to opacity 1 → 0
@@ -532,13 +575,17 @@ function initMobileCarousels() {
         let isInteracting = false;
         let interactionTimeout = null;
 
+        let halfway = track.scrollWidth / 2;
+        window.addEventListener('resize', () => {
+            halfway = track.scrollWidth / 2;
+        }, { passive: true });
+
         function tick() {
             if (!isInteracting) {
                 track.scrollLeft += scrollSpeed;
 
                 // Loop halfway: since we cloned once, the total content length is exactly doubled.
                 // Reset scrollLeft back to 0 when it passes halfway scrollWidth.
-                const halfway = track.scrollWidth / 2;
                 if (track.scrollLeft >= halfway) {
                     track.scrollLeft -= halfway;
                 }
@@ -564,7 +611,6 @@ function initMobileCarousels() {
 
         track.addEventListener('scroll', () => {
             // Keep index loop matching if user manual scrolls past halfway
-            const halfway = track.scrollWidth / 2;
             if (track.scrollLeft >= halfway) {
                 track.scrollLeft -= halfway;
             } else if (track.scrollLeft <= 0) {
