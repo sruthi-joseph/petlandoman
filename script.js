@@ -78,7 +78,7 @@ class CanvasScrollScrubber {
         // --- Scroll state ---
         this.currentProgress = 0;
         this.targetProgress  = 0;
-        this.lerpFactor      = this.isMobile ? 0.25 : 0.12; // buttery easing on mobile, responsive lerp on desktop
+        this.lerpFactor      = this.isMobile ? 1 : 0.12; // 1 = no easing on mobile
 
         this.lastRenderedFrame = -1;
         this.rafScheduled      = false; // tracks if tick loop is currently running
@@ -295,18 +295,6 @@ class CanvasScrollScrubber {
         }
     }
 
-    loadWindow(index) {
-        // Load frames in a window around the target index
-        const halfWin = this.isMobile ? 12 : 20;
-        const start = Math.max(1, index - halfWin);
-        const end = Math.min(this.frameCount, index + halfWin);
-        for (let i = start; i <= end; i++) {
-            if (!this.images[i] && !this.loadingPromises.has(i)) {
-                this.loadImage(i);
-            }
-        }
-    }
-
     tick() {
         // Calculate progress change
         let progressChanged = false;
@@ -324,7 +312,6 @@ class CanvasScrollScrubber {
         );
 
         if (frameIndex !== this.lastRenderedFrame) {
-            this.loadWindow(frameIndex);
             this.drawFrame(frameIndex);
             this.lastRenderedFrame = frameIndex;
             this.evictExcessFrames(frameIndex);
