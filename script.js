@@ -69,8 +69,7 @@ class CanvasScrollScrubber {
 
         // Detect mobile viewport (768px or below)
         this.isMobile  = window.innerWidth <= 768;
-        this.frameStep = 3; // downsample step on mobile to reduce downloads/RAM by 67%
-        this.frameCount = this.isMobile ? Math.ceil(211 / this.frameStep) : frameCount; // 71 mobile / 169 desktop
+        this.frameCount = this.isMobile ? 211 : frameCount; // 211 mobile / 169 desktop
 
         this.images = [];
         this.loadedIndices = [];
@@ -144,12 +143,7 @@ class CanvasScrollScrubber {
     }
 
     getFramePath(index) {
-        // On mobile, map the virtual index to downsampled physical file index
-        let actualIndex = index;
-        if (this.isMobile) {
-            actualIndex = Math.min(211, (index - 1) * this.frameStep + 1);
-        }
-        const pad = String(actualIndex).padStart(3, '0');
+        const pad = String(index).padStart(3, '0');
         const pathPrefix = window.location.pathname.includes('/pages/') ? '../' : '';
         const dir = this.isMobile
             ? 'assets/frames/hero_mobile'
@@ -301,6 +295,18 @@ class CanvasScrollScrubber {
         }
     }
 
+    loadWindow(index) {
+        // Load frames in a window around the target index
+        const halfWin = this.isMobile ? 12 : 20;
+        const start = Math.max(1, index - halfWin);
+        const end = Math.min(this.frameCount, index + halfWin);
+        for (let i = start; i <= end; i++) {
+            if (!this.images[i] && !this.loadingPromises.has(i)) {
+                this.loadImage(i);
+            }
+        }
+    }
+
     tick() {
         // Calculate progress change
         let progressChanged = false;
@@ -318,6 +324,7 @@ class CanvasScrollScrubber {
         );
 
         if (frameIndex !== this.lastRenderedFrame) {
+            this.loadWindow(frameIndex);
             this.drawFrame(frameIndex);
             this.lastRenderedFrame = frameIndex;
             this.evictExcessFrames(frameIndex);
