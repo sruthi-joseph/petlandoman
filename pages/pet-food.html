@@ -419,7 +419,7 @@
 
             <!-- Cute cartoon pets illustration -->
             <div class="footer-pets-wrap">
-                <img src="../assets/images/extracted_images/footer_pets.png" alt="Cute dog and cat cartoon" class="footer-pets-img">
+                <img src="../assets/images/extracted_images/footer_pets.png" alt="Cute dog and cat cartoon" class="footer-pets-img" loading="lazy">
             </div>
         </div>
 
@@ -458,7 +458,7 @@
             var observer = new IntersectionObserver(function(entries) {
                 entries.forEach(function(entry) {
                     if (entry.isIntersecting) {
-                        var idx = Array.from(cards).indexOf(entry.target);
+                        var idx = entry.target._cardIndex;
                         setTimeout(function() {
                             entry.target.style.opacity = '1';
                             entry.target.style.transform = 'translateY(0)';
@@ -468,7 +468,8 @@
                 });
             }, { threshold: 0.1 });
 
-            cards.forEach(function(card) {
+            cards.forEach(function(card, index) {
+                card._cardIndex = index;
                 card.style.opacity = '0';
                 card.style.transform = 'translateY(30px)';
                 card.style.transition = 'opacity 0.55s ease, transform 0.55s cubic-bezier(0.16,1,0.3,1), box-shadow 0.35s ease';
