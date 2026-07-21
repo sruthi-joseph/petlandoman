@@ -1,17 +1,14 @@
-from pypdf import PdfReader
+import pypdf
 import os
 
-pdf_path = r"c:\Users\SRUTHI\Desktop\petland oman\Ui (2).pdf"
-if not os.path.exists(pdf_path):
-    print("PDF not found!")
-    exit()
+pdf_path = r"c:\Users\SRUTHI\Desktop\petland oman\assets\docs\logo.pdf"
+reader = pypdf.PdfReader(pdf_path)
 
-reader = PdfReader(pdf_path)
 print(f"Number of pages: {len(reader.pages)}")
-
-# Print text of first few pages to see what it is
 for idx, page in enumerate(reader.pages):
-    text = page.extract_text()
-    print(f"--- Page {idx+1} ({len(text)} chars) ---")
-    if text:
-        print(text[:300])
+    print(f"Page {idx+1}:")
+    print(f"MediaBox: {page.mediabox}")
+    images = page.images
+    print(f"Number of images on page: {len(images)}")
+    for img_idx, img in enumerate(images):
+        print(f"  Image {img_idx+1}: {img.name}, size: {len(img.data)} bytes")
