@@ -69,7 +69,8 @@ class CanvasScrollScrubber {
 
         // Detect mobile viewport (768px or below)
         this.isMobile  = window.innerWidth <= 768;
-        this.frameCount = this.isMobile ? 211 : frameCount; // 211 mobile / 169 desktop
+        this.frameStep = 3; // downsample step on mobile to reduce downloads/RAM by 67%
+        this.frameCount = this.isMobile ? Math.ceil(211 / this.frameStep) : frameCount; // 71 mobile / 169 desktop
 
         this.images = [];
         this.loadedIndices = [];
@@ -78,7 +79,7 @@ class CanvasScrollScrubber {
         // --- Scroll state ---
         this.currentProgress = 0;
         this.targetProgress  = 0;
-        this.lerpFactor      = this.isMobile ? 1 : 0.12; // 1 = no easing on mobile
+        this.lerpFactor      = this.isMobile ? 0.25 : 0.12; // buttery easing on mobile, responsive lerp on desktop
 
         this.lastRenderedFrame = -1;
         this.rafScheduled      = false; // tracks if tick loop is currently running
@@ -143,7 +144,12 @@ class CanvasScrollScrubber {
     }
 
     getFramePath(index) {
-        const pad = String(index).padStart(3, '0');
+        // On mobile, map the virtual index to downsampled physical file index
+        let actualIndex = index;
+        if (this.isMobile) {
+            actualIndex = Math.min(211, (index - 1) * this.frameStep + 1);
+        }
+        const pad = String(actualIndex).padStart(3, '0');
         const pathPrefix = window.location.pathname.includes('/pages/') ? '../' : '';
         const dir = this.isMobile
             ? 'assets/frames/hero_mobile'
