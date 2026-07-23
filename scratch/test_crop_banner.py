@@ -1,0 +1,27 @@
+from PIL import Image, ImageDraw
+import os
+
+p = r"c:\Users\SRUTHI\Desktop\petland oman\assets\images\landing banner-pet products.png"
+img = Image.open(p).convert("RGBA")
+
+# Bounding box coordinates:
+# X=[23, 2070], Y=[21, 717]
+# Width = 2070 - 23 + 1 = 2048
+# Height = 717 - 21 + 1 = 697
+box = (23, 21, 2070, 717)
+cropped = img.crop(box)
+w_c, h_c = cropped.size
+
+# Create a rounded rectangle mask
+radius = 70
+factor = 4
+mask_large = Image.new("L", (w_c * factor, h_c * factor), 0)
+draw_large = ImageDraw.Draw(mask_large)
+draw_large.rounded_rectangle((0, 0, w_c * factor, h_c * factor), radius * factor, fill=255)
+
+mask = mask_large.resize((w_c, h_c), Image.Resampling.LANCZOS)
+cropped.putalpha(mask)
+
+# Save test image to scratch
+cropped.save(r"c:\Users\SRUTHI\Desktop\petland oman\scratch\test_banner_products.png", "PNG")
+print("Saved test_banner_products.png")

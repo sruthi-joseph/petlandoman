@@ -1679,16 +1679,14 @@ footer {
 }
 
 .banner-img {
-    width: 106% !important;
+    width: 100% !important;
     height: auto !important;
     display: block;
     object-fit: contain;
     border-radius: 36px;
     box-shadow: none;
     transition: var(--transition-smooth);
-    margin-left: -3% !important;
-    margin-top: -4.2% !important;
-    margin-bottom: -2% !important;
+    margin: 0 !important;
 }
 
 /* Navigation Arrow Buttons — hidden */
