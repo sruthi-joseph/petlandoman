@@ -432,10 +432,7 @@ function initContactForm() {
     const form = document.getElementById('petland-contact-form');
     if (!form) return;
 
-    const btnWhatsApp = document.getElementById('btn-submit-whatsapp');
-    const btnEmail = document.getElementById('btn-submit-email');
-    const contactPhone = '96879260091';
-    const contactEmail = 'info@petlandoman.com';
+    const contactEmail = 'info.petland@capitalgroupom.com';
 
     function getFormData() {
         const name = document.getElementById('form-name').value.trim();
@@ -452,36 +449,29 @@ function initContactForm() {
         return { name, phone, email, subject, message };
     }
 
-    // Submit to WhatsApp
-    btnWhatsApp.addEventListener('click', () => {
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
         const data = getFormData();
         if (!data) return;
 
-        const text = `*New Contact Enquiry - Petland Oman*\n\n` +
-                     `*Name:* ${data.name}\n` +
-                     `*Phone:* ${data.phone}\n` +
-                     `*Email:* ${data.email}\n` +
-                     `*Subject:* ${data.subject}\n\n` +
-                     `*Message:*\n${data.message}`;
-
-        const url = `https://wa.me/${contactPhone}?text=${encodeURIComponent(text)}`;
-        window.open(url, '_blank');
-    });
-
-    // Submit to Email
-    btnEmail.addEventListener('click', () => {
-        const data = getFormData();
-        if (!data) return;
-
-        const mailSubject = `[Enquiry] ${data.subject} - ${data.name}`;
+        const mailSubject = `[Contact Enquiry] ${data.subject} - ${data.name}`;
         const mailBody = `Name: ${data.name}\n` +
                          `Phone: ${data.phone}\n` +
-                         `Email: ${data.email}\n\n` +
+                         `Email: ${data.email}\n` +
+                         `Subject: ${data.subject}\n\n` +
                          `Message:\n${data.message}`;
 
         const url = `mailto:${contactEmail}?subject=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(mailBody)}`;
         window.location.href = url;
     });
+
+    const btnEmail = document.getElementById('btn-submit-email') || document.getElementById('btn-submit-whatsapp');
+    if (btnEmail) {
+        btnEmail.addEventListener('click', (e) => {
+            e.preventDefault();
+            form.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
+        });
+    }
 }
 
 /* ==========================================================================

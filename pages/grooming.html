@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -40,10 +40,13 @@
         }
 
         /* --- GRID & CARDS (Mockup Style) --- */
+        .grooming-packages-section {
+            padding-top: 95px;
+        }
         .grooming-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 4rem 2rem;
+            padding: 1rem 2rem 4rem;
         }
         .grooming-grid {
             display: grid;
@@ -616,10 +619,20 @@
             .grooming-card-img-wrap {
                 position: relative;
                 width: 100%;
-                height: 180px;
+                height: auto;
+                min-height: 200px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
             .grooming-card-img {
+                width: 100%;
+                height: auto;
+                max-height: 260px;
+                object-fit: contain;
+                object-position: center top;
                 border-radius: 0 0 28px 28px;
+                display: block;
             }
             .gmodal-tabs {
                 grid-template-columns: 1fr;
@@ -665,14 +678,6 @@
         </div>
     </header>
 
-    <!-- HERO BANNER -->
-    <section class="grooming-hero">
-        <div class="grooming-hero-content">
-            <h1>Grooming Services</h1>
-            <p>Treat your beloved furry companions to OMR's premium pet care and pampering sessions.</p>
-        </div>
-    </section>
-
     <!-- PACKAGES SECTION -->
     <section class="grooming-packages-section">
         <div class="grooming-container">
@@ -690,7 +695,7 @@
                 <!-- Card 1: Shower, Nail cut, Ear cleaning -->
                 <div class="grooming-card card-bg-1" onclick="openGroomingModal(1)">
                     <div class="grooming-card-content">
-                        <h3>Shower, Nail cut, Ear cleaning</h3>
+                        <h3>Fresh Paw Package</h3>
                         <p>Warm relaxing shower with premium blow-dry, hygienic ear cleaning, and expert nail trimming.</p>
                         <button class="grooming-card-btn">View Details &nbsp;➔</button>
                     </div>
@@ -702,7 +707,7 @@
                 <!-- Card 2: Hair cut, Nail cut, Ear cleaning -->
                 <div class="grooming-card card-bg-2" onclick="openGroomingModal(2)">
                     <div class="grooming-card-content">
-                        <h3>Hair cut, Nail cut, Ear cleaning</h3>
+                        <h3>Style & Shine Package</h3>
                         <p>Professional clip & styling tailored to your pet's breed, claw clipping, and hygienic ear clean.</p>
                         <button class="grooming-card-btn">View Details &nbsp;➔</button>
                     </div>
@@ -714,7 +719,7 @@
                 <!-- Card 3: Shower, Deshedding, Nail cut & Ear Cleaning -->
                 <div class="grooming-card card-bg-3" onclick="openGroomingModal(3)">
                     <div class="grooming-card-content">
-                        <h3>Shower, Deshedding, Nail cut & Ear Cleaning</h3>
+                        <h3>Deep Care Package</h3>
                         <p>Specialized deshedding wash, deep undercoat blowout, intensive brushing, claw trim, and ear sanitation.</p>
                         <button class="grooming-card-btn">View Details &nbsp;➔</button>
                     </div>
@@ -726,7 +731,7 @@
                 <!-- Card 4: Full Grooming -->
                 <div class="grooming-card card-bg-4" onclick="openGroomingModal(4)">
                     <div class="grooming-card-content">
-                        <h3>Full Grooming</h3>
+                        <h3>Royal Grooming Package</h3>
                         <p>Our royal spa: custom styling, deep cleansing shower, nail filing, ear cleaning, and fresh scent spray.</p>
                         <button class="grooming-card-btn">View Details &nbsp;➔</button>
                     </div>
@@ -780,7 +785,6 @@
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star"></i>
                         </div>
-                        <span class="gmodal-reviews">(120 Reviews)</span>
                     </div>
 
                     <p class="gmodal-desc" id="gmodal-desc">Package description goes here.</p>
@@ -817,8 +821,8 @@
                         <span class="price-label">Price Starts from</span>
                         <div class="price-numbers">
                             <span class="current-price" id="gmodal-current-price">OMR 11.00</span>
-                            <span class="original-price" id="gmodal-original-price">OMR 13.00</span>
-                            <span class="discount-badge" id="gmodal-discount-badge">15% OFF</span>
+
+
                         </div>
                     </div>
 
@@ -827,9 +831,7 @@
                         <a href="#" target="_blank" class="gmodal-btn-book" id="gmodal-btn-book">
                             Book Now <i class="fa-solid fa-calendar-check"></i>
                         </a>
-                        <a href="contact.html" class="gmodal-btn-enquire">
-                            Enquire for Custom Plan
-                        </a>
+
                     </div>
                 </div>
             </div>
@@ -955,14 +957,14 @@
     <script>
         const groomingPackages = {
             1: {
-                title: "Shower, Nail cut, Ear cleaning",
+                title: "Fresh Paw Package",
                 tagline: "Tailored Care for All Breeds",
                 desc: "A relaxing shower and blow-dry using premium hypoallergenic shampoo. We carefully clean their ears to prevent wax build-up and gently trim their nails to ensure comfortable walking. Perfect for regular hygiene upkeep.",
                 images: [
-                    "extracted_images/grooming_shower.png",
-                    "extracted_images/grooming_haircut.png",
-                    "extracted_images/grooming_deshedding.png",
-                    "extracted_images/grooming_full.png"
+                    "../assets/images/extracted_images/grooming_shower.png",
+                    "../assets/images/extracted_images/grooming_haircut.png",
+                    "../assets/images/extracted_images/grooming_deshedding.png",
+                    "../assets/images/extracted_images/grooming_full.png"
                 ],
                 prices: {
                     small: "11.00",
@@ -982,14 +984,14 @@
                 ]
             },
             2: {
-                title: "Hair cut, Nail cut, Ear cleaning",
+                title: "Style & Shine Package",
                 tagline: "Sleek Style & Clean Look",
                 desc: "A custom haircut styled by our professional groomers to fit your pet's breed or look, combined with detailed nail cutting and deep ear cleaning. Keeps your pet comfortable, cool, and looking their absolute best.",
                 images: [
-                    "extracted_images/grooming_haircut.png",
-                    "extracted_images/grooming_shower.png",
-                    "extracted_images/grooming_deshedding.png",
-                    "extracted_images/grooming_full.png"
+                    "../assets/images/extracted_images/grooming_haircut.png",
+                    "../assets/images/extracted_images/grooming_shower.png",
+                    "../assets/images/extracted_images/grooming_deshedding.png",
+                    "../assets/images/extracted_images/grooming_full.png"
                 ],
                 prices: {
                     small: "11.00",
@@ -1009,14 +1011,14 @@
                 ]
             },
             3: {
-                title: "Shower, Deshedding, Nail cut & Ear Cleaning",
+                title: "Deep Care Package",
                 tagline: "Bye-Bye Loose Pet Hair",
                 desc: "Designed specifically for double-coated or heavy-shedding pets. Includes a specialized deshedding wash, deep undercoat blowout, intensive brushing, a clean ear flush, and neat nail trimming. Dramatically reduces shedding at home.",
                 images: [
-                    "extracted_images/grooming_deshedding.png",
-                    "extracted_images/grooming_shower.png",
-                    "extracted_images/grooming_haircut.png",
-                    "extracted_images/grooming_full.png"
+                    "../assets/images/extracted_images/grooming_deshedding.png",
+                    "../assets/images/extracted_images/grooming_shower.png",
+                    "../assets/images/extracted_images/grooming_haircut.png",
+                    "../assets/images/extracted_images/grooming_full.png"
                 ],
                 prices: {
                     small: "11.00",
@@ -1036,14 +1038,14 @@
                 ]
             },
             4: {
-                title: "Full Grooming",
+                title: "Royal Grooming Package",
                 tagline: "The Ultimate Royal Spa Experience",
                 desc: "Our most comprehensive premium package. Includes a warm relaxing bath, breed-specific style haircut, full deshedding, sanitary trimming, paw pad shaving, ear cleaning/plucking, nail clipping, claw filing, and refreshing cologne spray.",
                 images: [
-                    "extracted_images/grooming_full.png",
-                    "extracted_images/grooming_shower.png",
-                    "extracted_images/grooming_haircut.png",
-                    "extracted_images/grooming_deshedding.png"
+                    "../assets/images/extracted_images/grooming_full.png",
+                    "../assets/images/extracted_images/grooming_shower.png",
+                    "../assets/images/extracted_images/grooming_haircut.png",
+                    "../assets/images/extracted_images/grooming_deshedding.png"
                 ],
                 prices: {
                     small: "17.00",
@@ -1170,11 +1172,9 @@
 
             // Update display prices
             document.getElementById('gmodal-current-price').textContent = `OMR ${price}`;
-            document.getElementById('gmodal-original-price').textContent = `OMR ${origPrice}`;
+
             
-            // Calculate discount percent
-            const discount = Math.round((1 - (parseFloat(price) / parseFloat(origPrice))) * 100);
-            document.getElementById('gmodal-discount-badge').textContent = `${discount}% OFF`;
+
 
             // Configure Book Now WhatsApp link
             const breedLabel = currentBreed === 'small' ? 'Small Breed Dog/Cat' : 

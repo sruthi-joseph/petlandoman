@@ -1053,68 +1053,6 @@ nav ul li a.active {
     }
 }
 
-@media (max-width: 580px) {
-    .svc-card-overlay {
-        padding: 1.5rem 1rem 1.5rem 1.5rem;
-        justify-content: center;
-        background: transparent !important;
-    }
-    .svc-card-title {
-        font-size: 1.4rem;
-        max-width: 65%;
-        color: #121212 !important;
-    }
-    .svc-card-divider {
-        margin: 0.6rem 0;
-        height: 3px;
-        width: 30px;
-        background-color: #121212 !important;
-    }
-    .svc-card-desc {
-        max-width: 60%;
-        font-size: 0.82rem;
-        line-height: 1.35;
-        margin-bottom: 0.8rem;
-        color: #333333 !important;
-    }
-    .svc-card-btn, .prod-card-btn {
-        padding: 0.5rem 1rem;
-        font-size: 0.8rem;
-        background-color: #000000 !important;
-        color: #FCC203 !important;
-    }
-}
-
-@media (max-width: 410px) {
-    .svc-card-overlay {
-        padding: 1.2rem;
-        background: transparent !important;
-    }
-    .svc-card-title {
-        font-size: 1.25rem;
-        color: #121212 !important;
-    }
-    .svc-card-divider {
-        margin: 0.5rem 0;
-        height: 3px;
-        width: 30px;
-        background-color: #121212 !important;
-    }
-    .svc-card-desc {
-        font-size: 0.75rem;
-        margin-bottom: 0.6rem;
-        max-width: 60%;
-        line-height: 1.3;
-        color: #333333 !important;
-    }
-    .svc-card-btn, .prod-card-btn {
-        padding: 0.4rem 0.8rem;
-        font-size: 0.75rem;
-        background-color: #000000 !important;
-        color: #FCC203 !important;
-    }
-}
-
 /* Responsiveness */
 @media (max-width: 1024px) {
     .svc-cards-grid {
@@ -1146,10 +1084,57 @@ nav ul li a.active {
     }
     .svc-card-title {
         font-size: 1.8rem;
-        max-width: 70%;
+        max-width: 50%;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+    }
+    .prod-card .svc-card-title {
+        margin-bottom: 0.8rem;
     }
     .svc-card-desc {
-        max-width: 70%;
+        max-width: 48%;
+        margin-bottom: 1.6rem;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+    }
+}
+
+@media (max-width: 580px) {
+    .svc-card-overlay {
+        padding: 1.5rem 1rem 1.5rem 1.5rem;
+        justify-content: center;
+        background: transparent !important;
+    }
+    .svc-card-title {
+        font-size: 1.4rem;
+        max-width: 50%;
+        color: #121212 !important;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+    }
+    .prod-card .svc-card-title {
+        margin-bottom: 0.6rem;
+    }
+    .svc-card-divider {
+        margin: 0.6rem 0;
+        height: 3px;
+        width: 30px;
+        background-color: #121212 !important;
+    }
+    .svc-card-desc {
+        max-width: 48%;
+        font-size: 0.82rem;
+        line-height: 1.35;
+        margin-bottom: 1.2rem;
+        color: #333333 !important;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+    }
+    .svc-card-btn, .prod-card-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+        background-color: #000000 !important;
+        color: #FCC203 !important;
     }
 }
 
@@ -1174,6 +1159,44 @@ nav ul li a.active {
     .service-preview-card {
         min-width: unset !important;
         width: 100% !important;
+    }
+}
+
+@media (max-width: 410px) {
+    .svc-card-overlay {
+        padding: 1.2rem;
+        background: transparent !important;
+    }
+    .svc-card-title {
+        font-size: 1.25rem;
+        max-width: 50%;
+        color: #121212 !important;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+    }
+    .prod-card .svc-card-title {
+        margin-bottom: 0.5rem;
+    }
+    .svc-card-divider {
+        margin: 0.5rem 0;
+        height: 3px;
+        width: 30px;
+        background-color: #121212 !important;
+    }
+    .svc-card-desc {
+        font-size: 0.75rem;
+        margin-bottom: 1.0rem;
+        max-width: 48%;
+        line-height: 1.3;
+        color: #333333 !important;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+    }
+    .svc-card-btn, .prod-card-btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.75rem;
+        background-color: #000000 !important;
+        color: #FCC203 !important;
     }
 }
 
@@ -1315,6 +1338,9 @@ footer {
     font-size: 0.95rem;
     line-height: 1.5;
     margin-bottom: 1.2rem;
+    max-width: 270px;
+    position: relative;
+    z-index: 8;
 }
 
 .newsletter-form {
@@ -1327,6 +1353,7 @@ footer {
     width: 100%;
     max-width: 320px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    z-index: 8;
 }
 
 .newsletter-input {
@@ -1374,6 +1401,12 @@ footer {
     width: 340px;
     z-index: 6;
     pointer-events: none;
+}
+
+@media (min-width: 1025px) and (max-width: 1250px) {
+    .footer-pets-wrap {
+        right: -40px;
+    }
 }
 
 .footer-pets-img {
@@ -3893,10 +3926,20 @@ footer {
             .grooming-card-img-wrap {
                 position: relative;
                 width: 100%;
-                height: 180px;
+                height: auto;
+                min-height: 200px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
             .grooming-card-img {
+                width: 100%;
+                height: auto;
+                max-height: 260px;
+                object-fit: contain;
+                object-position: center bottom;
                 border-radius: 0 0 28px 28px;
+                display: block;
             }
             .gmodal-tabs {
                 grid-template-columns: 1fr;
@@ -4194,7 +4237,7 @@ footer {
     .grooming-card,
     .boarding-card {
         height: auto !important;
-        min-height: 200px;
+        min-height: 0 !important;
         flex-direction: column !important;
         border-radius: 22px !important;
     }
@@ -4208,14 +4251,15 @@ footer {
     .boarding-card-img-wrap {
         position: relative !important;
         width: 100% !important;
-        height: 160px !important;
+        height: 230px !important;
         right: auto !important;
         bottom: auto !important;
     }
     .grooming-card-img,
     .boarding-card-img {
         border-radius: 0 0 22px 22px !important;
-        object-fit: cover;
+        object-fit: cover !important;
+        object-position: center top !important;
     }
     .services-page-grid .svc-card {
         flex: 0 1 100% !important;
@@ -4237,15 +4281,18 @@ footer {
     .svc-feat-divider {
         display: none !important;
     }
-    .grooming-packages-section,
-    .boarding-packages-section,
     .svc-cards-section {
         padding: 2rem 0 !important;
+    }
+    .grooming-packages-section,
+    .boarding-packages-section {
+        padding-top: 90px !important;
+        padding-bottom: 2rem !important;
     }
     .grooming-card,
     .boarding-card {
         border-radius: 18px !important;
-        min-height: 180px;
+        min-height: 0 !important;
     }
     .grooming-card-content,
     .boarding-card-content {
@@ -4260,9 +4307,15 @@ footer {
         font-size: 0.82rem !important;
         max-width: 100% !important;
     }
-    .grooming-card-img-wrap,
+    .grooming-card-img-wrap {
+        height: 140px !important;
+    }
     .boarding-card-img-wrap {
-        height: 130px !important;
+        height: 160px !important;
+    }
+    .grooming-card-img,
+    .boarding-card-img {
+        object-position: center top !important;
     }
     .grooming-card-icon,
     .boarding-card-icon {

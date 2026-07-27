@@ -1,10 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VIP Pet Boarding & Daycare | Petland Oman</title>
-    <meta name="description" content="Experience VIP Dog & Cat Boarding at Petland Oman. Cozy stays, premium food, supervised play, and loving care while you are away.">
+    <title>Premium Pet Boarding & Daycare | Petland Oman</title>
+    <meta name="description" content="Experience Premium Dog & Cat Boarding at Petland Oman. Cozy stays, premium food, supervised play, and loving care while you are away.">
     <!-- FontAwesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Main Stylesheet -->
@@ -40,10 +40,13 @@
         }
 
         /* --- GRID & CARDS (Mockup Style) --- */
+        .boarding-packages-section {
+            padding-top: 95px;
+        }
         .boarding-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 4rem 2rem;
+            padding: 1rem 2rem 4rem;
         }
         .boarding-grid {
             display: grid;
@@ -608,21 +611,26 @@
         }
         @media (max-width: 480px) {
             .boarding-card {
-                height: auto;
+                height: auto !important;
+                min-height: 0 !important;
                 flex-direction: column;
-                min-height: 360px;
             }
             .boarding-card-content {
                 width: 100%;
-                padding: 1.5rem;
+                padding: 1.2rem 1.2rem 0.6rem;
             }
             .boarding-card-img-wrap {
                 position: relative;
                 width: 100%;
-                height: 180px;
+                height: 160px !important;
             }
             .boarding-card-img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center top;
                 border-radius: 0 0 28px 28px;
+                display: block;
             }
             .gmodal-tabs {
                 grid-template-columns: 1fr;
@@ -668,14 +676,6 @@
         </div>
     </header>
 
-    <!-- HERO BANNER -->
-    <section class="boarding-hero">
-        <div class="boarding-hero-content">
-            <h1>VIP Boarding & Daycare</h1>
-            <p>While you're on vacation, your pet deserves one too. Book a stay with us today!</p>
-        </div>
-    </section>
-
     <!-- PACKAGES SECTION -->
     <section class="boarding-packages-section">
         <div class="boarding-container">
@@ -690,10 +690,10 @@
             </div>
 
             <div class="boarding-grid">
-                <!-- Card 1: VIP Dog Boarding (With Food) -->
+                <!-- Card 1: Premium Dog Boarding (With Food) -->
                 <div class="boarding-card card-bg-1" onclick="openBoardingModal(1)">
                     <div class="boarding-card-content">
-                        <h3>VIP Dog Boarding (With Food)</h3>
+                        <h3>Paw Comfort Suite</h3>
                         <p>Overnight luxury boarding including high-quality meals, playtime, and round-the-clock supervision.</p>
                         <button class="boarding-card-btn">View Details &nbsp;➔</button>
                     </div>
@@ -702,10 +702,10 @@
                     </div>
                 </div>
 
-                <!-- Card 2: VIP Dog Boarding (Without Food) -->
+                <!-- Card 2: Premium Dog Boarding (Without Food) -->
                 <div class="boarding-card card-bg-2" onclick="openBoardingModal(2)">
                     <div class="boarding-card-content">
-                        <h3>VIP Dog Boarding (Without Food)</h3>
+                        <h3>Paw Cozy Stay</h3>
                         <p>Perfect for custom diets. Bring your pet's own food and we will strictly maintain their feeding schedules.</p>
                         <button class="boarding-card-btn">View Details &nbsp;➔</button>
                     </div>
@@ -714,10 +714,10 @@
                     </div>
                 </div>
 
-                <!-- Card 3: VIP Cat Boarding (With Food) -->
+                <!-- Card 3: Premium Cat Boarding (With Food) -->
                 <div class="boarding-card card-bg-3" onclick="openBoardingModal(3)">
                     <div class="boarding-card-content">
-                        <h3>VIP Cat Boarding (With Food)</h3>
+                        <h3>Purr Comfort Suite</h3>
                         <p>Luxury cat lodging featuring individual multi-tier condos, premium cat food, and playful laser sessions.</p>
                         <button class="boarding-card-btn">View Details &nbsp;➔</button>
                     </div>
@@ -726,10 +726,10 @@
                     </div>
                 </div>
 
-                <!-- Card 4: VIP Cat Boarding (Without Food) -->
+                <!-- Card 4: Premium Cat Boarding (Without Food) -->
                 <div class="boarding-card card-bg-4" onclick="openBoardingModal(4)">
                     <div class="boarding-card-content">
-                        <h3>VIP Cat Boarding (Without Food)</h3>
+                        <h3>Purr Cozy Stay</h3>
                         <p>Serene feline boarding option. Bring their familiar daily diet to support sensitive stomachs.</p>
                         <button class="boarding-card-btn">View Details &nbsp;➔</button>
                     </div>
@@ -772,7 +772,7 @@
                 </div>
                 <!-- Right side: details and selections -->
                 <div class="gmodal-right">
-                    <div class="gmodal-tag" id="gmodal-tag">VIP Hotel & Boarding</div>
+                    <div class="gmodal-tag" id="gmodal-tag">Premium Hotel & Boarding</div>
                     <h2 class="gmodal-title" id="gmodal-title">Package Name</h2>
                     
                     <div class="gmodal-rating-row">
@@ -783,7 +783,6 @@
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star"></i>
                         </div>
-                        <span class="gmodal-reviews">(95 Reviews)</span>
                     </div>
 
                     <p class="gmodal-desc" id="gmodal-desc">Package description goes here.</p>
@@ -806,8 +805,8 @@
                         <span class="price-label">Price per Day</span>
                         <div class="price-numbers">
                             <span class="current-price" id="gmodal-current-price">OMR 6.00</span>
-                            <span class="original-price" id="gmodal-original-price">OMR 8.00</span>
-                            <span class="discount-badge" id="gmodal-discount-badge">25% OFF</span>
+
+
                         </div>
                     </div>
 
@@ -816,9 +815,7 @@
                         <a href="#" target="_blank" class="gmodal-btn-book" id="gmodal-btn-book">
                             Book Now <i class="fa-solid fa-calendar-check"></i>
                         </a>
-                        <a href="contact.html" class="gmodal-btn-enquire">
-                            Enquire for Custom Plan
-                        </a>
+
                     </div>
                 </div>
             </div>
@@ -944,20 +941,20 @@
     <script>
         const boardingPackages = {
             1: {
-                title: "VIP Dog Boarding (With Food)",
+                title: "Paw Comfort Suite",
                 tagline: "Premium Meals & Luxury Stay",
                 desc: "Give your dog a luxury vacation of their own. Includes premium, nutritious dog food, structured feeding routines, daily group/private play, continuous supervision, cozy bedding, and a temperature-controlled personal lodge room.",
                 images: [
-                    "extracted_images/boarding_dog_with_food.png",
-                    "extracted_images/boarding_dog_no_food.png"
+                    "../assets/images/extracted_images/boarding_dog_with_food.png",
+                    "../assets/images/extracted_images/boarding_dog_no_food.png"
                 ],
                 prices: {
-                    small: "6.00",
-                    big: "8.00"
+                    small: "5.00",
+                    big: "7.00"
                 },
                 originalPrices: {
-                    small: "8.00",
-                    big: "10.00"
+                    small: "5.00",
+                    big: "7.00"
                 },
                 labels: {
                     small: { name: "Small Breed", sub: "Dog" },
@@ -971,20 +968,20 @@
                 ]
             },
             2: {
-                title: "VIP Dog Boarding (Without Food)",
+                title: "Paw Cozy Stay",
                 tagline: "Custom Feeding & Comfortable Lodge",
                 desc: "Ideal for dogs with specific diets, allergies, or custom recipes. Bring your own food and we will strictly execute your feeding instructions, alongside providing cozy sleeping space and exciting daily playtime.",
                 images: [
-                    "extracted_images/boarding_dog_no_food.png",
-                    "extracted_images/boarding_dog_with_food.png"
+                    "../assets/images/extracted_images/boarding_dog_no_food.png",
+                    "../assets/images/extracted_images/boarding_dog_with_food.png"
                 ],
                 prices: {
-                    small: "5.00",
-                    big: "7.00"
+                    small: "4.00",
+                    big: "6.00"
                 },
                 originalPrices: {
-                    small: "6.50",
-                    big: "9.00"
+                    small: "4.00",
+                    big: "6.00"
                 },
                 labels: {
                     small: { name: "Small Breed", sub: "Dog" },
@@ -998,21 +995,24 @@
                 ]
             },
             3: {
-                title: "VIP Cat Boarding (With Food)",
+                title: "Purr Comfort Suite",
                 tagline: "Cozy Condos & Gourmet Feline Dining",
                 desc: "A calm, relaxing environment for cats. Includes high-quality wet and dry food, separate quiet boarding zones away from dogs, multi-level cat condos, fresh water changed daily, and interactive laser and toy play sessions.",
                 images: [
-                    "extracted_images/boarding_cat_with_food.png",
-                    "extracted_images/boarding_cat_no_food.png"
+                    "../assets/images/extracted_images/boarding_cat_with_food.png",
+                    "../assets/images/extracted_images/boarding_cat_no_food.png"
                 ],
                 prices: {
-                    cat: "5.00"
+                    kitten: "4.00",
+                    adult: "4.50"
                 },
                 originalPrices: {
-                    cat: "6.50"
+                    kitten: "4.00",
+                    adult: "4.50"
                 },
                 labels: {
-                    cat: { name: "Standard Cat", sub: "Feline" }
+                    kitten: { name: "Kitten", sub: "Cat" },
+                    adult: { name: "Adult", sub: "Cat" }
                 },
                 features: [
                     { name: "Gourmet Cat Food", desc: "Wet & dry options included" },
@@ -1022,21 +1022,24 @@
                 ]
             },
             4: {
-                title: "VIP Cat Boarding (Without Food)",
+                title: "Purr Cozy Stay",
                 tagline: "Quiet Retreat & Custom Feline Feeding",
                 desc: "For felines who strictly prefer their own brand of food or have delicate digestive systems. Bring their custom food and we will feed them exactly on time while offering a peaceful, cozy individual cat suite.",
                 images: [
-                    "extracted_images/boarding_cat_no_food.png",
-                    "extracted_images/boarding_cat_with_food.png"
+                    "../assets/images/extracted_images/boarding_cat_no_food.png",
+                    "../assets/images/extracted_images/boarding_cat_with_food.png"
                 ],
                 prices: {
-                    cat: "4.00"
+                    kitten: "3.50",
+                    adult: "4.00"
                 },
                 originalPrices: {
-                    cat: "5.00"
+                    kitten: "3.50",
+                    adult: "4.00"
                 },
                 labels: {
-                    cat: { name: "Standard Cat", sub: "Feline" }
+                    kitten: { name: "Kitten", sub: "Cat" },
+                    adult: { name: "Adult", sub: "Cat" }
                 },
                 features: [
                     { name: "Own Food Administered", desc: "No diet disruption" },
@@ -1177,16 +1180,14 @@
 
             // Update display prices
             document.getElementById('gmodal-current-price').textContent = `OMR ${price}`;
-            document.getElementById('gmodal-original-price').textContent = `OMR ${origPrice}`;
+
             
-            // Calculate discount percent
-            const discount = Math.round((1 - (parseFloat(price) / parseFloat(origPrice))) * 100);
-            document.getElementById('gmodal-discount-badge').textContent = `${discount}% OFF`;
+
 
             // Configure Book Now WhatsApp link
             const labelInfo = pkg.labels[currentBreed];
             const breedLabel = `${labelInfo.name} (${labelInfo.sub})`;
-            const waMessage = `Hi Petland Oman, I would like to book a VIP boarding stay!\n\n` +
+            const waMessage = `Hi Petland Oman, I would like to book a Premium boarding stay!\n\n` +
                               `Package: *${pkg.title}*\n` +
                               `Type/Breed: *${breedLabel}*\n` +
                               `Price: *OMR ${price} / Day*\n\n` +
