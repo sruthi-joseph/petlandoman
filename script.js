@@ -483,6 +483,14 @@ function initContactForm() {
 
     form.addEventListener('submit', (e) => {
         e.preventDefault();
+
+        // Validate policy acceptance checkbox
+        const checkbox = document.getElementById('policy-acceptance');
+        if (checkbox && !checkbox.checked) {
+            alert('Please accept the Privacy Policy, Terms & Conditions, and Return & Exchange Policy to continue.');
+            return;
+        }
+
         const data = getFormData();
         if (!data) return;
 

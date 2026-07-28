@@ -8,7 +8,7 @@
     <!-- FontAwesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Main Stylesheet -->
-    <link rel="stylesheet" href="../style.css?v=32">
+    <link rel="stylesheet" href="../style.css?v=46">
 </head>
 <body>
 
@@ -43,8 +43,8 @@
     <!-- MAIN CONTAINER -->
     <main class="container" style="margin-top: 120px; box-sizing: border-box;">
         <!-- PAGE TITLE -->
-        <div style="text-align: left; margin: 3rem 0 1rem 0;">
-            <h1 style="font-family: var(--font-rounded); font-size: 3rem; font-weight: 700; color: #000000; margin: 0;">Get in Touch</h1>
+        <div class="contact-page-title-wrap">
+            <h1>Get in Touch</h1>
         </div>
 
         <div class="contact-layout">
@@ -85,6 +85,16 @@
                     <div class="form-field-wrap textarea-wrap">
                         <i class="fa-solid fa-pen"></i>
                         <textarea id="form-message" rows="5" placeholder="Your Message" required></textarea>
+                    </div>
+                    
+                    <div class="form-acceptance-wrap">
+                        <input type="checkbox" id="policy-acceptance" required>
+                        <label for="policy-acceptance">
+                            I have read and agree to the 
+                            <a href="privacy.html" target="_blank">Privacy Policy</a>, 
+                            <a href="terms.html" target="_blank">Terms &amp; Conditions</a>, and 
+                            <a href="return-policy.html" target="_blank">Return &amp; Exchange Policy</a>.
+                        </label>
                     </div>
                     
                     <div>
@@ -253,8 +263,18 @@
             <div class="footer-bottom-badge">
                 <i class="fa-solid fa-paw"></i>
             </div>
-            <div class="footer-copyright-text">
+                        <div class="footer-copyright-text">
                 &copy; 2026 Petland Oman. All rights reserved.
+            </div>
+            <div class="footer-policy-links">
+                <a href="privacy.html">Privacy Policy</a>
+                <span class="separator">|</span>
+                <a href="terms.html">Terms &amp; Conditions</a>
+                <span class="separator">|</span>
+                <a href="return-policy.html">Return &amp; Exchange Policy</a>
+            </div>
+            <div class="footer-dev-link">
+                <a href="https://www.instagram.com/intellex.web?igsh=MXc4Z2Uwd243OHpqdA%3D%3D&utm_source=qr" target="_blank">Meet the Developers</a>
             </div>
         </div>
     </footer>
