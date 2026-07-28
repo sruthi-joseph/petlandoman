@@ -29,17 +29,11 @@
             display: block;
             vertical-align: bottom;
         }
-        /* Hide the mobile video on desktop and vice-versa */
+        /* Responsive adjustment for fullpage video height on mobile */
         @media (max-width: 768px) {
             .services-video-fullpage {
                 height: 65vh !important;
             }
-            #svc-video-desktop { display: none !important; }
-            #svc-video-mobile  { display: block !important; }
-        }
-        @media (min-width: 769px) {
-            #svc-video-mobile  { display: none !important; }
-            #svc-video-desktop { display: block !important; }
         }
     </style>
 </head>
@@ -75,14 +69,25 @@
 
     <!-- VIDEO SECTION — full viewport, no text, no zoom -->
     <div class="services-video-fullpage">
-        <video id="svc-video-desktop" preload="auto" muted playsinline autoplay loop>
-            <source src="../assets/videos/service_desktop_1.mp4" type="video/mp4">
-            Your browser does not support the video tag.
+        <video id="svc-video" muted playsinline autoplay loop preload="auto">
+            <!-- Source dynamically set by script below -->
         </video>
-        <video id="svc-video-mobile" preload="auto" muted playsinline autoplay loop style="display:none;">
-            <source src="../assets/videos/service_phone_view.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
+        <script>
+            (function() {
+                var video = document.getElementById('svc-video');
+                var isMobile = window.innerWidth <= 768;
+                var source = document.createElement('source');
+                if (isMobile) {
+                    video.setAttribute('poster', '../assets/images/posters/service_phone_view_poster.jpg');
+                    source.src = '../assets/videos/service_phone_view.mp4';
+                } else {
+                    video.setAttribute('poster', '../assets/images/posters/service_desktop_1_poster.jpg');
+                    source.src = '../assets/videos/service_desktop_1.mp4';
+                }
+                source.type = 'video/mp4';
+                video.appendChild(source);
+            })();
+        </script>
     </div>
 
     <!-- KEY UTILITY BAR -->

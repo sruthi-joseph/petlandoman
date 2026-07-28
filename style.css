@@ -4683,11 +4683,15 @@ footer {
         right: auto !important;
         bottom: auto !important;
     }
-    .grooming-card-img,
-    .boarding-card-img {
+    .grooming-card-img {
         border-radius: 0 0 22px 22px !important;
         object-fit: cover !important;
         object-position: center top !important;
+    }
+    .boarding-card-img {
+        border-radius: 0 0 22px 22px !important;
+        object-fit: cover !important;
+        object-position: center !important;
     }
     .services-page-grid .svc-card {
         flex: 0 1 100% !important;
@@ -4741,9 +4745,11 @@ footer {
     .boarding-card-img-wrap {
         height: 160px !important;
     }
-    .grooming-card-img,
-    .boarding-card-img {
+    .grooming-card-img {
         object-position: center top !important;
+    }
+    .boarding-card-img {
+        object-position: center !important;
     }
     .grooming-card-icon,
     .boarding-card-icon {

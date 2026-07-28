@@ -26,14 +26,6 @@
             display: block;
             vertical-align: bottom;
         }
-        @media (max-width: 768px) {
-            #scroll-video-desktop { display: none !important; }
-            #scroll-video-mobile  { display: block !important; }
-        }
-        @media (min-width: 769px) {
-            #scroll-video-mobile  { display: none !important; }
-            #scroll-video-desktop { display: block !important; }
-        }
 
         /* --- MOUSE-OVER POP ANIMATION for features bar items --- */
         @keyframes svcHoverPop {
@@ -84,16 +76,25 @@
 
     <!-- 1. PRODUCT-FOCUSED HERO VIDEO -->
     <section class="product-video-fullpage">
-        <!-- Desktop Video -->
-        <video id="scroll-video-desktop" preload="auto" muted playsinline autoplay loop>
-            <source src="../assets/videos/desktop_product_page_1.mp4" type="video/mp4">
-            Your browser does not support the video tag.
+        <video id="product-video" muted playsinline autoplay loop preload="auto">
+            <!-- Source dynamically set by script below -->
         </video>
-        <!-- Mobile Video -->
-        <video id="scroll-video-mobile" preload="auto" muted playsinline autoplay loop style="display: none;">
-            <source src="../assets/videos/pet_product_phone_view.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
+        <script>
+            (function() {
+                var video = document.getElementById('product-video');
+                var isMobile = window.innerWidth <= 768;
+                var source = document.createElement('source');
+                if (isMobile) {
+                    video.setAttribute('poster', '../assets/images/posters/pet_product_phone_view_poster.jpg');
+                    source.src = '../assets/videos/pet_product_phone_view.mp4';
+                } else {
+                    video.setAttribute('poster', '../assets/images/posters/desktop_product_page_1_poster.jpg');
+                    source.src = '../assets/videos/desktop_product_page_1.mp4';
+                }
+                source.type = 'video/mp4';
+                video.appendChild(source);
+            })();
+        </script>
     </section>
 
     <!-- FEATURES / HIGHLIGHTS BAR -->
