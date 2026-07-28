@@ -503,10 +503,6 @@
 
         <!-- Yellow Copyright Bar with Wavy top edge -->
         <div class="footer-bottom-bar">
-            <!-- Paw print badge overlapping the bottom wave -->
-            <div class="footer-bottom-badge">
-                <i class="fa-solid fa-paw"></i>
-            </div>
                         <div class="footer-copyright-text">
                 &copy; 2026 Petland Oman. All rights reserved.
             </div>
@@ -603,7 +599,13 @@
             }
 
             function openModal(card) {
-                var images  = JSON.parse(card.dataset.images);
+                var images  = JSON.parse(card.dataset.images).map(function(src) {
+                    if (src.indexOf('http') === 0 || src.indexOf('../') === 0) return src;
+                    var cleanSrc = src
+                        .replace('product list/', 'product_list/')
+                        .replace('Hygiene suppliments/', 'hygiene_supplements/');
+                    return '../assets/images/' + cleanSrc;
+                });
                 var title   = card.dataset.title;
                 var tag     = card.dataset.tag;
                 var desc    = card.dataset.desc;
