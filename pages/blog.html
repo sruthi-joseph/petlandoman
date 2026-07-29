@@ -265,7 +265,7 @@
                 });
             }
 
-            // Sanity CMS Configuration
+            // Data Fetching configuration
             const projectId = '1dvvzwi3';
             const dataset = 'production';
             const apiVersion = 'v2022-03-07';
@@ -282,12 +282,40 @@
                 },
                 body
             }`);
-            const url = `https://${projectId}.api.sanity.io/${apiVersion}/data/query/${dataset}?query=${query}`;
+            
+            let result = null;
 
+            // 1. Attempt to fetch from Vercel Serverless Function Proxy to bypass CORS issues on preview domains
             try {
-                const response = await fetch(url);
-                const { result } = await response.json();
+                const apiResponse = await fetch('/api/posts');
+                if (apiResponse.ok) {
+                    const data = await apiResponse.json();
+                    result = data.result;
+                } else {
+                    console.warn(`Vercel Serverless API returned status ${apiResponse.status}, falling back to direct Sanity API...`);
+                }
+            } catch (apiError) {
+                console.log("Vercel Serverless API fetch failed (this is expected on local file:// or basic dev servers), falling back to direct Sanity API...", apiError);
+            }
 
+            // 2. Fallback: Fetch directly from live Sanity API (bypassing CDN and browser caching)
+            if (!result) {
+                try {
+                    const directUrl = `https://${projectId}.api.sanity.io/${apiVersion}/data/query/${dataset}?query=${query}&_t=${Date.now()}`;
+                    const response = await fetch(directUrl, {
+                        cache: 'no-store'
+                    });
+                    if (response.ok) {
+                        const data = await response.json();
+                        result = data.result;
+                    }
+                } catch (sanityError) {
+                    console.warn("Could not fetch directly from Sanity API, using static fallback posts:", sanityError);
+                }
+            }
+
+            // Render output
+            try {
                 if (!result || result.length === 0) {
                     renderPosts(fallbackPosts);
                 } else {
@@ -316,8 +344,8 @@
                     });
                     renderPosts(filteredResult);
                 }
-            } catch (error) {
-                console.warn("Could not fetch blog posts from Sanity (likely CORS or local file:// protocol), using fallback posts:", error);
+            } catch (renderError) {
+                console.error("Error during rendering posts, rendering fallback:", renderError);
                 renderPosts(fallbackPosts);
             }
 
