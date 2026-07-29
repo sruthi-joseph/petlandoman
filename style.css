@@ -5284,12 +5284,19 @@ footer {
         flex-wrap: nowrap !important;
         width: max-content !important;
         gap: 0 !important;
-        animation: mobile-marquee-left 25s linear infinite;
         will-change: transform;
         backface-visibility: hidden;
         -webkit-backface-visibility: hidden;
         perspective: 1000px;
         -webkit-perspective: 1000px;
+    }
+
+    .service-cards-row.css-marquee-active .css-marquee-track {
+        animation: mobile-marquee-left 20s linear infinite !important;
+    }
+
+    .branches-grid.css-marquee-active .css-marquee-track {
+        animation: mobile-marquee-left 73s linear infinite !important;
     }
 
     .css-marquee-track.paused {
