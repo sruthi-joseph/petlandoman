@@ -557,13 +557,11 @@ function initHeroLogoOverlay() {
    7. MOBILE CAROUSELS — infinite continuous marquee for services & branches
    ========================================================================== */
 function initMobileCarousels() {
-    // Original elements cache to restore during viewport changes
     const originalContent = {
         services: null,
         branches: null
     };
     
-    // Cache original children before modifying DOM
     function cacheOriginals(selector, key) {
         const container = document.querySelector(selector);
         if (!container) return;
@@ -572,7 +570,6 @@ function initMobileCarousels() {
         }
     }
     
-    // Restore original children
     function restoreOriginals(selector, key) {
         const container = document.querySelector(selector);
         if (!container || !originalContent[key]) return;
@@ -582,85 +579,21 @@ function initMobileCarousels() {
             container.appendChild(child.cloneNode(true));
         });
         
-        container.classList.remove('css-marquee-active');
         container.scrollLeft = 0;
     }
     
-    // -------------------------------------------------------------
-    // CSS-Based Marquee (Mobile Viewport)
-    // -------------------------------------------------------------
-    const cssMarquees = new Map();
+    // Active marquee registrations
+    const activeMarquees = new Map();
     
-    function initCSSMarquee(selector, key) {
-        const container = document.querySelector(selector);
-        if (!container) return;
-        if (container.classList.contains('css-marquee-active')) return;
+    function initMarquee(selector, key, speed) {
+        if (activeMarquees.has(selector)) return;
+        
+        const track = document.querySelector(selector);
+        if (!track) return;
         
         cacheOriginals(selector, key);
         
-        const children = originalContent[key].map(child => child.cloneNode(true));
-        container.innerHTML = '';
-        
-        const track = document.createElement('div');
-        track.className = 'css-marquee-track';
-        
-        const group1 = document.createElement('div');
-        group1.className = 'css-marquee-group';
-        children.forEach(child => group1.appendChild(child));
-        
-        const group2 = document.createElement('div');
-        group2.className = 'css-marquee-group';
-        children.forEach(child => group2.appendChild(child.cloneNode(true)));
-        
-        track.appendChild(group1);
-        track.appendChild(group2);
-        
-        let touchTimeout = null;
-        const pauseTouch = () => {
-            track.classList.add('paused');
-            clearTimeout(touchTimeout);
-            touchTimeout = setTimeout(() => {
-                track.classList.remove('paused');
-            }, 3000);
-        };
-        
-        track.addEventListener('touchstart', pauseTouch, { passive: true });
-        track.addEventListener('touchmove', pauseTouch, { passive: true });
-        
-        container.appendChild(track);
-        container.classList.add('css-marquee-active');
-        
-        cssMarquees.set(selector, {
-            track,
-            pauseTouch
-        });
-    }
-    
-    function destroyCSSMarquee(selector, key) {
-        const state = cssMarquees.get(selector);
-        if (state) {
-            state.track.removeEventListener('touchstart', state.pauseTouch);
-            state.track.removeEventListener('touchmove', state.pauseTouch);
-            cssMarquees.delete(selector);
-        }
-        restoreOriginals(selector, key);
-    }
-    
-    // -------------------------------------------------------------
-    // JS-Based Marquee (Original Desktop Branches Viewport)
-    // -------------------------------------------------------------
-    let jsMarqueeActive = false;
-    let jsCancelFrame = null;
-    let jsEventListeners = [];
-    
-    function initJSMarquee(trackSelector, key) {
-        if (jsMarqueeActive) return;
-        
-        const track = document.querySelector(trackSelector);
-        if (!track) return;
-        
-        cacheOriginals(trackSelector, key);
-        
+        // Populate track: original children + cloned children
         const children = originalContent[key].map(child => child.cloneNode(true));
         track.innerHTML = '';
         children.forEach(child => track.appendChild(child));
@@ -668,94 +601,116 @@ function initMobileCarousels() {
         const clones = originalContent[key].map(child => child.cloneNode(true));
         clones.forEach(clone => track.appendChild(clone));
         
-        let scrollSpeed = 0.5;
         let isInteracting = false;
-        let interactionTimeout = null;
+        let resumeTimeout = null;
+        let halfway = Math.floor(track.scrollWidth / 2);
         
-        let halfway = track.scrollWidth / 2;
+        // Re-calculate halfway on resize
         const handleResize = () => {
-            halfway = track.scrollWidth / 2;
+            halfway = Math.floor(track.scrollWidth / 2);
         };
         window.addEventListener('resize', handleResize, { passive: true });
-        jsEventListeners.push({ target: window, type: 'resize', listener: handleResize });
         
-        function tick() {
-            if (!isInteracting) {
-                track.scrollLeft += scrollSpeed;
-                if (track.scrollLeft >= halfway) {
-                    track.scrollLeft -= halfway;
-                }
-            }
-            jsCancelFrame = requestAnimationFrame(tick);
-        }
-        
-        const pauseInteraction = () => {
-            isInteracting = true;
-            clearTimeout(interactionTimeout);
-            interactionTimeout = setTimeout(() => {
-                isInteracting = false;
-            }, 3000);
-        };
-        
-        const enterInteraction = () => { isInteracting = true; };
-        const leaveInteraction = () => { isInteracting = false; };
-        
-        const scrollLoop = () => {
+        // Boundary loop checking on scroll
+        const handleScroll = () => {
             if (track.scrollLeft >= halfway) {
                 track.scrollLeft -= halfway;
             } else if (track.scrollLeft <= 0) {
                 track.scrollLeft += halfway;
             }
         };
+        track.addEventListener('scroll', handleScroll, { passive: true });
         
-        track.addEventListener('touchstart', pauseInteraction, { passive: true });
-        track.addEventListener('touchmove', pauseInteraction, { passive: true });
-        track.addEventListener('mouseenter', enterInteraction);
-        track.addEventListener('mouseleave', leaveInteraction);
-        track.addEventListener('scroll', scrollLoop, { passive: true });
+        // Scroll ticker loop
+        let lastTime = performance.now();
+        let frameId = null;
         
-        jsEventListeners.push(
-            { target: track, type: 'touchstart', listener: pauseInteraction },
-            { target: track, type: 'touchmove', listener: pauseInteraction },
-            { target: track, type: 'mouseenter', listener: enterInteraction },
-            { target: track, type: 'mouseleave', listener: leaveInteraction },
-            { target: track, type: 'scroll', listener: scrollLoop }
-        );
-        
-        jsCancelFrame = requestAnimationFrame(tick);
-        jsMarqueeActive = true;
-    }
-    
-    function destroyJSMarquee(trackSelector, key) {
-        if (!jsMarqueeActive) return;
-        
-        if (jsCancelFrame) {
-            cancelAnimationFrame(jsCancelFrame);
-            jsCancelFrame = null;
+        function tick(now) {
+            if (!isInteracting) {
+                const delta = now - lastTime;
+                // Frame rate independent increment: speed is in pixels per 16.67ms (60fps)
+                const increment = speed * (delta / 16.67);
+                track.scrollLeft += increment;
+            }
+            lastTime = now;
+            frameId = requestAnimationFrame(tick);
         }
         
-        jsEventListeners.forEach(item => {
-            item.target.removeEventListener(item.type, item.listener);
-        });
-        jsEventListeners = [];
+        // Pause interactions on touch/drag
+        const startTouch = () => {
+            isInteracting = true;
+            clearTimeout(resumeTimeout);
+        };
         
-        jsMarqueeActive = false;
-        restoreOriginals(trackSelector, key);
+        const endTouch = () => {
+            clearTimeout(resumeTimeout);
+            resumeTimeout = setTimeout(() => {
+                isInteracting = false;
+                lastTime = performance.now(); // reset time anchor to prevent jumps
+            }, 2000); // Wait 2 seconds for touch swipe inertia to stop
+        };
+        
+        track.addEventListener('touchstart', startTouch, { passive: true });
+        track.addEventListener('touchmove', startTouch, { passive: true });
+        track.addEventListener('touchend', endTouch, { passive: true });
+        track.addEventListener('touchcancel', endTouch, { passive: true });
+        
+        // Desktop mouse support: pause on hover
+        const enterHover = () => { isInteracting = true; };
+        const leaveHover = () => {
+            isInteracting = false;
+            lastTime = performance.now();
+        };
+        track.addEventListener('mouseenter', enterHover);
+        track.addEventListener('mouseleave', leaveHover);
+        
+        frameId = requestAnimationFrame(tick);
+        
+        activeMarquees.set(selector, {
+            destroy: () => {
+                if (frameId) cancelAnimationFrame(frameId);
+                window.removeEventListener('resize', handleResize);
+                track.removeEventListener('scroll', handleScroll);
+                track.removeEventListener('touchstart', startTouch);
+                track.removeEventListener('touchmove', startTouch);
+                track.removeEventListener('touchend', endTouch);
+                track.removeEventListener('touchcancel', endTouch);
+                track.removeEventListener('mouseenter', enterHover);
+                track.removeEventListener('mouseleave', leaveHover);
+                clearTimeout(resumeTimeout);
+                restoreOriginals(selector, key);
+            }
+        });
+    }
+    
+    function destroyMarquee(selector) {
+        const registration = activeMarquees.get(selector);
+        if (registration) {
+            registration.destroy();
+            activeMarquees.delete(selector);
+        }
     }
     
     // -------------------------------------------------------------
     // Responsive Orchestrator
     // -------------------------------------------------------------
+    let currentMode = null;
+    
     function updateLayout() {
         const isMobile = window.innerWidth <= 768;
+        const targetMode = isMobile ? 'mobile' : 'desktop';
+        if (currentMode === targetMode) return;
+        currentMode = targetMode;
+        
         if (isMobile) {
-            destroyJSMarquee('.branches-grid', 'branches');
-            initCSSMarquee('.service-cards-row', 'services');
-            initCSSMarquee('.branches-grid', 'branches');
+            destroyMarquee('.service-cards-row');
+            destroyMarquee('.branches-grid');
+            initMarquee('.service-cards-row', 'services', 0.77);
+            initMarquee('.branches-grid', 'branches', 0.77);
         } else {
-            destroyCSSMarquee('.service-cards-row', 'services');
-            destroyCSSMarquee('.branches-grid', 'branches');
-            initJSMarquee('.branches-grid', 'branches');
+            destroyMarquee('.service-cards-row');
+            destroyMarquee('.branches-grid');
+            initMarquee('.branches-grid', 'branches', 0.5);
         }
     }
     
