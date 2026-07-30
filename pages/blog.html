@@ -356,18 +356,7 @@
                 if (!result || result.length === 0) {
                     renderPosts(fallbackPosts);
                 } else {
-                    const filteredResult = result.filter(post => {
-                        const titleLower = (post.title || '').toLowerCase();
-                        const categories = post.categories || [];
-                        const categoryStr = categories.map(c => typeof c === 'string' ? c : (c.title || '')).join(' ').toLowerCase();
-                        
-                        // Strict regex check for standalone 'vet' or 'veterinary' as a full word in title or categories
-                        const hasVetReference = /\b(vet|veterinary)\b/i.test(titleLower) || 
-                                                /\b(vet|veterinary)\b/i.test(categoryStr);
-                        
-                        return !hasVetReference;
-                    });
-                    renderPosts(filteredResult);
+                    renderPosts(result);
                 }
             } catch (renderError) {
                 console.error("Error during rendering posts, rendering fallback:", renderError);
