@@ -5294,3 +5294,13 @@ footer {
     content-visibility: auto;
     contain-intrinsic-size: 600px;
 }
+
+/* Accessibility focus-visible styles for keyboard navigation compliance */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+    outline: 3px solid var(--accent-orange);
+    outline-offset: 2px;
+}
