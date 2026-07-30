@@ -217,51 +217,88 @@
 
             function renderPosts(posts) {
                 blogGrid.innerHTML = '';
-                posts.forEach(post => {
-                    const category = post.categories && post.categories.length > 0 ? (post.categories[0].title || post.categories[0]) : 'Uncategorized';
-                    const date = new Date(post.publishedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-                    const tagString = `${category} &bull; ${date}`;
-                    
-                    let descText = post.descText;
-                    if (!descText) {
-                        descText = (post.body || []).map(block => {
-                            if (block && block.children) {
-                                return block.children.map(child => child.text || '').join('');
+                posts.forEach((post, index) => {
+                    try {
+                        // Title fallback
+                        const title = post.title || 'Untitled Post';
+
+                        // publishedAt fallback
+                        let dateString = 'Date unavailable';
+                        if (post.publishedAt) {
+                            const parsedDate = new Date(post.publishedAt);
+                            if (!isNaN(parsedDate.getTime())) {
+                                dateString = parsedDate.toLocaleDateString('en-US', { 
+                                    year: 'numeric', 
+                                    month: 'long', 
+                                    day: 'numeric' 
+                                });
                             }
-                            return '';
-                        }).join('\n\n');
-                    }
-                    const previewText = descText.length > 150 ? descText.substring(0, 150) + '...' : descText;
-                    const imageUrl = post.imageUrl || post.mainImage?.asset?.url || '../assets/images/logo_transparent.png';
+                        }
 
-                    const article = document.createElement('article');
-                    article.className = 'blog-card';
-                    article.innerHTML = `
-                        <div class="blog-image">
-                            <img src="${imageUrl}" alt="${post.title}">
-                        </div>
-                        <div class="blog-info">
-                            <span class="blog-date">${tagString}</span>
-                            <h3 class="blog-title">${post.title}</h3>
-                            <p class="blog-desc">${previewText}</p>
-                            <a href="#" class="blog-read-more">Read Full Post <i class="fa-solid fa-arrow-right-long"></i></a>
-                        </div>
-                    `;
-
-                    const btn = article.querySelector('.blog-read-more');
-                    btn.addEventListener('click', function (e) {
-                        e.preventDefault();
-                        modalTag.innerHTML = tagString;
-                        modalTitle.textContent = post.title;
-                        modalImg.src = imageUrl;
-                        modalImg.alt = post.title;
-                        modalDesc.textContent = descText;
+                        // Categories fallback
+                        let categoryTitle = 'Uncategorized';
+                        if (post.categories && post.categories.length > 0) {
+                            const firstCategory = post.categories[0];
+                            categoryTitle = typeof firstCategory === 'string' 
+                                ? firstCategory 
+                                : (firstCategory.title || 'Uncategorized');
+                        }
                         
-                        modal.classList.add('active');
-                        document.body.style.overflow = 'hidden';
-                    });
+                        const tagString = `${categoryTitle} &bull; ${dateString}`;
+                        
+                        // Body / description fallback
+                        let descText = post.descText;
+                        if (!descText) {
+                            const bodyBlocks = post.body || [];
+                            descText = bodyBlocks.map(block => {
+                                if (block && block.children) {
+                                    return block.children.map(child => child.text || '').join('');
+                                }
+                                return '';
+                            }).filter(text => text.trim().length > 0).join('\n\n');
+                        }
+                        if (!descText) {
+                            descText = 'No content preview available.';
+                        }
 
-                    blogGrid.appendChild(article);
+                        const previewText = descText.length > 150 
+                            ? descText.substring(0, 150) + '...' 
+                            : descText;
+
+                        // mainImage fallback
+                        const imageUrl = post.imageUrl || post.mainImage?.asset?.url || '../assets/images/logo_transparent.png';
+
+                        const article = document.createElement('article');
+                        article.className = 'blog-card';
+                        article.innerHTML = `
+                            <div class="blog-image">
+                                <img src="${imageUrl}" alt="${title}">
+                            </div>
+                            <div class="blog-info">
+                                <span class="blog-date">${tagString}</span>
+                                <h3 class="blog-title">${title}</h3>
+                                <p class="blog-desc">${previewText}</p>
+                                <a href="#" class="blog-read-more">Read Full Post <i class="fa-solid fa-arrow-right-long"></i></a>
+                            </div>
+                        `;
+
+                        const btn = article.querySelector('.blog-read-more');
+                        btn.addEventListener('click', function (e) {
+                            e.preventDefault();
+                            modalTag.innerHTML = tagString;
+                            modalTitle.textContent = title;
+                            modalImg.src = imageUrl;
+                            modalImg.alt = title;
+                            modalDesc.textContent = descText;
+                            
+                            modal.classList.add('active');
+                            document.body.style.overflow = 'hidden';
+                        });
+
+                        blogGrid.appendChild(article);
+                    } catch (itemError) {
+                        console.error(`Failed to render post at index ${index}:`, itemError, post);
+                    }
                 });
             }
 
@@ -319,27 +356,15 @@
                 if (!result || result.length === 0) {
                     renderPosts(fallbackPosts);
                 } else {
-                    // Filter out any veterinary-related posts programmatically
                     const filteredResult = result.filter(post => {
                         const titleLower = (post.title || '').toLowerCase();
                         const categories = post.categories || [];
                         const categoryStr = categories.map(c => typeof c === 'string' ? c : (c.title || '')).join(' ').toLowerCase();
                         
-                        // Extract paragraph children text from block body to inspect
-                        const bodyBlocks = post.body || [];
-                        const bodyText = bodyBlocks.map(block => {
-                            if (block && block.children) {
-                                return block.children.map(child => child.text || '').join('');
-                            }
-                            return '';
-                        }).join(' ').toLowerCase();
-
-                        const hasVetReference = titleLower.includes('vet') || 
-                                                titleLower.includes('veterinary') || 
-                                                categoryStr.includes('vet') || 
-                                                categoryStr.includes('veterinary') ||
-                                                bodyText.includes('veterinary') ||
-                                                bodyText.includes('veterinarian');
+                        // Strict regex check for standalone 'vet' or 'veterinary' as a full word in title or categories
+                        const hasVetReference = /\b(vet|veterinary)\b/i.test(titleLower) || 
+                                                /\b(vet|veterinary)\b/i.test(categoryStr);
+                        
                         return !hasVetReference;
                     });
                     renderPosts(filteredResult);
