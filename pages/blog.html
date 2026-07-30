@@ -301,7 +301,7 @@
             // 2. Fallback: Fetch directly from live Sanity API (bypassing CDN and browser caching)
             if (!result) {
                 try {
-                    const directUrl = `https://${projectId}.api.sanity.io/${apiVersion}/data/query/${dataset}?query=${query}&_t=${Date.now()}`;
+                    const directUrl = `https://${projectId}.api.sanity.io/${apiVersion}/data/query/${dataset}?query=${query}`;
                     const response = await fetch(directUrl, {
                         cache: 'no-store'
                     });

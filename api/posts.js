@@ -23,8 +23,8 @@ export default async function handler(req, res) {
         body
     }`;
 
-    // Append cache-buster to query url to bypass sanity CDN and local browser caches
-    const url = `https://${projectId}.api.sanity.io/${apiVersion}/data/query/${dataset}?query=${encodeURIComponent(query)}&_t=${Date.now()}`;
+    // Fetch directly from live Sanity API (useCdn is false as we query api.sanity.io directly)
+    const url = `https://${projectId}.api.sanity.io/${apiVersion}/data/query/${dataset}?query=${encodeURIComponent(query)}`;
 
     try {
         const response = await fetch(url, {
