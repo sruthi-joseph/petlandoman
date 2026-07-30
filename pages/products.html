@@ -76,23 +76,25 @@
 
     <!-- 1. PRODUCT-FOCUSED HERO VIDEO -->
     <section class="product-video-fullpage">
-        <video id="product-video" muted playsinline autoplay loop preload="auto">
-            <!-- Source dynamically set by script below -->
+        <video id="product-video" muted playsinline autoplay loop preload="auto" width="100%" height="100%" disablePictureInPicture>
+            <source src="../assets/videos/pet_product_phone_view.mp4" type="video/mp4" media="(max-width: 768px)">
+            <source src="../assets/videos/desktop_product_page_1.mp4" type="video/mp4" media="(min-width: 769px)">
         </video>
         <script>
             (function() {
                 var video = document.getElementById('product-video');
-                var isMobile = window.innerWidth <= 768;
-                var source = document.createElement('source');
-                if (isMobile) {
+                if (window.innerWidth <= 768) {
                     video.setAttribute('poster', '../assets/images/posters/pet_product_phone_view_poster.jpg');
-                    source.src = '../assets/videos/pet_product_phone_view.mp4';
                 } else {
                     video.setAttribute('poster', '../assets/images/posters/desktop_product_page_1_poster.jpg');
-                    source.src = '../assets/videos/desktop_product_page_1.mp4';
                 }
-                source.type = 'video/mp4';
-                video.appendChild(source);
+                video.load();
+                var playPromise = video.play();
+                if (playPromise !== undefined) {
+                    playPromise.catch(function(error) {
+                        console.log("Autoplay prevented or video failed to play:", error);
+                    });
+                }
             })();
         </script>
     </section>

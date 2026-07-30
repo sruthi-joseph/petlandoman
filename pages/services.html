@@ -69,23 +69,25 @@
 
     <!-- VIDEO SECTION — full viewport, no text, no zoom -->
     <div class="services-video-fullpage">
-        <video id="svc-video" muted playsinline autoplay loop preload="auto">
-            <!-- Source dynamically set by script below -->
+        <video id="svc-video" muted playsinline autoplay loop preload="auto" width="100%" height="100%" disablePictureInPicture>
+            <source src="../assets/videos/service_phone_view.mp4" type="video/mp4" media="(max-width: 768px)">
+            <source src="../assets/videos/service_desktop_1.mp4" type="video/mp4" media="(min-width: 769px)">
         </video>
         <script>
             (function() {
                 var video = document.getElementById('svc-video');
-                var isMobile = window.innerWidth <= 768;
-                var source = document.createElement('source');
-                if (isMobile) {
+                if (window.innerWidth <= 768) {
                     video.setAttribute('poster', '../assets/images/posters/service_phone_view_poster.jpg');
-                    source.src = '../assets/videos/service_phone_view.mp4';
                 } else {
                     video.setAttribute('poster', '../assets/images/posters/service_desktop_1_poster.jpg');
-                    source.src = '../assets/videos/service_desktop_1.mp4';
                 }
-                source.type = 'video/mp4';
-                video.appendChild(source);
+                video.load();
+                var playPromise = video.play();
+                if (playPromise !== undefined) {
+                    playPromise.catch(function(error) {
+                        console.log("Autoplay prevented or video failed to play:", error);
+                    });
+                }
             })();
         </script>
     </div>

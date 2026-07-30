@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initBannerSlideshow();
     initModals();
     initContactForm();
-    initHeroLogoOverlay();
     initMobileCarousels();
 });
 
@@ -90,15 +89,25 @@ class CanvasScrollScrubber {
         this.containerOffsetTop = 0;
         this.containerHeight = 0;
 
+        // Centralised hero logo overlay opacity properties
+        this.overlay = document.getElementById('hero-logo-overlay');
+        this.lastOpacity = -1;
+
         this.init();
     }
 
     init() {
         this.updateMetrics();
         this.resizeCanvas();
+        
+        // Debounced resize handler to save CPU execution loops
+        let resizeTimeout;
         window.addEventListener('resize', () => {
-            this.updateMetrics();
-            this.resizeCanvas();
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                this.updateMetrics();
+                this.resizeCanvas();
+            }, 150);
         }, { passive: true });
 
         // Apply GPU acceleration hint to canvas on mobile
@@ -106,6 +115,12 @@ class CanvasScrollScrubber {
             this.canvas.style.willChange   = 'transform';
             this.canvas.style.transform    = 'translateZ(0)';
             this.canvas.style.backfaceVisibility = 'hidden';
+        }
+
+        // Set initial overlay opacity
+        if (this.overlay) {
+            this.overlay.style.opacity = 1;
+            this.lastOpacity = 1;
         }
 
         this.preloadImages();
@@ -227,6 +242,17 @@ class CanvasScrollScrubber {
             this.lastRenderedFrame = frameIndex;
         }
 
+        // Centralised hero logo overlay opacity calculation
+        if (this.overlay) {
+            const FADE_END = 0.30;
+            const opacity = Math.max(0, 1 - (this.currentProgress / FADE_END));
+            const roundedOpacity = Math.round(opacity * 100) / 100;
+            if (this.lastOpacity !== roundedOpacity) {
+                this.overlay.style.opacity = roundedOpacity;
+                this.lastOpacity = roundedOpacity;
+            }
+        }
+
         // Desktop: stop loop once animation has settled
         if (!this.isMobile) {
             const diff = Math.abs(this.targetProgress - this.currentProgress);
@@ -241,6 +267,15 @@ class CanvasScrollScrubber {
                 if (finalFrame !== this.lastRenderedFrame) {
                     this.drawFrame(finalFrame);
                     this.lastRenderedFrame = finalFrame;
+                }
+                
+                // Final overlay update
+                if (this.overlay) {
+                    const FADE_END = 0.30;
+                    const finalOpacity = Math.max(0, 1 - (this.currentProgress / FADE_END));
+                    const finalRounded = Math.round(finalOpacity * 100) / 100;
+                    this.overlay.style.opacity = finalRounded;
+                    this.lastOpacity = finalRounded;
                 }
                 return;
             }
@@ -514,44 +549,7 @@ function initContactForm() {
     }
 }
 
-/* ==========================================================================
-   6. HERO LOGO OVERLAY — fades out as scroll animation frames come in
-   ========================================================================== */
-function initHeroLogoOverlay() {
-    const overlay   = document.getElementById('hero-logo-overlay');
-    const container = document.getElementById('scroll-canvas-section');
-    if (!overlay || !container) return;
 
-    // Fade the logo out over the first 30% of the scroll-canvas travel
-    const FADE_END = 0.30;
-
-    let containerOffsetTop = 0;
-    let containerHeight = 0;
-
-    const updateMetrics = () => {
-        const rect = container.getBoundingClientRect();
-        containerOffsetTop = rect.top + window.scrollY;
-        containerHeight = rect.height;
-    };
-
-    updateMetrics();
-    window.addEventListener('resize', updateMetrics, { passive: true });
-
-    const update = () => {
-        const totalScrollable = containerHeight - window.innerHeight;
-        if (totalScrollable <= 0) return;
-
-        const scrolled  = window.scrollY - containerOffsetTop;
-        const progress  = Math.min(Math.max(0, scrolled / totalScrollable), 1);
-
-        // Map 0 → FADE_END to opacity 1 → 0
-        const opacity = Math.max(0, 1 - (progress / FADE_END));
-        overlay.style.opacity = opacity;
-    };
-
-    window.addEventListener('scroll', update, { passive: true });
-    update(); // run once on load
-}
 
 /* ==========================================================================
    7. MOBILE CAROUSELS — infinite continuous marquee for services & branches
