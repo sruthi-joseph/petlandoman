@@ -8,10 +8,7 @@ export default defineCliConfig({
   deployment: {
     autoUpdates: true,
   },
-  vite: (config) => {
-    return {
-      ...config,
-      base: '/studio/',
-    }
+  vite: {
+    base: '/studio/',
   }
 })

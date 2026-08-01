@@ -2,6 +2,8 @@
   "framework": null,
   "outputDirectory": ".",
   "rewrites": [
+    { "source": "/static/(.*)", "destination": "/studio/static/$1" },
+    { "source": "/vendor/(.*)", "destination": "/studio/vendor/$1" },
     { "source": "/studio/(.*)", "destination": "/studio/index.html" },
     { "source": "/studio", "destination": "/studio/index.html" }
   ],
