@@ -1,6 +1,9 @@
 {
   "framework": null,
   "outputDirectory": ".",
+  "redirects": [
+    { "source": "/index.html", "destination": "/", "permanent": true }
+  ],
   "rewrites": [
     { "source": "/static/(.*)", "destination": "/studio/static/$1" },
     { "source": "/vendor/(.*)", "destination": "/studio/vendor/$1" },
