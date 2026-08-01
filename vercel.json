@@ -1,4 +1,8 @@
 {
+  "rewrites": [
+    { "source": "/studio/(.*)", "destination": "/studio/index.html" },
+    { "source": "/studio", "destination": "/studio/index.html" }
+  ],
   "headers": [
     {
       "source": "/assets/frames/(.*)",
