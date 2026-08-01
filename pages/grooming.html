@@ -669,6 +669,196 @@
     </style>
 </head>
 <body>
+    <h1 class="visually-hidden">Pet Grooming Services | Petland Oman</h1>
+
+    <!-- STICKY HEADER -->
+    <header id="main-header">
+        <div class="header-container">
+            <button class="mobile-nav-toggle" id="nav-toggle" aria-label="Toggle Navigation">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <!-- Mobile Logo -->
+            <a href="../index.html" class="mobile-logo">
+                <img src="../assets/images/logo_transparent.png" alt="Petland Oman Logo" class="mobile-logo-img">
+            </a>
+            <nav id="nav-menu">
+                <ul>
+                    <li class="nav-logo-item">
+                        <a href="../index.html">
+                            <img src="../assets/images/logo_transparent.png" alt="Petland Oman Logo" class="nav-logo-img">
+                        </a>
+                    </li>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html" class="active">Services</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- PACKAGES SECTION -->
+    <section class="grooming-packages-section">
+        <div class="grooming-container">
+            <div class="sec-heading" style="margin-bottom: 3rem; text-align: center;">
+                <h2>
+                    <span class="sec-heading-decorations-left">
+                        <span class="sec-deco-paw-title" style="color: var(--primary-yellow); margin-right: 0.6rem; font-size: 1.8rem;"><i class="fa-solid fa-paw"></i></span>
+                        <span class="sec-arrow">➔</span>
+                    </span>
+                    <span class="sec-heading-text">Spa Grooming Packages</span>
+                    <span class="sec-heading-decorations-right">
+                        <span class="sec-arrow sec-arrow-flip">➔</span>
+                    </span>
+                </h2>
+                <p style="color: #666; margin-top: 0.5rem; font-size: 1.1rem; font-family: var(--font-primary);">Select a package to view details and book an appointment.</p>
+            </div>
+
+            <div class="grooming-grid">
+                <!-- Card 1: Fresh Paw Package -->
+                <div class="grooming-card card-bg-1" onclick="openGroomingModal(1)">
+                    <div class="grooming-card-content">
+                        <h3>Fresh Paw Package</h3>
+                        <p>Warm relaxing shower with premium blow-dry, hygienic ear cleaning, and expert nail trimming.</p>
+                        <button class="grooming-card-btn">View Details &nbsp;➔</button>
+                    </div>
+                    <div class="grooming-card-img-wrap">
+                        <img src="../assets/images/extracted_images/grooming_shower.png" alt="Fresh Paw Package" class="grooming-card-img" loading="lazy">
+                    </div>
+                </div>
+
+                <!-- Card 2: Style & Shine Package -->
+                <div class="grooming-card card-bg-2" onclick="openGroomingModal(2)">
+                    <div class="grooming-card-content">
+                        <h3>Style &amp; Shine Package</h3>
+                        <p>Professional clip & styling tailored to your pet's breed, claw clipping, and hygienic ear clean.</p>
+                        <button class="grooming-card-btn">View Details &nbsp;➔</button>
+                    </div>
+                    <div class="grooming-card-img-wrap">
+                        <img src="../assets/images/extracted_images/grooming_haircut.png" alt="Style & Shine Package" class="grooming-card-img" loading="lazy">
+                    </div>
+                </div>
+
+                <!-- Card 3: Deep Care Package -->
+                <div class="grooming-card card-bg-3" onclick="openGroomingModal(3)">
+                    <div class="grooming-card-content">
+                        <h3>Deep Care Package</h3>
+                        <p>Specialized deshedding wash, deep undercoat blowout, intensive brushing, claw trim, and ear sanitation.</p>
+                        <button class="grooming-card-btn">View Details &nbsp;➔</button>
+                    </div>
+                    <div class="grooming-card-img-wrap">
+                        <img src="../assets/images/extracted_images/grooming_deshedding.png" alt="Deep Care Package" class="grooming-card-img" loading="lazy">
+                    </div>
+                </div>
+
+                <!-- Card 4: Royal Grooming Package -->
+                <div class="grooming-card card-bg-4" onclick="openGroomingModal(4)">
+                    <div class="grooming-card-content">
+                        <h3>Royal Grooming Package</h3>
+                        <p>Our premium royal treatment: full styling scissor haircut, soothing bath, deshedding, blow-dry, ear cleaning, and nail file.</p>
+                        <button class="grooming-card-btn">View Details &nbsp;➔</button>
+                    </div>
+                    <div class="grooming-card-img-wrap">
+                        <img src="../assets/images/extracted_images/grooming_full.png" alt="Royal Grooming Package" class="grooming-card-img" loading="lazy">
+                    </div>
+                </div>
+
+                <!-- Card 5: Medicated Wash Option -->
+                <a href="https://wa.me/96879260091?text=Hi%20Petland%20Oman%2C%20I%27d%20like%20to%20book%20a%20grooming%20session%20with%20the%20Medicated%20Wash%20option%20added." target="_blank" class="grooming-card card-bg-5">
+                    <div class="grooming-card-content">
+                        <h3>Medicated Wash Option</h3>
+                        <p>Add a soothing, anti-itch medicated wash treatment to any of the shower packages above for only <strong>+2.00 OMR</strong> extra.</p>
+                        <span class="grooming-card-btn bg-black-btn">Book Now &nbsp;➔</span>
+                    </div>
+                    <div class="grooming-card-img-wrap">
+                        <img src="../assets/images/extracted_images/grooming_medicated.png" alt="Medicated Wash Option" class="grooming-card-img" loading="lazy">
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- DETAILED SPA GROOMING MODAL POPUP -->
+    <div class="gmodal" id="grooming-modal">
+        <div class="gmodal-backdrop" onclick="closeGroomingModal()"></div>
+        <div class="gmodal-content">
+            <button class="gmodal-close" onclick="closeGroomingModal()" aria-label="Close Modal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="gmodal-grid">
+                <!-- Left side: Images and thumbnails -->
+                <div class="gmodal-left">
+                    <div class="gmodal-main-img-wrap">
+                        <img src="../assets/images/extracted_images/grooming_shower.png" alt="Service details" id="gmodal-main-img" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
+                    </div>
+                    <div class="gmodal-thumbnails" id="gmodal-thumbnails-container">
+                        <!-- thumbnails populated dynamically -->
+                    </div>
+                </div>
+                <!-- Right side: details and selections -->
+                <div class="gmodal-right">
+                    <div class="gmodal-tag" id="gmodal-tag">Grooming Package</div>
+                    <h2 class="gmodal-title" id="gmodal-title">Fresh Paw Package</h2>
+                    
+                    <div class="gmodal-rating-row">
+                        <div class="gmodal-stars">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                    </div>
+
+                    <p class="gmodal-desc" id="gmodal-desc">A relaxing shower and blow-dry using premium hypoallergenic shampoo, hygienic ear cleaning, and nail trimming.</p>
+
+                    <!-- Highlights Grid -->
+                    <div class="gmodal-highlights" id="gmodal-highlights-container">
+                        <!-- highlights populated dynamically -->
+                    </div>
+
+                    <!-- Package Breed Size Options -->
+                    <div class="gmodal-packages-wrap">
+                        <span class="gmodal-section-title">Select Breed Size</span>
+                        <div class="gmodal-tabs">
+                            <button class="gmodal-tab active" onclick="selectBreed('small')">
+                                <span class="tab-label">Small Breed</span>
+                                <span class="tab-sub">Dog / Cat</span>
+                                <span class="tab-price" id="tab-price-small">OMR 11.00</span>
+                            </button>
+                            <button class="gmodal-tab" onclick="selectBreed('medium')">
+                                <span class="tab-label">Medium Breed</span>
+                                <span class="tab-sub">Dog</span>
+                                <span class="tab-price" id="tab-price-medium">OMR 13.00</span>
+                            </button>
+                            <button class="gmodal-tab" onclick="selectBreed('large')">
+                                <span class="tab-label">Large Breed</span>
+                                <span class="tab-sub">Dog</span>
+                                <span class="tab-price" id="tab-price-large">OMR 18.00</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Pricing Display -->
+                    <div class="gmodal-price-display">
+                        <span class="price-label">Price Starts from</span>
+                        <div class="price-numbers">
+                            <span class="current-price" id="gmodal-current-price">OMR 11.00</span>
+                        </div>
+                    </div>
+
+                    <!-- CTAs -->
+                    <div class="gmodal-buttons-row">
+                        <a href="https://wa.me/96879260091?text=Hi%20Petland%20Oman%2C%20I%20would%20like%20to%20book%20a%20grooming%20session!" target="_blank" class="gmodal-btn-book" id="gmodal-btn-book">
+                            Book Now <i class="fa-solid fa-calendar-check"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom features bar inside modal -->
             <div class="gmodal-footer-banner">
                 <div class="gmodal-footer-features">
                     <div class="gmodal-footer-feat-item">
