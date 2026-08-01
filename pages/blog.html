@@ -3,7 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pet Care Blog | Petland Oman</title>
+    <link rel="canonical" href="https://www.petlandoman.com/pages/blog.html">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.petlandoman.com/pages/blog.html">
+    <meta property="og:title" content="Pet Care Blog | Petland Oman">
+    <meta property="og:description" content="Read the latest pet care tips, training guidelines, nutritional insights, and updates from the experts at Petland Oman.">
+    <meta property="og:image" content="https://www.petlandoman.com/assets/images/logo_transparent.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.petlandoman.com/pages/blog.html">
+    <meta property="twitter:title" content="Pet Care Blog | Petland Oman">
+    <meta property="twitter:description" content="Read the latest pet care tips, training guidelines, nutritional insights, and updates from the experts at Petland Oman.">
+    <meta property="twitter:image" content="https://www.petlandoman.com/assets/images/logo_transparent.png">
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon_io/favicon-16x16.png">
+    <link rel="shortcut icon" type="image/x-icon" href="../favicon_io/favicon.ico">
+    <link rel="manifest" href="../favicon_io/site.webmanifest">
     <meta name="description" content="Read the latest pet care tips, training guidelines, nutritional insights, and updates from the experts at Petland Oman.">
     <!-- FontAwesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -327,7 +346,9 @@
                 const apiResponse = await fetch('/api/posts');
                 if (apiResponse.ok) {
                     const data = await apiResponse.json();
-                    result = data.result;
+                    if (data && data.result && data.result.length > 0) {
+                        result = data.result;
+                    }
                 } else {
                     console.warn(`Vercel Serverless API returned status ${apiResponse.status}, falling back to direct Sanity API...`);
                 }
@@ -335,32 +356,56 @@
                 console.log("Vercel Serverless API fetch failed (this is expected on local file:// or basic dev servers), falling back to direct Sanity API...", apiError);
             }
 
-            // 2. Fallback: Fetch directly from live Sanity API (bypassing CDN and browser caching)
+            // 2. Direct fetch from Sanity high-speed CDN API (CORS-friendly for web browsers)
+            if (!result) {
+                try {
+                    const directUrl = `https://${projectId}.apicdn.sanity.io/${apiVersion}/data/query/${dataset}?query=${query}`;
+                    const response = await fetch(directUrl);
+                    if (response.ok) {
+                        const data = await response.json();
+                        if (data && data.result && data.result.length > 0) {
+                            result = data.result;
+                        }
+                    }
+                } catch (sanityError) {
+                    console.warn("Could not fetch directly from Sanity CDN API, using fallback posts:", sanityError);
+                }
+            }
+
+            // 3. Fallback: Fetch directly from live Sanity uncached API if CDN is bypassed
             if (!result) {
                 try {
                     const directUrl = `https://${projectId}.api.sanity.io/${apiVersion}/data/query/${dataset}?query=${query}`;
-                    const response = await fetch(directUrl, {
-                        cache: 'no-store'
-                    });
+                    const response = await fetch(directUrl);
                     if (response.ok) {
                         const data = await response.json();
-                        result = data.result;
+                        if (data && data.result && data.result.length > 0) {
+                            result = data.result;
+                        }
                     }
                 } catch (sanityError) {
-                    console.warn("Could not fetch directly from Sanity API, using static fallback posts:", sanityError);
+                    console.warn("Could not fetch directly from Sanity API, using fallback posts:", sanityError);
                 }
             }
 
             // Render output
             try {
                 if (!result || result.length === 0) {
-                    renderPosts(fallbackPosts);
+                    if (fallbackPosts && fallbackPosts.length > 0) {
+                        renderPosts(fallbackPosts);
+                    } else {
+                        blogGrid.innerHTML = '<div style="text-align:center; padding: 4rem 1rem; width: 100%;"><h2 style="font-size: 1.8rem; font-family: var(--font-rounded); color: var(--black);">Coming Soon</h2><p style="color: #666; margin-top: 0.5rem;">New pet care articles and insights are being prepared. Check back soon!</p></div>';
+                    }
                 } else {
                     renderPosts(result);
                 }
             } catch (renderError) {
                 console.error("Error during rendering posts, rendering fallback:", renderError);
-                renderPosts(fallbackPosts);
+                if (fallbackPosts && fallbackPosts.length > 0) {
+                    renderPosts(fallbackPosts);
+                } else {
+                    blogGrid.innerHTML = '<div style="text-align:center; padding: 4rem 1rem; width: 100%;"><h2 style="font-size: 1.8rem; font-family: var(--font-rounded); color: var(--black);">Coming Soon</h2><p style="color: #666; margin-top: 0.5rem;">New pet care articles and insights are being prepared. Check back soon!</p></div>';
+                }
             }
 
             function closeModal() {

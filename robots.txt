@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://petlandoman.vercel.app/sitemap.xml
+Sitemap: https://www.petlandoman.com/sitemap.xml

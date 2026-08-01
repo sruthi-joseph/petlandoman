@@ -151,13 +151,21 @@ class CanvasScrollScrubber {
     }
 
     preloadImages() {
+        // Detect WebP support once; fall back to PNG for older browsers
+        const supportsWebP = (() => {
+            const canvas = document.createElement('canvas');
+            canvas.width = canvas.height = 1;
+            return canvas.toDataURL('image/webp').startsWith('data:image/webp');
+        })();
+
         const getFramePath = (index) => {
             const pad = String(index).padStart(3, '0');
             const pathPrefix = window.location.pathname.includes('/pages/') ? '../' : '';
             const dir = this.isMobile
                 ? 'assets/frames/hero_mobile'
                 : 'assets/frames/hero_desktop';
-            return `${pathPrefix}${dir}/ezgif-frame-${pad}.png`;
+            const ext = supportsWebP ? 'webp' : 'png';
+            return `${pathPrefix}${dir}/ezgif-frame-${pad}.${ext}`;
         };
 
         const loadImage = (index) => new Promise((resolve) => {
