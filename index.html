@@ -12,12 +12,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="dns-prefetch" href="https://fonts.googleapis.com">
 
-    <!-- Performance: Preload first hero frame (LCP critical resource) -->
-    <link rel="preload" as="image" href="assets/frames/hero_desktop/ezgif-frame-001.webp"
-          media="(min-width: 769px)" fetchpriority="high">
-    <link rel="preload" as="image" href="assets/frames/hero_mobile/ezgif-frame-001.webp"
-          media="(max-width: 768px)" fetchpriority="high">
-
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
@@ -102,14 +96,14 @@
             </nav>
         </div>
     </header>
-    <!-- 1. SCROLL CANVAS ANIMATION SECTION -->
-    <section class="scroll-canvas-container" id="scroll-canvas-section">
-        <div class="sticky-canvas-wrapper">
-            <canvas id="scroll-animation-canvas"></canvas>
-            <!-- Hero Logo Overlay: visible at top, fades as frames appear -->
-            <div class="hero-logo-overlay" id="hero-logo-overlay">
-                <img src="assets/images/logo_transparent.png" alt="Petland Oman" class="hero-logo-img">
-            </div>
+    <!-- 1. HERO VIDEO SECTION -->
+    <section class="hero-section" id="hero-section">
+        <div class="hero-video-wrapper">
+            <video id="hero-video" autoplay loop muted playsinline width="100%" height="100%" disablePictureInPicture>
+                <source src="assets/videos/heropage_phoneview.mp4" type="video/mp4" media="(max-width: 768px)">
+                <source src="assets/videos/hero_page_desktop1.mp4" type="video/mp4" media="(min-width: 769px)">
+            </video>
+
         </div>
     </section>
 

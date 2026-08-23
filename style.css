@@ -1674,44 +1674,27 @@ footer {
     transform: translateY(-3px);
 }
 
-/* --- SCROLL CANVAS ANIMATION FRAMEWORK --- */
-.scroll-canvas-container {
+/* --- HERO VIDEO SECTION --- */
+.hero-section {
     position: relative;
     width: 100%;
-    height: 350vh; /* Determines pinning scroll depth */
+    height: calc(100vh - 82px);
     background-color: var(--white);
     margin: 0;
     padding: 0;
-    border: none;
-    outline: none;
+    overflow: hidden;
 }
 
-@media (max-width: 768px) {
-    /* Pull the banner up over the canvas bottom whitespace on mobile */
-    .scroll-canvas-container {
-        margin-bottom: -250px;
-    }
-    .sticky-canvas-wrapper {
-        top: 0 !important;
-        height: 100vh !important;
-    }
-}
-
-
-
-.sticky-canvas-wrapper {
-    position: sticky;
-    top: 82px; /* Clear fixed desktop header (20px top + 62px height) */
-    height: calc(100vh - 82px);
+.hero-video-wrapper {
+    position: relative;
     width: 100%;
+    height: 100%;
     overflow: hidden;
     background-color: var(--white);
-    border: none;
-    outline: none;
 }
 
-/* Bottom shadow fade to transition canvas into next sections */
-.sticky-canvas-wrapper::after {
+/* Bottom shadow fade to transition video into next sections */
+.hero-video-wrapper::after {
     content: '';
     position: absolute;
     bottom: 0;
@@ -1723,16 +1706,19 @@ footer {
     z-index: 10;
 }
 
-#scroll-animation-canvas {
+#hero-video {
     width: 100%;
     height: 100%;
+    object-fit: cover;
     display: block;
     background-color: var(--white);
-    will-change: transform;
-    transform: translateZ(0);
-    backface-visibility: hidden;
 }
 
+@media (max-width: 768px) {
+    .hero-section {
+        height: 65vh;
+    }
+}
 
 /* Scroll Indicator Overlay */
 .scroll-indicator {
@@ -1784,7 +1770,7 @@ footer {
 }
 
 /* --- BANNER SLIDESHOW (DESKTOP) --- */
-/* Desktop: banner sits naturally below the scroll-canvas section — no overlap */
+/* Desktop: banner sits naturally below the hero video section — no overlap */
 .banner-below-video {
     position: relative;
     z-index: 6;
