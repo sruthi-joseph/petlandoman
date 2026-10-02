@@ -162,6 +162,35 @@ nav ul li a.active {
     color: var(--black);
 }
 
+/* Nav Cart Item */
+.nav-cart-item {
+        margin-left: 0;
+    }
+    .nav-cart-item::before {
+        display: none;
+    }
+    .nav-cart-item a {
+        font-size: 1.5rem;
+        color: var(--white);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+.nav-cart-item {
+        margin-left: 0;
+    }
+    .nav-cart-item::before {
+        display: none;
+    }
+    .nav-cart-item a {
+        font-size: 1.5rem;
+        color: var(--white);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+
 
 
 /* ============================================================
@@ -2861,6 +2890,21 @@ footer {
         color: #FCC203 !important;
         background-color: transparent !important;
     }
+
+    .nav-cart-item {
+        margin-left: 0;
+    }
+    .nav-cart-item::before {
+        display: none;
+    }
+    .nav-cart-item a {
+        font-size: 1.5rem;
+        color: var(--white);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
 
     .hero-title {
         font-size: 3rem;
