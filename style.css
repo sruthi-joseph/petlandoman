@@ -1755,9 +1755,9 @@ footer {
     position: relative;
     width: 100%;
     height: calc(100vh - 82px);
+    padding-top: 85px;
     background-color: var(--white);
     margin: 0;
-    padding: 0;
     overflow: hidden;
 }
 
@@ -1788,6 +1788,7 @@ footer {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center top;
     display: block;
     background-color: var(--white);
 }
@@ -1795,6 +1796,7 @@ footer {
 @media (max-width: 768px) {
     .hero-section {
         height: 65vh;
+        padding-top: 65px;
     }
 }
 
